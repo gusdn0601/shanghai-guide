@@ -2007,14 +2007,20 @@ function toggleQrPixelZoom(img){
 function closeQrZoom(){ const lb = document.getElementById('qrLightbox'); if(lb) lb.hidden = true; }
 
 
-/* ---------- PWA SERVICE WORKER & INSTALL PROMPT ---------- */
+/* ---------- PWA SERVICE WORKER (AUTO-UPDATE) ---------- */
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').then(reg => {
-      console.log('ServiceWorker registered:', reg.scope);
-    }).catch(err => {
-      console.log('ServiceWorker failed:', err);
-    });
+  navigator.serviceWorker.register('./sw.js?v=1793106339').then(reg => {
+    reg.update(); // Force check server for new version on every visit!
+  }).catch(() => {});
+
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!refreshing) {
+      refreshing = true;
+      window.location.reload();
+    }
+  });
+}
   });
 }
 
