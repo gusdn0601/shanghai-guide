@@ -607,6 +607,21 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <div id="view-ready" class="tab-view sheet">
     <div class="sh"><span class="no">🎒</span><span class="bar"></span><h2>출발 전 준비 · 비상 연락</h2></div>
     <h3 class="ready-sub">📑 확정된 예약 정보</h3>
+    <div class="booking-card" style="border: 2px solid var(--lacquer, #df4f7c)">
+      <h4><span>🎪 상하이 마시청 서커스 (ERA 2)</span><span class="booking-badge" style="background:var(--lacquer, #df4f7c)">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>공연일시</b>: <b>2026년 11월 01일(일) 저녁 19:30</b> (입장 30분 전 19:00 도착 권장)</li>
+        <li><b>예약내역</b>: <b>A석 단체 입장권 x 7인 전원</b> (결제완료 220,673원)</li>
+        <li><b>공연장소</b>: 상하이 마시청 (上海马戏城 · 上海市静安区共和新路2266号)</li>
+        <li><b>교통안내</b>: 지하철 1호선 상하이마시청역(上海马戏城站) 3번 출구 도보 2분</li>
+        <li><b>바우처 확인</b>: <a href="img/circus-voucher.png" target="_blank" rel="noopener">예약 영수증 보기 (7인 A석 결제완료)</a></li>
+      </ul>
+      <div style="margin-top:8px;border:1px dashed var(--line);border-radius:8px;padding:8px;background:var(--tint);text-align:center">
+        <img src="img/circus-voucher.png" alt="마시청 서커스 예약 바우처" style="max-height:160px;width:auto;border-radius:4px;cursor:pointer;box-shadow:1px 1px 4px rgba(0,0,0,0.15)" onclick="window.open(this.src)">
+        <p style="font-size:11px;color:var(--ink-2);margin:4px 0 0">탭하면 예약 영수증을 크게 볼 수 있어요</p>
+      </div>
+    </div>
+
     <p style="margin-bottom:14px;color:var(--ink-2)">체크인·탑승 때 화면을 그대로 보여주세요. 예약번호는 이 가이드북 안에서만 보세요.</p>
 
     <div class="booking-card">
@@ -1248,6 +1263,27 @@ binjiang: {
 /* ============ Day 4 · Day 5 추가 장소 (2026-10-27) ============ */
 /* ───────────────────────── Day 4 · 11.01 (일) ───────────────────────── */
 
+
+circus: {
+  kr:'상하이 마시청', sub:'ERA 2 시공의 여정 서커스', cn:'上海马戏城', addr:'上海市静安区共和新路2266号',
+  art:'tower', kind:'sight',
+  lead:'세계적인 무대 연출과 인간 한계에 도전하는 예술 곡예. 온 가족 7인이 함께 즐기는 상하이 최고의 밤 공연이에요.',
+  facts:[['공연 시작','19:30'],['러닝타임','약 90분'],['예약 좌석','A석 7인 전원'],['가까운 역','1호선 상하이마시청역 3번 출구']],
+  origin:[
+    '상하이 마시청은 1999년 문을 연 중국 최초의 현대식 원형 서커스 전용 극장이에요. 금빛 돔 지붕 모양으로 ‘동방의 황금 서커스 돔’이라 불려요.',
+    '대표 공연인 <ERA 2 — 시공의 여정>은 프랑스 연출팀과 중국 전통 잡기단이 합작한 블록버스터 쇼예요. 대형 구체 안에서 오토바이 5~8대가 시속 수십km로 교차 주행하는 오토바이 글로브 쇼가 백미예요.'],
+  timeline:[['1999','상하이 마시청 완공 개관'],['2005','ERA 1 첫 공연'],['2021','ERA 2 시공의 여정 리뉴얼 개막'],['2026.11.01','가족 7인 19:30 관람 확정']],
+  course:{title:'공연장 입장과 관람', intro:'19:00까지 도착해 매표소에서 모바일 바우처로 티켓을 교환하세요.', points:[
+    {name:'마시청 정문 매표소', cn:'上海马戏城 售票处', look:'1호선 3번 출구로 나오면 바로 보여요. 바우처 화면을 보여주면 실물 티켓 7장을 발권해 줍니다.'},
+    {name:'원형 관람석 A석', look:'무대 전체가 한눈에 들어오는 명당 자리예요. 아이들도 어르신도 시야 방해 없이 몰입할 수 있어요.'}]},
+  details:[{t:'오토바이 쇼 주의',d:'피날레의 오토바이 쇼는 굉음이 크니 어린이나 어르신은 귀를 살짝 막아주세요.'},{t:'화장실 위치',d:'로비 양쪽에 화장실이 있어요. 공연 시작 15분 전 미리 다녀오세요.'}],
+  kid:{missions:['구체 안에 오토바이가 몇 대 들어가는지 세어보기','공중 그네 타는 곡예사 손동작 따라 해보기'],fun:['마치 SF 영화 속에 들어온 것 같은 화려한 레이저와 거대한 물방울 무대가 펼쳐져요!']},
+  teen:['중국 수천 년 전통 잡기와 프랑스 서커스 연출 기술(음향·조명·의상)이 어떻게 현대적으로 융합되었는지 관찰해 보세요.'],
+  quiz:[{q:'상하이 마시청의 대표 공연 이름은?',a:'ERA 2 (시공의 여정)'},{q:'마시청 피날레에서 철창 구체 안에 들어가는 탈것은?',a:'오토바이'}],
+  practical:['공연 시작 30분 전(19:00)까지 매표소 도착 권장','공연 중 플래시 촬영 금지','음료 및 간단한 간식 반입 제한될 수 있음','공연 후 택시가 붐비니 지하철 1호선 또는 미리 차량 호출 권장'],
+  dp:'上海马戏城',
+  tip:'공연장 바로 앞이 지하철역이라 이동이 매우 편해요. 7인 A석 예약 확정!'
+},
 madi: {
   kr:'대한민국 임시정부 청사', sub:'상하이 시대 1926~1932', cn:'大韩民国临时政府旧址', addr:'上海市黄浦区马当路306弄4号',
   art:'street', kind:'sight',
@@ -1578,6 +1614,7 @@ const STOPS = [
  {day:'day4', t:'7:05', ap:'밤', p:'beiwaitan', tags:['야경','마지막 산책']},
  {day:'day4', t:'7:30', ap:'밤', move:'짐 수령 · 공항으로 출발', note:'A) 택시 2대 곧장 → 약 50분. B) 택시로 룽양루역(20분) → 자기부상 8분 → 공항 20:15 → 호텔 셔틀/택시. 셔틀 예약을 먼저 확인!', taxi:'airporthotel'},
  {day:'day4', t:'8:00', ap:'밤', p:'maglev', tags:['B코스만','시속 300km']},
+ {day:'day4', t:'7:30', ap:'저녁', p:'circus', tags:['서커스','7인 A석 예약확정'], note:'19:30~21:00 공연. 19:00까지 도착해 바우처로 티켓 교환. 공연 후 호텔로 이동해 짐 찾고 공항호텔로.', taxi:'circus'},
  {day:'day4', t:'8:30', ap:'밤', p:'airporthotel', tags:['체크인','마지막 1박']},
  {day:'day4', t:'8:50', ap:'밤', move:'프런트에서 내일 확인', note:'① 새벽 공항 셔틀 시각(04:00~15:00 운행, 12시간 전 예약) ② 조식 도시락 가능 여부. 여권 봉투 준비.'},
 
