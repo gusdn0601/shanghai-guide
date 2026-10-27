@@ -527,13 +527,13 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
         <span class="chip" style="background:var(--red);color:#fff">2026.10.29 푸동 입국</span>
       </div>
       <div class="qr-tabs" id="qrTabs">
-        <button type="button" class="qr-tab-btn active" onclick="showQr(1)">1. 이현우 代表</button>
-        <button type="button" class="qr-tab-btn" onclick="showQr(2)">2. 최은주 님</button>
-        <button type="button" class="qr-tab-btn" onclick="showQr(3)">3. 가족 3</button>
-        <button type="button" class="qr-tab-btn" style="opacity:0.6">4. 추가 예정</button>
-        <button type="button" class="qr-tab-btn" style="opacity:0.6">5. 추가 예정</button>
-        <button type="button" class="qr-tab-btn" style="opacity:0.6">6. 추가 예정</button>
-        <button type="button" class="qr-tab-btn" style="opacity:0.6">7. 추가 예정</button>
+        <button type="button" class="qr-tab-btn active" onclick="showQr(1)">1. 이현우</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(2)">2. 최은주</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(3)">3. 이유건</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(4)">4. 최재열</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(5)">5. 한미희</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(6)">6. 최진주</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(7)">7. 은규민</button>
       </div>
 
       <div class="qr-display-card" id="qrCard">
@@ -1492,9 +1492,13 @@ document.getElementById('phr').innerHTML = PHRASES.map(([ko, zh, rd]) => `<butto
 
 
 const QR_DATA = [
-  { id: 1, name: 'LE* HY** WO* (이현우 代表)', pass: 'M8*****63', img: 'img/entry-qr-1.png' },
-  { id: 2, name: 'CH** EU* JU (최은주 님)', pass: 'M2*****88', img: 'img/entry-qr-2.png' },
-  { id: 3, name: 'LE* YO***** (가족 3)', pass: 'M9*****28', img: 'img/entry-qr-3.png' }
+  { id: 1, name: '이현우 (LEE HYUNWOO)', pass: 'M8*****63', img: 'img/entry-qr-1.png' },
+  { id: 2, name: '최은주 (CHOI EUNJU)', pass: 'M2*****88', img: 'img/entry-qr-2.png' },
+  { id: 3, name: '이유건 (LEE YOOGEON)', pass: 'M9*****28', img: 'img/entry-qr-3.png' },
+  { id: 4, name: '최재열 (CHOI JAEYEUL)', pass: 'M823J3438', img: 'img/entry-qr-5.png' },
+  { id: 5, name: '한미희 (HAN MIHEE)', pass: 'M805M6488', img: 'img/entry-qr-4.png' },
+  { id: 6, name: '최진주 (CHOI JINJU)', pass: 'M063M0580', img: 'img/entry-qr-7.png' },
+  { id: 7, name: '은규민 (EUN GYUMIN)', pass: 'M600M6130', img: 'img/entry-qr-6.png' }
 ];
 
 function showQr(id){
