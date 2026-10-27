@@ -24,6 +24,7 @@ const ASSETS = [
   './img/laojishi-0.jpg',
   './img/beiwaitan-0.jpg',
   './img/airporthotel-0.jpg',
+  './img/circus-voucher.png',
   './img/pvgT1-0.jpg',
   './img/binjiang-0.jpg',
   './img/bund-0.jpg',
