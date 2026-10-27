@@ -432,7 +432,7 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <main class="frame view-container">
   <!-- VIEW: HOME (전체 개요 & 루트) -->
   <div id="view-home" class="tab-view active sheet">
-    <div class="controls" style="margin-bottom:18px">
+    <div class="controls" style="margin-bottom:16px">
       <div class="seg" role="group" aria-label="관점"><span class="lab">관점</span>
         <button type="button" data-aud="all" aria-pressed="true">모두</button>
         <button type="button" data-aud="kid" aria-pressed="false">초등 눈높이</button>
@@ -449,72 +449,50 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
       </div>
     </div>
 
-    <!-- 일자별 바로가기 카드 -->
-    
-    <!-- OFFLINE DOWNLOAD BANNER -->
-    <div style="background:#fff;border:2.5px solid var(--ink);border-radius:12px;padding:12px 16px;margin:10px 0 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:3px 3px 0 var(--ink)">
-      <div>
-        <b style="font-family:var(--f-display);font-size:16px;display:flex;align-items:center;gap:6px"><span>📥</span> 데이터 없는 현지에서도 100% 작동!</b>
-        <p style="font-size:12.5px;color:var(--ink-2);margin:2px 0 0">모든 사진(49장)과 7인 입국 QR이 포함된 완전 오프라인 파일</p>
-      </div>
-      <a href="shanghai-offline.html" download="상하이_가족여행_오프라인가이드.html" class="act taxi" style="text-decoration:none;font-weight:700;padding:8px 16px;font-size:14px;background:var(--blue);color:#fff;border-color:var(--ink)">
-        단일 파일 다운로드 (6.2MB)
-      </a>
-    </div>
-    
-    <div class="home-quick-acts">
-      <a href="#qr" class="qr">🛂 입국 신고 QR 바로보기</a>
-      <a href="#ready">📑 예약 정보</a>
-    </div>
-
-    <div class="sh"><span class="no">1</span><span class="bar"></span><h2>일자별 일정 선택</h2></div>
+    <!-- 5일차 일정 바로가기 카드 (메인 네비게이션) -->
+    <div class="sh"><span class="no">📅</span><span class="bar"></span><h2>일자별 일정 선택</h2></div>
     <div class="home-quick-days">
       <a href="#day1" class="quick-day-card" style="border-left: 6px solid var(--d1)">
         <div class="qtop"><span class="qtag" style="background:var(--d1)">1일차</span><span class="qdate">10.29 목</span></div>
-        <h4>도착, 오리구이, 성황묘, 와이탄</h4>
-        <p>상하이 도착 후 첫날 밤 황금빛 와이탄 야경 산책</p>
+        <h4>도착 · 사계민복 · 성황묘 · 와이탄 야경</h4>
+        <p>푸동 입국 픽업 ➡️ 골든튤립 체크인 ➡️ 베이징덕 ➡️ 와이탄</p>
       </a>
       <a href="#day2" class="quick-day-card" style="border-left: 6px solid var(--d2)">
         <div class="qtop"><span class="qtag" style="background:var(--d2)">2일차</span><span class="qdate">10.30 금</span></div>
-        <h4>예원 정원과 물의 마을 우전</h4>
-        <p>명나라 정원 산책 후 천년 수향마을 우전 나룻배</p>
+        <h4>예원 정원과 물의 마을 우전 데이투어</h4>
+        <p>명나라 정원 ➡️ 12:10 신세계성 가이드 미팅 ➡️ 수향마을 나룻배</p>
       </a>
       <a href="#day3" class="quick-day-card" style="border-left: 6px solid var(--d3)">
         <div class="qtop"><span class="qtag" style="background:var(--d3)">3일차</span><span class="qdate">10.31 토</span></div>
-        <h4>정안사, 난징루, 632m 상하이타워</h4>
-        <p>사찰부터 아시아 최대 스타벅스, 마천루 야경까지</p>
+        <h4>정안사 · 스타벅스 · 난징루 · 상하이타워</h4>
+        <p>도심 황금사찰 ➡️ 아시아 최대 로스터리 ➡️ 632m 마천루</p>
       </a>
-      <a href="#day4" class="quick-day-card" style="border-left: 6px solid var(--d4)">
-        <div class="qtop"><span class="qtag" style="background:var(--d4)">4일차</span><span class="qdate">11.01 일</span></div>
-        <h4>임시정부 청사, 티엔즈팡, 우캉루, 그리고 공항 호텔로</h4>
-        <p>오전에 체크아웃하고 밤에는 푸동공항 옆 숙소로 이동해요</p>
+      <a href="#day4" class="quick-day-card" style="border-left: 6px solid #e67e22">
+        <div class="qtop"><span class="qtag" style="background:#e67e22">4일차</span><span class="qdate">11.01 일</span></div>
+        <h4>임시정부 청사 · 조계지 ➡️ 공항호텔 이동</h4>
+        <p>마당로 청사 ➡️ 신천지 · 우캉루 ➡️ 공항 앞 이롱안위에 체크인</p>
       </a>
-      <a href="#day5" class="quick-day-card" style="border-left: 6px solid var(--d5)">
-        <div class="qtop"><span class="qtag" style="background:var(--d5)">5일차</span><span class="qdate">11.02 월</span></div>
-        <h4>공항 호텔에서 MU5053 타고 대구로</h4>
-        <p>05:00 무료 셔틀 → 05:30 T1. 새벽 강행군이 없어요</p>
+      <a href="#day5" class="quick-day-card" style="border-left: 6px solid #8e44ad">
+        <div class="qtop"><span class="qtag" style="background:#8e44ad">5일차</span><span class="qdate">11.02 월</span></div>
+        <h4>새벽 공항 이동 및 귀국 (대구행 MU5053)</h4>
+        <p>04:40 기상 ➡️ 05:00 호텔 무료셔틀(5분) ➡️ 08:05 안전 이륙</p>
       </a>
     </div>
 
-    <!-- 5일 루트 한눈에 -->
-    <div class="sh" id="routes"><span class="no">2</span><span class="bar"></span><h2>5일 루트 한눈에</h2></div>
-    <div class="panels" id="panels"></div>
-
-    <!-- 여행 개요 -->
-    <div class="sh" id="intro"><span class="no">1</span><span class="bar"></span><h2>여행 개요</h2></div>
-      <div class="infobox"><ul>
-        <li><span><b>기간</b> · 2026년 10월 29일(목) ~ 11월 2일(월), 4박 5일</span></li>
-        <li><span><b>숙소</b> · 3박 골든 튤립 더 번드 상하이(옛 신아반점, 1934년 건물) + 1박 이롱 안위에 호텔(푸동공항점)</span></li>
-        <li><span><b>동선</b> · 1일차 와이탄·예원 / 2일차 예원 정원·우전 / 3일차 정안사·난징루·푸둥 / 4일차 신천지·티엔즈팡·우캉루 → 공항 호텔 / 5일차 MU5053 귀국</span></li>
-        <li><span><b>함께</b> · 어른, 초등, 중등 모두 즐기도록 장소마다 세 갈래 이야기</span></li>
-      </ul></div>
-
-      <div class="sh"><span class="no">2</span><span class="bar"></span><h2>이 책 쓰는 법</h2></div>
-      <div class="how">
-        <div><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d1d1b" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l5 4-5 4z" fill="#1d1d1b"/></svg></span><b>장소를 누르면 해설</b><p>기원, 연표, 현장에서 따라 걷는 해설 코스</p></div>
+    <!-- 빠른 필수 바로가기 3종 -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:20px">
+      <a href="#qr" class="act" style="justify-content:center;padding:12px;text-decoration:none;background:var(--red);color:#fff;border-color:var(--ink);font-weight:700">
+        🛂 가족 7인 입국 QR
+      </a>
+      <a href="#ready" class="act" style="justify-content:center;padding:12px;text-decoration:none;background:var(--yellow);color:var(--ink);border-color:var(--ink);font-weight:700">
+        📑 확정 예약 바우처
+      </a>
+      <a href="#talk" class="act" style="justify-content:center;padding:12px;text-decoration:none;background:var(--blue);color:#fff;border-color:var(--ink);font-weight:700">
+        🗣️ 택시카드 & 회화
+      </a>
+    </div>
   </div>
-  </div><!-- /#view-home -->
-
+  
   <!-- VIEW: DAY 1 -->
   <div id="view-day1" class="tab-view sheet">
     <div class="day-switcher">
