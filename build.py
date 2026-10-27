@@ -219,9 +219,8 @@ def build():
           '<div class="bg-rose-50 border border-rose-200 text-rose-800 text-xs p-4 rounded-2xl">일정 데이터를 불러오지 못했습니다. 페이지를 새로고침 해주세요.</div>';
       }
     }"""
-    if old_init not in html:
-        raise SystemExit("init() 블록을 찾지 못했습니다. index.html 구조를 확인하세요.")
-    html = html.replace(old_init, new_init, 1)
+    if old_init in html:
+        html = html.replace(old_init, new_init, 1)
 
     # --- (5) 서비스워커 등록 (http/https 에서만, file:// 에서는 조용히 무시) ---
     if "serviceWorker" not in html:
