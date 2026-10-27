@@ -1,0 +1,217 @@
+{
+  "when": "2026-10-27T11:12:52.895Z",
+  "base": "http://127.0.0.1:8123/index.html",
+  "passed": 41,
+  "failed": 0,
+  "results": [
+    {
+      "name": "render: page loads with title",
+      "pass": true,
+      "detail": "상하이 가족 여행 가이드북"
+    },
+    {
+      "name": "render: 7 tab views exist",
+      "pass": true,
+      "detail": "views=7"
+    },
+    {
+      "name": "render: home visible / place hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "render: route panels + stop cards",
+      "pass": true,
+      "detail": "panels=3 stops=22"
+    },
+    {
+      "name": "render: no broken images at load",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "render: body content height",
+      "pass": true,
+      "detail": "h=3638"
+    },
+    {
+      "name": "tab: home click switches view",
+      "pass": true,
+      "detail": "hash=#home active=true hit=true"
+    },
+    {
+      "name": "tab: day1 click switches view",
+      "pass": true,
+      "detail": "hash=#day1 active=true hit=true"
+    },
+    {
+      "name": "tab: day2 click switches view",
+      "pass": true,
+      "detail": "hash=#day2 active=true hit=true"
+    },
+    {
+      "name": "tab: day3 click switches view",
+      "pass": true,
+      "detail": "hash=#day3 active=true hit=true"
+    },
+    {
+      "name": "tab: talk click switches view",
+      "pass": true,
+      "detail": "hash=#talk active=true hit=true"
+    },
+    {
+      "name": "tab: ready click switches view",
+      "pass": true,
+      "detail": "hash=#ready active=true hit=true"
+    },
+    {
+      "name": "tab: stamp click switches view",
+      "pass": true,
+      "detail": "hash=#stamp active=true hit=true"
+    },
+    {
+      "name": "place: opens detail view with back bar",
+      "pass": true,
+      "detail": "숙소체크인골든 튤립 더 번드 상하이金郁金香外滩新亚酒店1 hash=#p-hotel len=38804"
+    },
+    {
+      "name": "place: document title updated",
+      "pass": true,
+      "detail": "골든 튤립 더 번드 상하이 · 상하이 가족 여행 가이드북"
+    },
+    {
+      "name": "place: 목록으로 돌아가기 works",
+      "pass": true,
+      "detail": "hash=#day1 active=view-day1"
+    },
+    {
+      "name": "place: 브라우저 뒤로가기 works",
+      "pass": true,
+      "detail": "hash=#day1"
+    },
+    {
+      "name": "modal: opens with place data",
+      "pass": true,
+      "detail": "金郁金香外滩新亚酒店 / 上海市黄浦区天潼路422号"
+    },
+    {
+      "name": "modal: amap link populated",
+      "pass": true,
+      "detail": "https://uri.amap.com/search?keyword=%E9%87%91%E9%83%81%E9%87%91%E9%A6%99%E5%A4%96%E6%BB%A9%E6%96%B0%E4%BA%9A%E9%85%92%E5%BA%97&city=%E4%B8%8A%E6%B5%B7&src=familyguide&callnative=1"
+    },
+    {
+      "name": "modal: copy button sets clipboard or shows toast",
+      "pass": true,
+      "detail": "clip=金郁金香外滩新亚酒店 上海市黄浦区天潼路422号 toast=주소를 복사했어요. 디디에 붙여넣으세요"
+    },
+    {
+      "name": "modal: 닫기 closes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "modal: Escape closes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "stamp: checkbox toggles and persists",
+      "pass": true,
+      "detail": "stored=hotel-0"
+    },
+    {
+      "name": "stamp: gauge updates on both views",
+      "pass": true,
+      "detail": "0/33(0%) -> 1/33(3.0303%)"
+    },
+    {
+      "name": "stamp: uncheck restores count",
+      "pass": true,
+      "detail": "0/33"
+    },
+    {
+      "name": "booklet: builds all places + hides nav",
+      "pass": true,
+      "detail": "places=17"
+    },
+    {
+      "name": "booklet: has a visible way out",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "booklet: exit returns to tab view",
+      "pass": true,
+      "detail": "off=true exitHidden=true"
+    },
+    {
+      "name": "links: amap keyword/city mapping for all places",
+      "pass": true,
+      "detail": "17 places, bad=none"
+    },
+    {
+      "name": "links: dp mapping where used",
+      "pass": true,
+      "detail": "7 dp links"
+    },
+    {
+      "name": "links: DOM amap anchors well-formed",
+      "pass": true,
+      "detail": "anchors=52"
+    },
+    {
+      "name": "images: every img/ reference loads",
+      "pass": true,
+      "detail": "42 unique, bad=none"
+    },
+    {
+      "name": "mobile: bottom nav visible at 390px",
+      "pass": true,
+      "detail": "flex 390x65 items=6"
+    },
+    {
+      "name": "mobile: bottom nav home",
+      "pass": true,
+      "detail": "hash=#home"
+    },
+    {
+      "name": "mobile: bottom nav day1",
+      "pass": true,
+      "detail": "hash=#day1"
+    },
+    {
+      "name": "mobile: bottom nav day2",
+      "pass": true,
+      "detail": "hash=#day2"
+    },
+    {
+      "name": "mobile: bottom nav day3",
+      "pass": true,
+      "detail": "hash=#day3"
+    },
+    {
+      "name": "mobile: bottom nav talk",
+      "pass": true,
+      "detail": "hash=#talk"
+    },
+    {
+      "name": "mobile: bottom nav stamp",
+      "pass": true,
+      "detail": "hash=#stamp"
+    },
+    {
+      "name": "mobile: place detail + back bar",
+      "pass": true,
+      "detail": "barTop=8"
+    },
+    {
+      "name": "mobile: back returns to list",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "pageErrors": [],
+  "networkFailures": [],
+  "externalFailures": [],
+  "fontFamily": "\"Do Hyeon\", \"Black Han Sans\", \"Apple SD Gothic Neo\", sans-serif"
+}

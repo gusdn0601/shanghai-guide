@@ -1,5 +1,6 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>상하이 가족 여행 가이드북</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#f4d738">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Gaegu:wght@400;700&family=Noto+Sans+SC:wght@500;700;900&display=swap">
@@ -250,7 +251,7 @@ body[data-aud="adult"] .kidbox, body[data-aud="adult"] .teenbox, body[data-aud="
 .steps{font-size:14px;margin:0;padding-left:20px}
 .mrow{display:flex;flex-wrap:wrap;gap:8px}
 .mrow .act{flex:1;justify-content:center;padding:10px}
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:700;z-index:60;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:700;z-index:60;white-space:nowrap;pointer-events:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* booklet / print */
@@ -260,12 +261,14 @@ body.booklet .nav, body.booklet .controls .seg, body.booklet .sacts, body.bookle
 body.booklet .qr,.bookplace .qr{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--ink-2);margin-top:12px}
 .qr svg{width:84px;height:84px;flex:none;background:#fff;padding:3px}
 body.booklet .kidbox, body.booklet .teenbox{display:block!important}
+#bookExit{display:none;position:fixed;right:14px;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:55;background:var(--ink);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:10px 16px;font-family:var(--f-display);font-size:14px;box-shadow:3px 3px 0 rgba(0,0,0,.25);cursor:pointer}
+body.booklet #bookExit{display:block}
 @page{size:A5;margin:9mm}
 @media print{
   html,body{background:#fff} body{padding:0;font-size:10.5pt}
   .sheet{box-shadow:none;padding:0;border-radius:0}
   #bookPlaces{display:block}
-  .nav,.controls .seg,.sacts,.pacts,.pnav,.jump,.more,.noprint,.modal,.toast,#placeView{display:none!important}
+  .nav,.controls .seg,.sacts,.pacts,.pnav,.jump,.more,.noprint,.modal,.toast,#placeView,#bookExit{display:none!important}
   .qr{display:flex!important}
   .kidbox,.teenbox{display:block!important}
   .cover{background:var(--yellow);padding:10mm;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -273,6 +276,60 @@ body.booklet .kidbox, body.booklet .teenbox{display:block!important}
   .stop,.pt,.det,.tl li,.fbox,.panel{break-inside:avoid}
   .panel,.sh .no,.badge,.tag,.act,.kidbox,.teenbox,.det,.infobox{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* ---------- TAB & VIEW SYSTEM ---------- */
+.view-container { min-height: 50vh; }
+.tab-view { display: none; }
+.tab-view.active { display: block; animation: tabFadeIn .18s ease-in-out; }
+body.booklet .tab-view { display: block !important; margin-bottom: 24px; }
+body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher { display: none !important; }
+@keyframes tabFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Sticky Top Tab Bar */
+.top-nav-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 25; background: var(--yellow); padding: 8px 0; border-bottom: 2px solid var(--ink); margin-bottom: 16px; }
+.top-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 2px 4px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.top-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-family: var(--f-display); font-size: 14.5px; color: var(--ink); cursor: pointer; text-decoration: none; transition: all .15s; box-shadow: 2px 2px 0 var(--ink); }
+.tab-btn:hover { transform: translateY(-1px); }
+.tab-btn.active { background: var(--ink); color: #fff; box-shadow: none; transform: translateY(1px); }
+.tab-btn .badge-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* Mobile Bottom Navigation Bar */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: #fff; border-top: 2px solid var(--ink); display: flex; justify-content: space-around; padding: 6px 0 max(8px, env(safe-area-inset-bottom, 0px)); box-shadow: 0 -4px 12px rgba(0,0,0,0.08); }
+.bnav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; font-family: var(--f-display); font-size: 11px; color: var(--ink-2); cursor: pointer; text-decoration: none; padding: 4px 2px; }
+.bnav-item svg { width: 20px; height: 20px; stroke: var(--ink-2); transition: stroke .15s; }
+.bnav-item.active { color: var(--blue); }
+.bnav-item.active svg { stroke: var(--blue); }
+@media (min-width: 768px) { .bottom-nav { display: none; } }
+@media (max-width: 767px) { body { padding-bottom: 74px !important; } }
+
+/* Sticky Back Header in Place View */
+.place-back-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: var(--yellow); border-bottom: 2px solid var(--ink); padding: 10px 16px; margin: -22px -16px 20px -16px; display: flex; align-items: center; justify-content: space-between; }
+@media (min-width: 640px) { .place-back-bar { margin: -34px -40px 24px -40px; padding: 12px 30px; } }
+.back-btn-main { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 6px 16px; font-family: var(--f-display); font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); text-decoration: none; color: var(--ink); }
+.back-btn-main:active { transform: translateY(1px); box-shadow: none; }
+
+/* Day Highlight Switcher inside day views */
+.day-switcher { display: flex; gap: 8px; margin: 0 0 18px; }
+.day-switcher a { flex: 1; padding: 8px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; font-family: var(--f-display); font-size: 15px; text-align: center; text-decoration: none; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.day-switcher a.active { background: var(--ink); color: #fff; box-shadow: none; transform: translateY(1px); }
+
+/* Quick Action Cards in Home View */
+.home-quick-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 18px 0; }
+.quick-day-card { border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; text-decoration: none; display: flex; flex-direction: column; gap: 6px; box-shadow: 3px 3px 0 var(--ink); transition: transform .15s; background: #fff; color: inherit; }
+.quick-day-card:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.quick-day-card .qtop { display: flex; justify-content: space-between; align-items: center; }
+.quick-day-card .qtag { font-family: var(--f-display); font-size: 14px; padding: 2px 8px; border-radius: 999px; color: #fff; }
+.quick-day-card .qdate { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.quick-day-card h4 { font-family: var(--f-display); font-size: 17px; margin: 0; line-height: 1.3; }
+.quick-day-card p { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+
+/* Taxi quick grid */
+.taxi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
+.taxi-item { background: var(--tint); border: 2px solid var(--ink); border-radius: 10px; padding: 12px; display: grid; gap: 6px; text-align: left; }
+.taxi-item h4 { font-family: var(--f-display); font-size: 16px; margin: 0; }
+.taxi-item .cn { font-size: 13.5px; color: var(--ink-2); }
+
 </style>
 
 <div id="homeView">
@@ -293,21 +350,62 @@ body.booklet .kidbox, body.booklet .teenbox{display:block!important}
     </header>
   </div>
 
-  <nav class="nav" aria-label="바로가기"><div class="in">
-    <a href="#intro" data-t="intro">개요</a>
-    <a href="#routes" data-t="routes">3일 루트</a>
-    <a href="#day1" data-t="day1">1일차</a>
-    <a href="#day2" data-t="day2">2일차</a>
-    <a href="#day3" data-t="day3">3일차</a>
-    <a href="#talk" data-t="talk">회화</a>
-    <a href="#ready" data-t="ready">준비·비상</a>
-  </div></nav>
+  <div class="top-nav-bar frame" aria-label="메인 탭"><div class="top-tabs" id="mainTabs">
+  <a href="#home" class="tab-btn active" data-tab="home"><span>🏠 전체 개요</span></a>
+  <a href="#day1" class="tab-btn" data-tab="day1"><span class="badge-dot" style="background:var(--d1)"></span><span>1일차 (10.29)</span></a>
+  <a href="#day2" class="tab-btn" data-tab="day2"><span class="badge-dot" style="background:var(--d2)"></span><span>2일차 (10.30)</span></a>
+  <a href="#day3" class="tab-btn" data-tab="day3"><span class="badge-dot" style="background:var(--d3)"></span><span>3일차 (10.31)</span></a>
+  <a href="#talk" class="tab-btn" data-tab="talk"><span>🗣️ 필수 회화</span></a>
+  <a href="#ready" class="tab-btn" data-tab="ready"><span>🎒 준비 · 팁</span></a>
+  <a href="#stamp" class="tab-btn" data-tab="stamp"><span>🎖️ 탐험 스탬프</span></a>
+</div></div>
 
-  <main class="frame">
-    <div class="sheet">
-      <div class="runner"><span>Shanghai Family Trip</span><span>상하이 가족 탐험 수첩</span></div>
+  <main class="frame view-container">
+  <!-- VIEW: HOME (전체 개요 & 루트) -->
+  <div id="view-home" class="tab-view active sheet">
+    <div class="controls" style="margin-bottom:18px">
+      <div class="seg" role="group" aria-label="관점"><span class="lab">관점</span>
+        <button type="button" data-aud="all" aria-pressed="true">모두</button>
+        <button type="button" data-aud="kid" aria-pressed="false">초등 눈높이</button>
+        <button type="button" data-aud="teen" aria-pressed="false">중등 눈높이</button>
+        <button type="button" id="bookBtn" aria-pressed="false" style="margin-left:auto">책자 전체보기</button>
+        <button type="button" id="printBtn" hidden>인쇄 · PDF</button>
+      </div>
+      <div class="stamp" onclick="location.hash='stamp'" style="cursor:pointer" title="스탬프 수첩 보기">
+        <div class="num" id="stampNum">0/0</div>
+        <div style="flex:1;display:grid;gap:4px;min-width:0">
+          <div class="bar"><i id="stampBar"></i></div>
+          <small>스탬프 미션 진행도 (누르면 수첩으로 이동)</small>
+        </div>
+      </div>
+    </div>
 
-      <div class="sh" id="intro"><span class="no">1</span><span class="bar"></span><h2>여행 개요</h2></div>
+    <!-- 일자별 바로가기 카드 -->
+    <div class="sh"><span class="no">1</span><span class="bar"></span><h2>일자별 일정 선택</h2></div>
+    <div class="home-quick-days">
+      <a href="#day1" class="quick-day-card" style="border-left: 6px solid var(--d1)">
+        <div class="qtop"><span class="qtag" style="background:var(--d1)">1일차</span><span class="qdate">10.29 목</span></div>
+        <h4>도착, 오리구이, 성황묘, 와이탄</h4>
+        <p>상하이 도착 후 첫날 밤 황금빛 와이탄 야경 산책</p>
+      </a>
+      <a href="#day2" class="quick-day-card" style="border-left: 6px solid var(--d2)">
+        <div class="qtop"><span class="qtag" style="background:var(--d2)">2일차</span><span class="qdate">10.30 금</span></div>
+        <h4>예원 정원과 물의 마을 우전</h4>
+        <p>명나라 정원 산책 후 천년 수향마을 우전 나룻배</p>
+      </a>
+      <a href="#day3" class="quick-day-card" style="border-left: 6px solid var(--d3)">
+        <div class="qtop"><span class="qtag" style="background:var(--d3)">3일차</span><span class="qdate">10.31 토</span></div>
+        <h4>정안사, 난징루, 632m 상하이타워</h4>
+        <p>사찰부터 아시아 최대 스타벅스, 마천루 야경까지</p>
+      </a>
+    </div>
+
+    <!-- 3일 루트 한눈에 -->
+    <div class="sh" id="routes"><span class="no">2</span><span class="bar"></span><h2>3일 루트 한눈에</h2></div>
+    <div class="panels" id="panels"></div>
+
+    <!-- 여행 개요 -->
+    <div class="sh" id="intro"><span class="no">1</span><span class="bar"></span><h2>여행 개요</h2></div>
       <div class="infobox"><ul>
         <li><span><b>기간</b> · 2026년 10월 29일(목) ~ 31일(토), 일정 추가 예정</span></li>
         <li><span><b>숙소</b> · 골든 튤립 더 번드 상하이(옛 신아반점, 1934년 건물)</span></li>
@@ -318,46 +416,101 @@ body.booklet .kidbox, body.booklet .teenbox{display:block!important}
       <div class="sh"><span class="no">2</span><span class="bar"></span><h2>이 책 쓰는 법</h2></div>
       <div class="how">
         <div><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d1d1b" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l5 4-5 4z" fill="#1d1d1b"/></svg></span><b>장소를 누르면 해설</b><p>기원, 연표, 현장에서 따라 걷는 해설 코스</p></div>
-        <div><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d1d1b" stroke-width="2"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3z"/></svg></span><b>택시 카드</b><p>기사님께 보여주는 큰 중국어 주소, 디디용 복사</p></div>
-        <div><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="#2c69b0"><path d="M12 2l3 7 7 .6-5.3 4.6L18.4 22 12 18l-6.4 4 1.7-7.8L2 9.6 9 9z"/></svg></span><b>스탬프 랠리</b><p>아이들 미션 성공하면 별 도장</p></div>
-      </div>
-      <div class="controls" style="margin-top:14px">
-        <div class="seg" role="group" aria-label="누가 보나요">
-          <span class="lab">누가 볼까요?</span>
-          <button type="button" data-aud="all" aria-pressed="true">모두</button>
-          <button type="button" data-aud="adult" aria-pressed="false">어른</button>
-          <button type="button" data-aud="kid" aria-pressed="false">초등</button>
-          <button type="button" data-aud="teen" aria-pressed="false">중등</button>
-          <button type="button" id="bookBtn" aria-pressed="false" style="margin-left:auto">책자 보기</button>
-          <button type="button" id="printBtn" hidden>인쇄 · PDF</button>
-        </div>
-        <div class="stamp"><div class="num" id="stampNum">0/0</div><div style="flex:1;display:grid;gap:4px;min-width:0"><b style="font-size:14px">탐험대 스탬프 랠리</b><div class="bar"><i id="stampBar"></i></div><small>장소 해설 페이지의 파란 미션을 성공하면 동그라미를 눌러요</small></div></div>
-        <button class="act taxi noprint" type="button" data-taxi="hotel" style="justify-self:start">호텔로 돌아가는 택시 카드</button>
-      </div>
+  </div>
+  </div><!-- /#view-home -->
 
-      <div class="sh" id="routes"><span class="no">3</span><span class="bar"></span><h2>3일 루트 한눈에</h2></div>
-      <div class="panels" id="panels"></div>
-
-      <div id="days"></div>
-
-      <div class="sh" id="talk"><span class="no">7</span><span class="bar"></span><h2>기사님·직원에게 보여주는 말</h2></div>
-      <p style="margin-bottom:12px;color:var(--ink-2);font-size:14px">카드를 누르면 중국어가 복사돼요.</p>
-      <div class="phr" id="phr"></div>
-
-      <div class="sh" id="ready"><span class="no">8</span><span class="bar"></span><h2>출발 전 준비 · 비상 연락</h2></div>
-      <div class="grid2">
-        <div class="box"><h3>결제는 알리페이</h3><ul><li>출발 전 설치 → 해외 신용카드 등록 → 실명 인증.</li><li>노점·택시·식당 모두 QR 결제. 현금은 비상용 조금.</li><li>정안사 동전 던지기용 1위안 동전 몇 개.</li></ul></div>
-        <div class="box"><h3>디디(택시) 부르기</h3><ol><li>알리페이 검색창에 <span class="cn">滴滴出行</span>.</li><li>이 책의 <b>택시 카드 → 주소 복사</b> 후 목적지에 붙여넣기.</li><li>번호판 확인 후 탑승, 결제 자동.</li><li>고덕지도 앱의 <span class="cn">打车</span>도 여러 회사를 한 번에 불러요.</li></ol><p style="font-size:12.5px;color:var(--ink-2);margin-top:6px">디디는 목적지를 미리 넣어 여는 공개 웹 링크가 없어 ‘복사 + 붙여넣기’로 연결했어요.</p></div>
-        <div class="box"><h3>식당 예약·줄서기</h3><ul><li><span class="cn">大众点评</span> 링크로 메뉴·사진·리뷰 미리 보기.</li><li>줄 긴 곳은 매장 앞 QR로 번호표(<span class="cn">取号</span>).</li><li>가장 확실한 건 호텔 컨시어지 전화 예약.</li></ul></div>
-        <div class="box"><h3>비상 연락</h3><ul><li>경찰 <b>110</b> · 구급차 <b>120</b> · 화재 <b>119</b></li><li>주상하이 총영사관 <b>+86-21-6295-5000</b></li><li>영사콜센터(24시간) <b>+82-2-3210-0404</b></li><li>호텔 <b>+86-21-6324-2210</b></li></ul></div>
-        <div class="box"><h3>인터넷·앱</h3><ul><li>로밍·해외 eSIM이면 카카오톡·네이버 그대로.</li><li>알리페이, 고덕지도(<span class="cn">高德地图</span>), 파파고 설치.</li></ul></div>
-        <div class="box"><h3>날씨·걷기</h3><ul><li>10월 말 낮 20도 안팎, 저녁엔 쌀쌀. 얇은 겉옷.</li><li>둘째·셋째 날 많이 걸어요. 편한 운동화.</li><li>멀미약(우전 2시간), 해열제, 밴드.</li></ul></div>
-      </div>
-      <p class="foot">영업시간·가격은 출발 전 고덕지도와 대중점평에서 한 번 더 확인하세요. 사진은 Wikimedia Commons의 자유 이용 사진을 잘라 썼고, 출처는 각 장소 페이지 맨 아래에 있어요.</p>
+  <!-- VIEW: DAY 1 -->
+  <div id="view-day1" class="tab-view sheet">
+    <div class="day-switcher">
+      <a href="#day1" class="active">1일차 (10.29)</a>
+      <a href="#day2">2일차 (10.30)</a>
+      <a href="#day3">3일차 (10.31)</a>
     </div>
+    <div id="day-container-day1"></div>
+  </div>
+
+  <!-- VIEW: DAY 2 -->
+  <div id="view-day2" class="tab-view sheet">
+    <div class="day-switcher">
+      <a href="#day1">1일차 (10.29)</a>
+      <a href="#day2" class="active">2일차 (10.30)</a>
+      <a href="#day3">3일차 (10.31)</a>
+    </div>
+    <div id="day-container-day2"></div>
+  </div>
+
+  <!-- VIEW: DAY 3 -->
+  <div id="view-day3" class="tab-view sheet">
+    <div class="day-switcher">
+      <a href="#day1">1일차 (10.29)</a>
+      <a href="#day2">2일차 (10.30)</a>
+      <a href="#day3" class="active">3일차 (10.31)</a>
+    </div>
+    <div id="day-container-day3"></div>
+  </div>
+
+  <!-- VIEW: TALK (필수 회화 & 택시 카드) -->
+  <div id="view-talk" class="tab-view sheet">
+    <div class="sh"><span class="no">🗣️</span><span class="bar"></span><h2>기사님·직원에게 보여주는 말</h2></div>
+    <p style="margin-bottom:12px;color:var(--ink-2)">문장을 터치하면 클립보드에 바로 복사됩니다.</p>
+    <div class="phr" id="phr"></div>
+
+    <div class="sh" style="margin-top:34px"><span class="no">🚕</span><span class="bar"></span><h2>주요 장소 택시 카드 바로가기</h2></div>
+    <p style="margin-bottom:12px;color:var(--ink-2)">터치하면 기사님께 바로 보여줄 수 있는 큰 화면이 열립니다.</p>
+    <div class="taxi-grid" id="taxiGrid"></div>
+  </div>
+
+  <!-- VIEW: READY (출발 준비 & 팁) -->
+  <div id="view-ready" class="tab-view sheet">
+    <div class="sh"><span class="no">🎒</span><span class="bar"></span><h2>출발 전 준비 · 비상 연락</h2></div>
+    <div class="grid2">
+      <div class="box"><b>꼭 챙길 것</b>
+        <ul class="prac" style="margin-top:8px">
+          <li>여권 (유효기간 6개월 이상) 및 비자/무비자 확인</li>
+          <li>보조배터리 (비행기 수하물 불가, 기내 휴대, 100Wh 이하 규격 표기 필수)</li>
+          <li>트래블로그/트래블월렛 카드를 알리페이에 등록 완료</li>
+          <li>상비약 (멀미약, 소화제, 해열제, 대일밴드)</li>
+          <li>편한 운동화 (하루 평균 15,000보 이상 걸어요)</li>
+        </ul>
+      </div>
+      <div class="box"><b>비상 연락처</b>
+        <ul class="prac" style="margin-top:8px">
+          <li><b>주상하이 대한민국 총영사관</b>: +86-21-6295-5000</li>
+          <li><b>당직/사건사고 비상전화</b>: +86-138-1650-1363</li>
+          <li><b>외교부 영사콜센터 (24시간)</b>: +82-2-3210-0404</li>
+          <li>중국 내 경찰: <b>110</b> / 구급차: <b>120</b> / 화재: <b>119</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: STAMP (온 가족 탐험 스탬프 수첩) -->
+  <div id="view-stamp" class="tab-view sheet">
+    <div class="sh"><span class="no">🎖️</span><span class="bar"></span><h2>우리 가족 상하이 탐험 스탬프</h2></div>
+    <p style="margin-bottom:14px;color:var(--ink-2)">각 장소를 탐험하며 미션을 완료할 때마다 체크해 보세요! 도장이 모두 모이면 상하이 탐험왕!</p>
+    <div class="stamp" style="margin-bottom:24px">
+      <div class="num" id="stampNumPage">0/0</div>
+      <div style="flex:1;display:grid;gap:4px">
+        <div class="bar"><i id="stampBarPage"></i></div>
+        <small>가족 미션 달성률</small>
+      </div>
+    </div>
+    <div id="stampMissionsList" style="display:grid;gap:12px"></div>
+  </div>
+</main>
     <section id="bookPlaces" aria-label="장소별 해설 모음"></section>
-  </main>
+    <button type="button" id="bookExit" aria-label="책자 모드 닫기">휴대폰 탭보기로</button>
 </div>
+
+<!-- Mobile bottom navigation -->
+<nav class="bottom-nav" aria-label="모바일 하단 메뉴">
+  <a class="bnav-item active" href="#home" data-tab="home" aria-label="전체 개요"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>홈</span></a>
+  <a class="bnav-item" href="#day1" data-tab="day1" aria-label="1일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">1</text></svg><span>1일차</span></a>
+  <a class="bnav-item" href="#day2" data-tab="day2" aria-label="2일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">2</text></svg><span>2일차</span></a>
+  <a class="bnav-item" href="#day3" data-tab="day3" aria-label="3일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">3</text></svg><span>3일차</span></a>
+  <a class="bnav-item" href="#talk" data-tab="talk" aria-label="필수 회화"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg><span>회화</span></a>
+  <a class="bnav-item" href="#stamp" data-tab="stamp" aria-label="탐험 스탬프"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-3 4 3-1-8"/></svg><span>스탬프</span></a>
+</nav>
 
 <div id="placeView" hidden></div>
 
@@ -921,8 +1074,16 @@ const pic = k => { const ph=photosOf(k)[0]; return ph? imgTag(ph,k) : (ART[PLACE
 /* ---------- stamps ---------- */
 const done = store.get('stamps3', {});
 const MISSIONS=[]; ORDER.forEach(k=>(PLACES[k].kid?.missions||[]).forEach((m,i)=>MISSIONS.push(`${k}-${i}`)));
-function updateStamp(){ const n=MISSIONS.filter(id=>done[id]).length;
-  document.getElementById('stampNum').textContent=`${n}/${MISSIONS.length}`; document.getElementById('stampBar').style.width=(n/MISSIONS.length*100)+'%'; }
+/* ---------- stamps ---------- */
+function updateStamp(){
+  const n = MISSIONS.filter(id=>done[id]).length;
+  const pct = (n / MISSIONS.length * 100) + '%';
+  const txt = `${n}/${MISSIONS.length}`;
+  const elNum = document.getElementById('stampNum'); if(elNum) elNum.textContent = txt;
+  const elBar = document.getElementById('stampBar'); if(elBar) elBar.style.width = pct;
+  const elNumP = document.getElementById('stampNumPage'); if(elNumP) elNumP.textContent = txt;
+  const elBarP = document.getElementById('stampBarPage'); if(elBarP) elBarP.style.width = pct;
+}
 
 /* ---------- cover route map ---------- */
 function renderRoute(){
@@ -954,9 +1115,11 @@ function renderPanels(){
       : `<a class="fbox" href="#p-${s.p}"><span class="t">${s.ap} ${s.t}</span><span class="n">${SHORT[s.p]||PLACES[s.p].kr}</span></a>`).join('')}</div></div>`).join('');
 }
 
-/* ---------- day timelines ---------- */
+/* ---------- day timelines (separate containers) ---------- */
 function renderHome(){
-  document.getElementById('days').innerHTML = DAYS.map((d,di)=>{
+  DAYS.forEach((d, di) => {
+    const container = document.getElementById('day-container-' + d.id);
+    if (!container) return;
     const items = STOPS.filter(s=>s.day===d.id).map(s=>{
       const time = `<div class="time"><small>${s.ap}</small><span>${s.t}</span></div>`;
       if(s.move) return `<li class="stop">${time}<article class="scard move"><div class="sbody"><h3>${s.move}</h3><p>${s.note||''}</p></div>
@@ -971,9 +1134,62 @@ function renderHome(){
           ${P.dp?`<a class="act dp" href="${dpUrl(P.dp)}" target="_blank" rel="noopener">${ico.dp}대중점평</a>`:''}</div>
         <div class="qr" data-qr="${s.p}" style="padding:0 12px 12px"></div></article></li>`;
     }).join('');
-    return `<section class="day ${d.cls}" id="${d.id}"><div class="sh"><span class="no">${4+di}</span><span class="bar"></span><h2>${d.n}일차 상세</h2><small>${d.date}</small></div>
-      <div class="dayhead" style="margin-top:0"><span class="dn">Day ${d.n}</span><h2>${d.title}</h2></div><p class="daynote">${d.note}</p><ol class="timeline">${items}</ol></section>`;
+
+    container.innerHTML = `<section class="day ${d.cls}" id="${d.id}">
+      <div class="sh" style="margin-top:4px"><span class="no">${d.n}</span><span class="bar"></span><h2>${d.n}일차 타임라인</h2><small>${d.date}</small></div>
+      <div class="dayhead" style="margin-top:0"><span class="dn">Day ${d.n}</span><h2>${d.title}</h2></div>
+      <p class="daynote">${d.note}</p>
+      <ol class="timeline">${items}</ol>
+    </section>`;
+  });
+}
+
+/* ---------- taxi quick grid ---------- */
+function renderTaxiGrid(){
+  const el = document.getElementById('taxiGrid');
+  if(!el) return;
+  const taxiPlaces = Object.keys(PLACES).filter(k => PLACES[k].addr);
+  el.innerHTML = taxiPlaces.map(k => {
+    const P = PLACES[k];
+    return `<div class="taxi-item">
+      <h4>${P.kr}</h4>
+      <div class="cn">${P.cn}</div>
+      <div style="font-size:12px;color:var(--ink-2);line-height:1.3">${P.addr}</div>
+      <div style="display:flex;gap:6px;margin-top:4px">
+        <button type="button" class="act taxi" style="flex:1;padding:6px;font-size:12.5px" data-taxi="${k}">${ico.taxi}큰글씨 보기</button>
+        <a class="act map" style="padding:6px 10px;font-size:12.5px" href="${amap(P)}" target="_blank" rel="noopener">${ico.map}지도</a>
+      </div>
+    </div>`;
   }).join('');
+}
+
+/* ---------- stamp missions list in stamp tab ---------- */
+function renderStampTab(){
+  const el = document.getElementById('stampMissionsList');
+  if(!el) return;
+  let html = '';
+  DAYS.forEach(d => {
+    const dayStops = STOPS.filter(s=>s.day===d.id && s.p && PLACES[s.p]);
+    const missionsInDay = [];
+    dayStops.forEach(s => {
+      const P = PLACES[s.p];
+      (P.kid?.missions || []).forEach((m, idx) => {
+        missionsInDay.push({ place: P.kr, placeKey: s.p, id: `${s.p}-${idx}`, text: m });
+      });
+    });
+    if(missionsInDay.length) {
+      html += `<div style="background:var(--tint);border:2px solid var(--ink);border-radius:12px;padding:14px;box-shadow:2px 2px 0 var(--ink)">
+        <h4 style="font-family:var(--f-display);font-size:16px;margin:0 0 10px;color:var(--${d.cls})">📍 ${d.n}일차 (${d.date}) 미션</h4>
+        <div style="display:grid;gap:8px">
+          ${missionsInDay.map(m => `<label class="mission" style="background:#fff">
+            <input type="checkbox" id="tab-${m.id}" data-m="${m.id}" ${done[m.id]?'checked':''}>
+            <span><b style="color:var(--ink);margin-right:4px">[${m.place}]</b>${m.text}</span>
+          </label>`).join('')}
+        </div>
+      </div>`;
+    }
+  });
+  el.innerHTML = html;
 }
 
 /* ---------- place page ---------- */
@@ -989,7 +1205,7 @@ function placeHTML(k, book){
     const imgs=[].concat(pt.img==null?[]:pt.img).map(fig).join('');
     return `<li class="pt"><h3>${pt.name}${pt.cn?`<span class="cn">${pt.cn}</span>`:''}</h3>${imgs}<p class="look">${pt.look}</p>${pt.story?`<div class="gs"><b>해설사 이야기</b>${pt.story}</div>`:''}</li>`;}).join('');
   const missions=(P.kid.missions||[]).map((m,j)=>`<label class="mission"><input type="checkbox" id="${book?'b':'m'}-${k}-${j}" data-m="${k}-${j}" ${done[`${k}-${j}`]?'checked':''}><span>${m}</span></label>`).join('');
-  return `${book?'':`<div class="ptop"><div class="in"><div class="row1"><button class="back" type="button" data-back="${k}">${ico.back}일정</button><span class="ttl">${P.kr}</span></div>
+  return `${book?'':`<div class="ptop"><div class="in"><div class="row1"><button class="back" type="button" data-back="${k}">${ico.back}목록으로 돌아가기</button><span class="ttl">${P.kr}</span></div>
       <nav class="jump" aria-label="이 페이지 안에서">${secs.map(([id,l])=>`<a href="#${sid(id)}" data-jump="${sid(id)}">${l}</a>`).join('')}</nav></div></div>`}
   <div class="frame"><article class="sheet place ${day.cls}">
     <div class="runner"><span>Day ${day.n} · ${day.date}</span><span>${P.sub||''}</span></div>
@@ -1026,68 +1242,168 @@ function placeHTML(k, book){
   </article></div>`;
 }
 
-/* ---------- router ---------- */
-const home=document.getElementById('homeView'), pv=document.getElementById('placeView');
-let lastPlace=null;
-function route(){
-  const h=location.hash.slice(1);
-  if(h.startsWith('p-') && PLACES[h.slice(2)]){
-    const k=h.slice(2); lastPlace=k; pv.innerHTML=placeHTML(k,false); pv.hidden=false; home.hidden=true;
-    window.scrollTo(0,0); document.title=`${PLACES[k].kr} · 상하이 가족 여행 가이드북`; drawQRs(pv);
+/* ---------- TAB & ROUTER SYSTEM ---------- */
+let currentTab = 'home';
+let lastTab = 'home';
+
+function switchTab(tabId, updateHash = true){
+  const validTabs = ['home', 'day1', 'day2', 'day3', 'talk', 'ready', 'stamp'];
+  if(!validTabs.includes(tabId)) tabId = 'home';
+
+  currentTab = tabId;
+  if(tabId !== 'stamp') lastTab = tabId;
+
+  // Toggle active class on tab views
+  document.querySelectorAll('.tab-view').forEach(v => {
+    v.classList.remove('active');
+  });
+  const targetView = document.getElementById('view-' + tabId);
+  if(targetView) targetView.classList.add('active');
+
+  // Update top tabs buttons
+  document.querySelectorAll('#mainTabs .tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabId);
+  });
+
+  // Update mobile bottom nav items
+  document.querySelectorAll('.bottom-nav .bnav-item').forEach(item => {
+    item.classList.toggle('active', item.dataset.tab === tabId);
+  });
+
+  // Update day switchers inside day views
+  document.querySelectorAll('.day-switcher a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + tabId);
+  });
+
+  if(updateHash && location.hash !== '#' + tabId) {
+    location.hash = tabId;
+  }
+}
+
+function goBackFromPlace(){
+  if(window.history.length > 1) {
+    window.history.back();
   } else {
-    pv.hidden=true; pv.innerHTML=''; home.hidden=false; document.title='상하이 가족 여행 가이드북';
-    const el = h ? document.getElementById(h) : null;
-    if(el) requestAnimationFrame(()=>el.scrollIntoView({block:'start'}));
-    hl();
+    location.hash = lastTab || 'home';
+  }
+}
+
+const home = document.getElementById('homeView'), pv = document.getElementById('placeView');
+
+function route(){
+  const raw = location.hash.replace(/^#\/?/, '');
+  
+  if(raw.startsWith('p-') && PLACES[raw.slice(2)]){
+    const k = raw.slice(2);
+    pv.innerHTML = placeHTML(k, false);
+    pv.hidden = false;
+    home.hidden = true;
+    window.scrollTo(0, 0);
+    document.title = `${PLACES[k].kr} · 상하이 가족 여행 가이드북`;
+    drawQRs(pv);
+  } else {
+    pv.hidden = true;
+    pv.innerHTML = '';
+    home.hidden = false;
+    document.title = '상하이 가족 여행 가이드북';
+
+    const tab = raw || 'home';
+    switchTab(tab, false);
+
+    // If anchor is an internal element, scroll to it
+    const el = document.getElementById(raw);
+    if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
   }
 }
 window.addEventListener('hashchange', route);
+window.addEventListener('popstate', route);
 
 /* ---------- interactions ---------- */
-const toastEl=document.getElementById('toast'); let tt;
-function toast(m){ toastEl.textContent=m; toastEl.hidden=false; clearTimeout(tt); tt=setTimeout(()=>toastEl.hidden=true,1800); }
-async function copy(text,msg){ try{ await navigator.clipboard.writeText(text); toast(msg||'복사했어요'); }
-  catch(e){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');toast(msg||'복사했어요');}catch(_){toast('길게 눌러 직접 복사해 주세요');} ta.remove(); } }
-const modal=document.getElementById('modal'); let cur=null;
-function openTaxi(k){ const P=PLACES[k]; if(!P) return; cur=P;
-  document.getElementById('mBig').textContent=P.cn; document.getElementById('mAddr').textContent=P.addr; document.getElementById('mKo').textContent=P.kr;
-  document.getElementById('mMap').href=amap(P); modal.hidden=false; document.getElementById('mClose').focus(); }
-document.addEventListener('click',e=>{
-  const t=e.target.closest('[data-taxi]'); if(t){openTaxi(t.dataset.taxi);return;}
-  const p=e.target.closest('.ph'); if(p){copy(p.dataset.zh,`복사: ${p.dataset.zh}`);return;}
-  const a=e.target.closest('[data-aud]'); if(a){setAud(a.dataset.aud);return;}
-  const b=e.target.closest('[data-back]'); if(b){location.hash='s-'+b.dataset.back;return;}
-  const g=e.target.closest('[data-go]'); if(g){location.hash='p-'+g.dataset.go;return;}
-  const j=e.target.closest('[data-jump]'); if(j){e.preventDefault();document.getElementById(j.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});return;}
+const toastEl = document.getElementById('toast'); let tt;
+function toast(m){ toastEl.textContent = m; toastEl.hidden = false; clearTimeout(tt); tt = setTimeout(()=>toastEl.hidden = true, 1800); }
+async function copy(text, msg){
+  try { await navigator.clipboard.writeText(text); toast(msg || '복사했어요'); }
+  catch(e){
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast(msg || '복사했어요'); } catch(_) { toast('길게 눌러 직접 복사해 주세요'); }
+    ta.remove();
+  }
+}
+const modal = document.getElementById('modal'); let cur = null;
+function openTaxi(k){
+  const P = PLACES[k]; if(!P) return; cur = P;
+  document.getElementById('mBig').textContent = P.cn;
+  document.getElementById('mAddr').textContent = P.addr;
+  document.getElementById('mKo').textContent = P.kr;
+  document.getElementById('mMap').href = amap(P);
+  modal.hidden = false;
+  document.getElementById('mClose').focus();
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-taxi]'); if(t){ openTaxi(t.dataset.taxi); return; }
+  const p = e.target.closest('.ph'); if(p){ copy(p.dataset.zh, `복사: ${p.dataset.zh}`); return; }
+  const a = e.target.closest('button[data-aud]'); if(a){ setAud(a.dataset.aud); return; }
+  const b = e.target.closest('[data-back]'); if(b){ goBackFromPlace(); return; }
+  const g = e.target.closest('[data-go]'); if(g){ location.hash = 'p-' + g.dataset.go; return; }
+  const j = e.target.closest('[data-jump]'); if(j){ e.preventDefault(); document.getElementById(j.dataset.jump)?.scrollIntoView({behavior:'smooth', block:'start'}); return; }
 });
-document.getElementById('mClose').onclick=()=>modal.hidden=true;
-modal.addEventListener('click',e=>{if(e.target===modal)modal.hidden=true;});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.hidden=true;});
-document.getElementById('mCopy').onclick=()=>{ if(cur) copy(`${cur.cn} ${cur.addr}`,'주소를 복사했어요. 디디에 붙여넣으세요'); };
-document.addEventListener('change',e=>{ const m=e.target.closest('[data-m]'); if(!m) return;
-  done[m.dataset.m]=m.checked; store.set('stamps3',done); updateStamp();
-  document.querySelectorAll(`[data-m="${m.dataset.m}"]`).forEach(x=>x.checked=m.checked); if(m.checked) toast('별 도장 쾅!'); });
-function setAud(v){ document.body.dataset.aud=v; document.querySelectorAll('[data-aud]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.aud===v))); store.set('aud',v); }
-function qrSvg(t){ try{const q=qrcode(0,'L');q.addData(t);q.make();return q.createSvgTag({cellSize:2,margin:1,scalable:true});}catch(e){return '';} }
-function drawQRs(root){ (root||document).querySelectorAll('.qr[data-qr]').forEach(el=>{ if(el.dataset.done) return; const P=PLACES[el.dataset.qr]; if(!P) return;
-  const svg=qrSvg(amap(P)); if(!svg) return; el.innerHTML=svg+`<div>휴대폰 카메라로 찍으면<br>고덕지도 길찾기가 열려요</div>`; el.dataset.done=1; }); }
-let booked=false;
-function buildBook(){ if(booked) return; booked=true;
-  document.getElementById('bookPlaces').innerHTML=ORDER.map(k=>`<div class="bookplace">${placeHTML(k,true)}</div>`).join(''); drawQRs(document); }
-const bookBtn=document.getElementById('bookBtn');
-bookBtn.onclick=()=>{ const on=!document.body.classList.contains('booklet'); if(on) buildBook();
-  document.body.classList.toggle('booklet',on); bookBtn.setAttribute('aria-pressed',String(on)); bookBtn.textContent=on?'휴대폰 보기로':'책자 보기'; };
-const printBtn=document.getElementById('printBtn');
-try{ if(window.self===window.top){ printBtn.hidden=false; printBtn.onclick=()=>{ if(location.hash.startsWith('#p-')) location.hash=''; buildBook(); setTimeout(()=>window.print(),400); }; } }catch(e){}
-window.addEventListener('beforeprint',()=>buildBook());
-document.getElementById('phr').innerHTML=PHRASES.map(([ko,zh,rd])=>`<button type="button" class="ph" data-zh="${zh}"><span class="ko">${ko}</span><span class="zh">${zh}</span><span class="rd">${rd}</span></button>`).join('');
+document.getElementById('mClose').onclick = () => modal.hidden = true;
+modal.addEventListener('click', e => { if(e.target === modal) modal.hidden = true; });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.hidden = true; });
+document.getElementById('mCopy').onclick = () => { if(cur) copy(`${cur.cn} ${cur.addr}`, '주소를 복사했어요. 디디에 붙여넣으세요'); };
+document.addEventListener('change', e => {
+  const m = e.target.closest('[data-m]'); if(!m) return;
+  done[m.dataset.m] = m.checked;
+  store.set('stamps3', done);
+  updateStamp();
+  document.querySelectorAll(`[data-m="${m.dataset.m}"]`).forEach(x => x.checked = m.checked);
+  if(m.checked) toast('별 도장 쾅!');
+});
+function setAud(v){ document.body.dataset.aud = v; document.querySelectorAll('[data-aud]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.aud === v))); store.set('aud', v); }
+function qrSvg(t){ try { const q = qrcode(0, 'L'); q.addData(t); q.make(); return q.createSvgTag({cellSize: 2, margin: 1, scalable: true}); } catch(e){ return ''; } }
+function drawQRs(root){ (root || document).querySelectorAll('.qr[data-qr]').forEach(el => {
+  if(el.dataset.done) return; const P = PLACES[el.dataset.qr]; if(!P) return;
+  const svg = qrSvg(amap(P)); if(!svg) return; el.innerHTML = svg + `<div>휴대폰 카메라로 찍으면<br>고덕지도 길찾기가 열려요</div>`; el.dataset.done = 1;
+}); }
 
-const links=[...document.querySelectorAll('.nav a')]; let lastId=null;
-function hl(){ if(home.hidden) return; let c=null;
-  links.forEach(l=>{const el=document.getElementById(l.dataset.t); if(el&&el.getBoundingClientRect().top<130) c=l.dataset.t;});
-  if(c===lastId) return; lastId=c;
-  links.forEach(l=>{const on=l.dataset.t===c; l.classList.toggle('on',on); if(on){const w=l.parentElement; w.scrollTo({left:l.offsetLeft-w.clientWidth/2+l.clientWidth/2,behavior:'smooth'});}}); }
-let raf; window.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(hl)},{passive:true});
+let booked = false;
+function buildBook(){
+  if(booked) return; booked = true;
+  document.getElementById('bookPlaces').innerHTML = ORDER.map(k => `<div class="bookplace">${placeHTML(k, true)}</div>`).join('');
+  drawQRs(document);
+}
+const bookBtn = document.getElementById('bookBtn');
+const bookExit = document.getElementById('bookExit');
+function toggleBooklet(){
+  const on = !document.body.classList.contains('booklet');
+  if(on) buildBook();
+  document.body.classList.toggle('booklet', on);
+  bookBtn.setAttribute('aria-pressed', String(on));
+  bookBtn.textContent = on ? '휴대폰 탭보기로' : '책자 전체보기';
+  if(on) window.scrollTo(0, 0);
+}
+bookBtn.onclick = toggleBooklet;
+bookExit.onclick = toggleBooklet;
+const printBtn = document.getElementById('printBtn');
+try {
+  if(window.self === window.top) {
+    printBtn.hidden = false;
+    printBtn.onclick = () => {
+      if(location.hash.startsWith('#p-')) location.hash = '';
+      buildBook();
+      setTimeout(() => window.print(), 400);
+    };
+  }
+} catch(e) {}
+window.addEventListener('beforeprint', () => buildBook());
+document.getElementById('phr').innerHTML = PHRASES.map(([ko, zh, rd]) => `<button type="button" class="ph" data-zh="${zh}"><span class="ko">${ko}</span><span class="zh">${zh}</span><span class="rd">${rd}</span></button>`).join('');
 
-renderRoute(); renderPanels(); renderHome(); updateStamp(); setAud(store.get('aud','all')); route();
+renderRoute();
+renderPanels();
+renderHome();
+renderTaxiGrid();
+renderStampTab();
+updateStamp();
+setAud(store.get('aud', 'all'));
+route();
 </script>
