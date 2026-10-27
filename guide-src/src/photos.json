@@ -1,0 +1,244 @@
+{
+ "hotel": [
+  {
+   "src": "img/hotel-0.jpg",
+   "cap": "오늘의 골든 튤립(옛 신아반점) 외관",
+   "credit": "Suicasmo · CC0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/hotel-1.jpg",
+   "cap": "호텔 맞은편 상하이 우정총국 빌딩 야경",
+   "credit": "Siyuwj · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "siji": [
+  {
+   "src": "img/siji-0.jpg",
+   "cap": "테이블 옆에서 베이징덕을 써는 모습",
+   "credit": "City Foodsters · CC BY 2.0 · Wikimedia Commons"
+  }
+ ],
+ "yuyuanEve": [
+  {
+   "src": "img/yuyuanEve-0.jpg",
+   "cap": "구곡교 위의 호심정 찻집, 뒤로 상하이타워",
+   "credit": "Fredlyfish4 · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yuyuanEve-1.jpg",
+   "cap": "성황묘 마당의 청동 향로",
+   "credit": "xiquinhosilva · CC BY 2.0 · Wikimedia Commons"
+  }
+ ],
+ "bund": [
+  {
+   "src": "img/bund-0.jpg",
+   "cap": "밤의 와이탄",
+   "credit": "Lloyd Tudor · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-1.jpg",
+   "cap": "12호 옛 HSBC 빌딩",
+   "credit": "钉钉 · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-2.jpg",
+   "cap": "조계 시절 HSBC 사자 앞 사람들(옛 사진)",
+   "credit": "작자 미상 · Public domain · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-3.jpg",
+   "cap": "13호 세관 시계탑",
+   "credit": "David Stanley · CC BY 2.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-4.jpg",
+   "cap": "20호 화평반점의 초록 피라미드 지붕",
+   "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-5.jpg",
+   "cap": "외백도교와 뒤편 브로드웨이 맨션",
+   "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/bund-6.jpg",
+   "cap": "1988년의 와이탄",
+   "credit": "Jan Kranendonk · CC0 · Wikimedia Commons"
+  }
+ ],
+ "nanxiang": [
+  {
+   "src": "img/nanxiang-0.jpg",
+   "cap": "숟가락 위의 샤오롱바오",
+   "credit": "Robigasp · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "yugarden": [
+  {
+   "src": "img/yugarden-0.jpg",
+   "cap": "예원 연못과 누각",
+   "credit": "Ray in Manila · CC BY 2.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yugarden-1.jpg",
+   "cap": "예원의 가산(돌산)",
+   "credit": "Rose Abrams · CC BY 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yugarden-2.jpg",
+   "cap": "용 담장의 용 머리",
+   "credit": "Mr. Tickle · CC BY 2.5 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yugarden-3.jpg",
+   "cap": "옥영롱",
+   "credit": "Gisling · CC BY-SA 3.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yugarden-4.jpg",
+   "cap": "삼수당 현판",
+   "credit": "King of Hearts · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/yugarden-5.jpg",
+   "cap": "공작 무늬 창(漏窗)",
+   "credit": "pfctdayelise · CC BY-SA 2.5 · Wikimedia Commons"
+  }
+ ],
+ "newworld": [
+  {
+   "src": "img/newworld-0.jpg",
+   "cap": "포르투갈식 에그타르트(파스텔 드 나타)",
+   "credit": "Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/newworld-1.jpg",
+   "cap": "옛 경마장 자리, 인민광장",
+   "credit": "King of Hearts · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "xizha": [
+  {
+   "src": "img/xizha-0.jpg",
+   "cap": "밤의 우전 물길",
+   "credit": "Nico le terrible · CC0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/xizha-1.jpg",
+   "cap": "우전 서책의 돌다리와 나룻배",
+   "credit": "Gerbil · CC BY-SA 3.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/xizha-2.jpg",
+   "cap": "서책 운하의 가마우지 낚시 배",
+   "credit": "Gerbil · CC BY-SA 3.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/xizha-3.jpg",
+   "cap": "수각이 늘어선 우전 운하",
+   "credit": "韩笃一 · CC BY-SA 3.0 · Wikimedia Commons"
+  }
+ ],
+ "jingan": [
+  {
+   "src": "img/jingan-0.jpg",
+   "cap": "빌딩 숲 속 정안사 금빛 지붕",
+   "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/jingan-1.jpg",
+   "cap": "정안사 대웅보전과 마당 향로",
+   "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "roastery": [
+  {
+   "src": "img/roastery-0.jpg",
+   "cap": "로스터리의 구리 원두통과 로스터",
+   "credit": "Codas · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/roastery-1.jpg",
+   "cap": "육각형 나무 천장과 긴 커피 바",
+   "credit": "Codas · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "skewer": [
+  {
+   "src": "img/skewer-0.jpg",
+   "cap": "숯불 위의 양꼬치",
+   "credit": "N509FZ · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "nanjing": [
+  {
+   "src": "img/nanjing-0.jpg",
+   "cap": "밤의 난징둥루 보행가",
+   "credit": "Hermann Luyken · CC0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/nanjing-1.jpg",
+   "cap": "보행가의 관광 꼬마 열차",
+   "credit": "HeroicLife · CC BY 2.0 · Wikimedia Commons"
+  }
+ ],
+ "lujiazui": [
+  {
+   "src": "img/lujiazui-0.jpg",
+   "cap": "와이탄에서 본 루자쭈이",
+   "credit": "Zhang Zhang · CC BY-SA 3.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/lujiazui-1.jpg",
+   "cap": "동방명주",
+   "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/lujiazui-2.jpg",
+   "cap": "진마오 빌딩",
+   "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/lujiazui-3.jpg",
+   "cap": "2007년 공사 중인 환추금융센터(오른쪽)와 진마오",
+   "credit": "Reinhold Möller · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/lujiazui-4.jpg",
+   "cap": "루자쭈이 야경",
+   "credit": "Larry Qian · CC0 · Wikimedia Commons"
+  }
+ ],
+ "shtower": [
+  {
+   "src": "img/shtower-0.jpg",
+   "cap": "상하이타워와 진마오",
+   "credit": "Stefan Fussan · CC BY-SA 3.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/shtower-1.jpg",
+   "cap": "118층에서 내려다본 황푸강과 와이탄",
+   "credit": "Cotopaxi5897 · CC BY-SA 4.0 · Wikimedia Commons"
+  },
+  {
+   "src": "img/shtower-2.jpg",
+   "cap": "125층 댐퍼 ‘상하이의 눈’",
+   "credit": "MasaneMiyaPA · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "hotpot": [
+  {
+   "src": "img/hotpot-0.jpg",
+   "cap": "부위별로 썬 차오산식 소고기",
+   "credit": "Clarayyt · CC BY-SA 4.0 · Wikimedia Commons"
+  }
+ ],
+ "binjiang": [
+  {
+   "src": "img/binjiang-0.jpg",
+   "cap": "푸둥에서 바라본 밤의 와이탄",
+   "credit": "Ctny · CC BY-SA 3.0 · Wikimedia Commons"
+  }
+ ]
+}
