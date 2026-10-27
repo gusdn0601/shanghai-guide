@@ -1,6 +1,6 @@
 {
-  "when": "2026-10-27T16:38:35.474Z",
-  "base": "http://127.0.0.1:8123/index.html",
+  "when": "2026-10-27T17:13:41.223Z",
+  "base": "http://127.0.0.1:8124/index.html",
   "passed": 51,
   "failed": 0,
   "results": [
@@ -261,9 +261,9 @@
     }
   ],
   "pageErrors": [
-    "log: Failed to launch 'dianping://searchshoplist?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0' because the scheme does not have a registered handler. http://127.0.0.1:8123/dp.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0",
-    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)&city=%E4%B8%8A%E6%B5%B7",
-    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84&city=%E4%B8%8A%E6%B5%B7"
+    "log: Failed to launch 'dianping://searchshoplist?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0' because the scheme does not have a registered handler. http://127.0.0.1:8124/dp.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0",
+    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)' because the scheme does not have a registered handler. http://127.0.0.1:8124/map.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)&city=%E4%B8%8A%E6%B5%B7",
+    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84' because the scheme does not have a registered handler. http://127.0.0.1:8124/map.html?keyword=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84&city=%E4%B8%8A%E6%B5%B7"
   ],
   "networkFailures": [],
   "externalFailures": [],
