@@ -1,10 +1,11 @@
 /* 상하이 가이드북 오프라인 캐시 서비스워커 — guide-new 전용
    입국 QR 7장·장소 사진·바우처 PDF까지 미리 받아 두어 비행기 모드에서도 바로 뜹니다. */
-const CACHE = 'shanghai-guide-v1793108800';
+const CACHE = 'shanghai-guide-v1793112600';
 const ASSETS = [
   './',
   './index.html',
   './map.html',
+  './dp.html',
   './manifest.webmanifest',
   './icon-120.png',
   './icon-152.png',
@@ -23,6 +24,7 @@ const ASSETS = [
   './img/laojishi-0.jpg',
   './img/beiwaitan-0.jpg',
   './img/airporthotel-0.jpg',
+  './img/circus-voucher.png',
   './img/pvgT1-0.jpg',
   './img/binjiang-0.jpg',
   './img/bund-0.jpg',
