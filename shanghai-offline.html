@@ -1877,6 +1877,17 @@ function openTaxi(k){
   document.getElementById('mClose').focus();
 }
 document.addEventListener('click', e => {
+  const m = e.target.closest('a.act.map, a#mMap');
+  if (m && m.href && m.href.includes('uri.amap.com')) {
+    e.preventDefault();
+    try {
+      const u = new URL(m.href);
+      const kw = u.searchParams.get('keyword') || '';
+      const city = u.searchParams.get('city') || '上海';
+      window.open(`map.html?keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');
+      return;
+    } catch(err){ window.open(m.href, '_blank'); return; }
+  }
   const t = e.target.closest('[data-taxi]'); if(t){ openTaxi(t.dataset.taxi); return; }
   const p = e.target.closest('.ph'); if(p){ copy(p.dataset.zh, `복사: ${p.dataset.zh}`); return; }
   const a = e.target.closest('button[data-aud]'); if(a){ setAud(a.dataset.aud); return; }
