@@ -17,6 +17,7 @@
   --yellow:#f4d738; --yellow-2:#e2bf12; --yellow-soft:#fff6c9;
   --ink:#1d1d1b; --ink-2:#5c5b55; --line:#e2dfd2; --page:#ffffff; --tint:#f7f6f0;
   --blue:#1c95d3; --d1:#2c69b0; --d1-soft:#e3eef9; --d2:#df4f7c; --d2-soft:#fde7ee; --d3:#2a9a68; --d3-soft:#e0f3ea;
+  --d4:#d1741f; --d4-soft:#fdeedd; --d5:#5b52b8; --d5-soft:#eae7f8;
   --kid:#2c69b0; --kid-soft:#e3eef9; --teen:#7a4cc2; --teen-soft:#efe8fa; --red:#d6463a;
   --f-display:"Do Hyeon","Black Han Sans","Apple SD Gothic Neo",sans-serif;
   --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
@@ -92,7 +93,7 @@ p{margin:0} img{display:block;max-width:100%}
 /* day route panels (flow chart) */
 .panels{display:grid;gap:14px}
 .panel{border-radius:4px;padding:16px 14px 18px;color:var(--ink);position:relative}
-.panel.d1{background:var(--d1)} .panel.d2{background:var(--d2)} .panel.d3{background:var(--d3)}
+.panel.d1{background:var(--d1)} .panel.d2{background:var(--d2)} .panel.d3{background:var(--d3)} .panel.d4{background:var(--d4)} .panel.d5{background:var(--d5)}
 .panel .ptag{display:inline-block;background:var(--yellow);border:2px solid var(--ink);font-family:var(--f-display);font-size:15px;padding:1px 10px;margin-bottom:10px}
 .panel .ptitle{color:#fff;font-family:var(--f-display);font-size:18px;margin-left:8px}
 .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;position:relative}
@@ -114,7 +115,7 @@ p{margin:0} img{display:block;max-width:100%}
 .day{scroll-margin-top:70px}
 .dayhead{display:flex;align-items:center;gap:12px;margin:40px 0 6px}
 .dayhead .dn{flex:none;white-space:nowrap;font-family:var(--f-display);font-size:15px;color:#fff;padding:3px 12px;border-radius:999px}
-.d1 .dn{background:var(--d1)} .d2 .dn{background:var(--d2)} .d3 .dn{background:var(--d3)}
+.d1 .dn{background:var(--d1)} .d2 .dn{background:var(--d2)} .d3 .dn{background:var(--d3)} .d4 .dn{background:var(--d4)} .d5 .dn{background:var(--d5)}
 .dayhead h2{font-family:var(--f-display);font-size:clamp(21px,5vw,27px);line-height:1.2}
 .daynote{font-size:14px;color:var(--ink-2);margin-bottom:6px}
 .timeline{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
@@ -166,7 +167,7 @@ p{margin:0} img{display:block;max-width:100%}
 .jump::-webkit-scrollbar{display:none}
 .jump a{flex:none;font-size:13px;font-weight:700;text-decoration:none;padding:2px 10px;border-radius:999px;background:rgba(255,255,255,.7)}
 .place{--c:var(--d1);--cs:var(--d1-soft)}
-.place.d2{--c:var(--d2);--cs:var(--d2-soft)} .place.d3{--c:var(--d3);--cs:var(--d3-soft)}
+.place.d2{--c:var(--d2);--cs:var(--d2-soft)} .place.d3{--c:var(--d3);--cs:var(--d3-soft)} .place.d4{--c:var(--d4);--cs:var(--d4-soft)} .place.d5{--c:var(--d5);--cs:var(--d5-soft)}
 .phero{margin:0 0 6px;border:3px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--tint)}
 .phero img,.phero .art{width:100%;aspect-ratio:16/10;object-fit:cover}
 .credit{font-size:11px;color:var(--ink-2);text-align:right}
@@ -285,7 +286,7 @@ body.booklet #bookExit{display:block}
 
 /* ---------- TAB & VIEW SYSTEM ---------- */
 .view-container { min-height: 50vh; }
-.tab-view { display: none; }
+.tab-view { display: none; scroll-margin-top: 72px; }
 .tab-view.active { display: block; animation: tabFadeIn .18s ease-in-out; }
 body.booklet .tab-view { display: block !important; margin-bottom: 24px; }
 body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher { display: none !important; }
@@ -316,8 +317,9 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
 .back-btn-main:active { transform: translateY(1px); box-shadow: none; }
 
 /* Day Highlight Switcher inside day views */
-.day-switcher { display: flex; gap: 8px; margin: 0 0 18px; }
-.day-switcher a { flex: 1; padding: 8px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; font-family: var(--f-display); font-size: 15px; text-align: center; text-decoration: none; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.day-switcher { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+.day-switcher a { flex: 1 1 88px; padding: 7px 4px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; font-family: var(--f-display); font-size: 13.5px; line-height: 1.25; text-align: center; text-decoration: none; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.day-switcher a small { display: block; font-family: var(--f-body); font-size: 10.5px; font-weight: 700; opacity: .72; }
 .day-switcher a.active { background: var(--ink); color: #fff; box-shadow: none; transform: translateY(1px); }
 
 /* Quick Action Cards in Home View */
@@ -347,9 +349,28 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
 .qr-display-card { background: var(--tint); border: 2px solid var(--ink); border-radius: 12px; padding: 16px; text-align: center; }
 .qr-display-card img { max-width: 240px; margin: 0 auto 10px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; padding: 6px; box-shadow: 2px 2px 0 var(--ink); }
 .qr-info-row { display: flex; justify-content: space-around; font-size: 13.5px; font-weight: 700; color: var(--ink-2); margin-top: 6px; }
+.qr-display-card img { cursor: zoom-in; }
+.qr-zoom-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--red); }
+/* Full-screen QR lightbox: 게이트에서 한 번에 크게 */
+.qr-lightbox { position: fixed; inset: 0; z-index: 200; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: max(12px, env(safe-area-inset-top,0px)) 12px max(12px, env(safe-area-inset-bottom,0px)); }
+.qr-lightbox[hidden] { display: none; }
+.qr-lightbox .lb-stage { flex: 1 1 auto; min-height: 0; width: 100%; overflow: auto; display: flex; align-items: flex-start; justify-content: center; -webkit-overflow-scrolling: touch; }
+.qr-lightbox img { width: min(92vw, 78vh); height: auto; flex: none; image-rendering: pixelated; background: #fff; cursor: zoom-in; }
+.qr-lightbox img[data-zoom="2"] { width: calc(min(92vw, 78vh) * 2.2); cursor: zoom-out; }
+.qr-lightbox .lb-hint { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+.qr-lightbox .lb-name { font-family: var(--f-display); font-size: 22px; }
+.qr-lightbox .lb-sub { font-size: 14px; font-weight: 700; color: var(--ink-2); }
+.qr-lightbox .lb-close { position: absolute; top: max(10px, env(safe-area-inset-top,0px)); right: 12px; width: 44px; height: 44px; border-radius: 999px; border: 2px solid var(--ink); background: #fff; font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); }
+.qr-lightbox .lb-nav { display: flex; gap: 10px; }
+.qr-lightbox .lb-nav button { border: 2px solid var(--ink); border-radius: 999px; background: #fff; padding: 8px 18px; font-family: var(--f-display); font-size: 15px; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); }
 
 /* Booking Info Cards */
 .booking-card { background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; box-shadow: 3px 3px 0 var(--ink); }
+.ready-sub { font-family: var(--f-display); font-size: 19px; margin: 6px 0 6px; }
+.home-quick-acts { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.home-quick-acts a { flex: 1 1 150px; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 10px 14px; font-family: var(--f-display); font-size: 15px; box-shadow: 3px 3px 0 var(--ink); }
+.home-quick-acts a.qr { background: var(--red); color: #fff; }
+.home-quick-acts a:active { transform: translateY(2px); box-shadow: 1px 1px 0 var(--ink); }
 .booking-card h4 { font-family: var(--f-display); font-size: 17px; margin: 0 0 6px; display: flex; align-items: center; justify-content: space-between; }
 .booking-badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--jade); color: #fff; font-family: var(--f-body); }
 
@@ -388,8 +409,8 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
       <div class="sticker">역사는 재밌게<br>길 찾기는 쉽게</div>
     </div>
       </div>
-      <p class="cover-sub">2026.10.29 — 10.31 · 상하이 · 우전. 동그라미를 누르면 그 장소의 해설 페이지로 가요.</p>
-      <svg class="routemap" id="routemap" viewBox="0 0 360 560" role="img" aria-label="3일 여행 루트 지도"></svg>
+      <p class="cover-sub">2026.10.29 — 11.02 · 상하이 · 우전 · 푸동공항. 동그라미를 누르면 그 장소의 해설 페이지로 가요.</p>
+      <svg class="routemap" id="routemap" viewBox="0 0 360 720" role="img" aria-label="5일 여행 루트 지도"></svg>
       <div class="cover-foot"><span class="chip">이현우 패밀리</span><span class="chip">어른 · 초등 · 중등</span><span class="chip">고덕지도 · 택시 카드</span></div>
     </header>
   </div>
@@ -399,9 +420,12 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <a href="#day1" class="tab-btn" data-tab="day1"><span class="badge-dot" style="background:var(--d1)"></span><span>1일차 (10.29)</span></a>
   <a href="#day2" class="tab-btn" data-tab="day2"><span class="badge-dot" style="background:var(--d2)"></span><span>2일차 (10.30)</span></a>
   <a href="#day3" class="tab-btn" data-tab="day3"><span class="badge-dot" style="background:var(--d3)"></span><span>3일차 (10.31)</span></a>
+  <a href="#day4" class="tab-btn" data-tab="day4"><span class="badge-dot" style="background:var(--d4)"></span><span>4일차 (11.01)</span></a>
+  <a href="#day5" class="tab-btn" data-tab="day5"><span class="badge-dot" style="background:var(--d5)"></span><span>5일차 (11.02)</span></a>
+  <a href="shanghai-offline.html" download="상하이_가족여행_오프라인가이드.html" class="tab-btn" style="background:var(--yellow);font-weight:700"><span>📥 오프라인 저장용 다운로드</span></a>
   <a href="#qr" class="tab-btn" data-tab="qr" style="border-color:var(--red)"><span class="badge-dot" style="background:var(--red)"></span><span>🛂 입국 QR</span></a>
+  <a href="#ready" class="tab-btn" data-tab="ready" style="border-color:var(--blue)"><span class="badge-dot" style="background:var(--blue)"></span><span>📑 준비 · 예약</span></a>
   <a href="#talk" class="tab-btn" data-tab="talk"><span>🗣️ 필수 회화</span></a>
-  <a href="#ready" class="tab-btn" data-tab="ready"><span>🎒 준비 · 팁</span></a>
   <a href="#stamp" class="tab-btn" data-tab="stamp"><span>🎖️ 탐험 스탬프</span></a>
 </div></div>
 
@@ -438,6 +462,11 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
       </a>
     </div>
     
+    <div class="home-quick-acts">
+      <a href="#qr" class="qr">🛂 입국 신고 QR 바로보기</a>
+      <a href="#ready">📑 예약 정보</a>
+    </div>
+
     <div class="sh"><span class="no">1</span><span class="bar"></span><h2>일자별 일정 선택</h2></div>
     <div class="home-quick-days">
       <a href="#day1" class="quick-day-card" style="border-left: 6px solid var(--d1)">
@@ -455,18 +484,28 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
         <h4>정안사, 난징루, 632m 상하이타워</h4>
         <p>사찰부터 아시아 최대 스타벅스, 마천루 야경까지</p>
       </a>
+      <a href="#day4" class="quick-day-card" style="border-left: 6px solid var(--d4)">
+        <div class="qtop"><span class="qtag" style="background:var(--d4)">4일차</span><span class="qdate">11.01 일</span></div>
+        <h4>임시정부 청사, 티엔즈팡, 우캉루, 그리고 공항 호텔로</h4>
+        <p>오전에 체크아웃하고 밤에는 푸동공항 옆 숙소로 이동해요</p>
+      </a>
+      <a href="#day5" class="quick-day-card" style="border-left: 6px solid var(--d5)">
+        <div class="qtop"><span class="qtag" style="background:var(--d5)">5일차</span><span class="qdate">11.02 월</span></div>
+        <h4>공항 호텔에서 MU5053 타고 대구로</h4>
+        <p>05:00 무료 셔틀 → 05:30 T1. 새벽 강행군이 없어요</p>
+      </a>
     </div>
 
-    <!-- 3일 루트 한눈에 -->
-    <div class="sh" id="routes"><span class="no">2</span><span class="bar"></span><h2>3일 루트 한눈에</h2></div>
+    <!-- 5일 루트 한눈에 -->
+    <div class="sh" id="routes"><span class="no">2</span><span class="bar"></span><h2>5일 루트 한눈에</h2></div>
     <div class="panels" id="panels"></div>
 
     <!-- 여행 개요 -->
     <div class="sh" id="intro"><span class="no">1</span><span class="bar"></span><h2>여행 개요</h2></div>
       <div class="infobox"><ul>
-        <li><span><b>기간</b> · 2026년 10월 29일(목) ~ 31일(토), 일정 추가 예정</span></li>
-        <li><span><b>숙소</b> · 골든 튤립 더 번드 상하이(옛 신아반점, 1934년 건물)</span></li>
-        <li><span><b>동선</b> · 1일차 와이탄·예원 / 2일차 예원 정원·우전 / 3일차 정안사·난징루·푸둥</span></li>
+        <li><span><b>기간</b> · 2026년 10월 29일(목) ~ 11월 2일(월), 4박 5일</span></li>
+        <li><span><b>숙소</b> · 3박 골든 튤립 더 번드 상하이(옛 신아반점, 1934년 건물) + 1박 이롱 안위에 호텔(푸동공항점)</span></li>
+        <li><span><b>동선</b> · 1일차 와이탄·예원 / 2일차 예원 정원·우전 / 3일차 정안사·난징루·푸둥 / 4일차 신천지·티엔즈팡·우캉루 → 공항 호텔 / 5일차 MU5053 귀국</span></li>
         <li><span><b>함께</b> · 어른, 초등, 중등 모두 즐기도록 장소마다 세 갈래 이야기</span></li>
       </ul></div>
 
@@ -479,9 +518,14 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <!-- VIEW: DAY 1 -->
   <div id="view-day1" class="tab-view sheet">
     <div class="day-switcher">
-      <a href="#day1" class="active">1일차 (10.29)</a>
-      <a href="#day2">2일차 (10.30)</a>
-      <a href="#day3">3일차 (10.31)</a>
+      <a href="#day1" class="active">1일차<small>10.29 목</small></a>
+      <a href="#day2">2일차<small>10.30 금</small></a>
+      <a href="#day3">3일차<small>10.31 토</small></a>
+      <a href="#day4">4일차<small>11.01 일</small></a>
+      <a href="#day5">5일차<small>11.02 월</small></a>
+    </div>
+    <div class="home-quick-acts" style="margin:-8px 0 14px">
+      <a href="#qr" class="qr" style="font-size:14px;padding:8px 12px;flex:1 1 100%">🛂 푸동공항 입국 신고 QR 바로보기 (7인)</a>
     </div>
     <div id="day-container-day1"></div>
   </div>
@@ -489,9 +533,11 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <!-- VIEW: DAY 2 -->
   <div id="view-day2" class="tab-view sheet">
     <div class="day-switcher">
-      <a href="#day1">1일차 (10.29)</a>
-      <a href="#day2" class="active">2일차 (10.30)</a>
-      <a href="#day3">3일차 (10.31)</a>
+      <a href="#day1">1일차<small>10.29 목</small></a>
+      <a href="#day2" class="active">2일차<small>10.30 금</small></a>
+      <a href="#day3">3일차<small>10.31 토</small></a>
+      <a href="#day4">4일차<small>11.01 일</small></a>
+      <a href="#day5">5일차<small>11.02 월</small></a>
     </div>
     <div id="day-container-day2"></div>
   </div>
@@ -499,11 +545,37 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <!-- VIEW: DAY 3 -->
   <div id="view-day3" class="tab-view sheet">
     <div class="day-switcher">
-      <a href="#day1">1일차 (10.29)</a>
-      <a href="#day2">2일차 (10.30)</a>
-      <a href="#day3" class="active">3일차 (10.31)</a>
+      <a href="#day1">1일차<small>10.29 목</small></a>
+      <a href="#day2">2일차<small>10.30 금</small></a>
+      <a href="#day3" class="active">3일차<small>10.31 토</small></a>
+      <a href="#day4">4일차<small>11.01 일</small></a>
+      <a href="#day5">5일차<small>11.02 월</small></a>
     </div>
     <div id="day-container-day3"></div>
+  </div>
+
+  <!-- VIEW: DAY 4 -->
+  <div id="view-day4" class="tab-view sheet">
+    <div class="day-switcher">
+      <a href="#day1">1일차<small>10.29 목</small></a>
+      <a href="#day2">2일차<small>10.30 금</small></a>
+      <a href="#day3">3일차<small>10.31 토</small></a>
+      <a href="#day4" class="active">4일차<small>11.01 일</small></a>
+      <a href="#day5">5일차<small>11.02 월</small></a>
+    </div>
+    <div id="day-container-day4"></div>
+  </div>
+
+  <!-- VIEW: DAY 5 -->
+  <div id="view-day5" class="tab-view sheet">
+    <div class="day-switcher">
+      <a href="#day1">1일차<small>10.29 목</small></a>
+      <a href="#day2">2일차<small>10.30 금</small></a>
+      <a href="#day3">3일차<small>10.31 토</small></a>
+      <a href="#day4">4일차<small>11.01 일</small></a>
+      <a href="#day5" class="active">5일차<small>11.02 월</small></a>
+    </div>
+    <div id="day-container-day5"></div>
   </div>
 
   <!-- VIEW: TALK (필수 회화 & 택시 카드) -->
@@ -520,6 +592,74 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <!-- VIEW: READY (출발 준비 & 팁) -->
   <div id="view-ready" class="tab-view sheet">
     <div class="sh"><span class="no">🎒</span><span class="bar"></span><h2>출발 전 준비 · 비상 연락</h2></div>
+    <h3 class="ready-sub">📑 확정된 예약 정보</h3>
+    <p style="margin-bottom:14px;color:var(--ink-2)">체크인·탑승 때 화면을 그대로 보여주세요. 예약번호는 이 가이드북 안에서만 보세요.</p>
+
+    <div class="booking-card">
+      <h4><span>✈️ 항공권 (동방항공)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>가는편</b>: 10/29(목) 대구(TAE) → 상하이 푸동(PVG) <b>MU5054</b></li>
+        <li><b>오는편</b>: 11/02(월) 상하이 푸동(PVG) → 대구(TAE) <b>MU5053 08:05 출발</b> (11:00 도착)</li>
+        <li><b>탑승수속 마감</b>: 국제선 출발 50분 전(공항 기준 최대 60분) → <b>07:15 무렵까지</b></li>
+        <li><b>온라인 체크인</b>: 출발 24시간 전부터. 7명 좌석을 붙이려면 한 번에 체크인하세요</li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🚐 공항 픽업 (KKday 확정)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>항공편</b>: 10/29(목) 대구공항 MU5054 ➡️ 상하이 푸동 도착 시 전용 차량 픽업</li>
+        <li><b>바우처 번호</b>: 26KK252694528 (입국장 피켓 미팅)</li>
+        <li><b>바우처 원본</b>: <a href="26KK252694528_kkday_voucher.pdf" target="_blank" rel="noopener">26KK252694528_kkday_voucher.pdf 열기</a></li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🏨 숙소 ① 3박 : 골든 튤립 번드 뉴 아시아</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>일정</b>: 10월 29일(목) 체크인 ~ <b>11월 1일(일) 오전 체크아웃</b> (3박)</li>
+        <li><b>주소</b>: 上海市虹口区天潼路422号 (톈퉁루역 3번 출구, 도보 4분)</li>
+        <li><b>예약번호 (트립닷컴)</b>: 1400828705028182 (JINJU CHOI), 1400828704985802 (HYUNWOO LEE)</li>
+        <li><b>전화</b>: +86-21-6324-2210</li>
+        <li><b>11.01 체크아웃 후</b>: 프런트에 <b>수하물 보관(寄存)</b> 요청 → 19:30쯤 수령</li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🏨 숙소 ② 1박 : 이롱 안위에 호텔 (푸동공항점)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>일정</b>: 11월 1일(일) 저녁 체크인 ~ 11월 2일(월) 새벽 체크아웃 (1박, 공항까지 차로 15~25분)</li>
+        <li><b>호텔명</b>: 艺龙安悦酒店(上海浦东机场店) / Elong Anyue Hotel Pudong Airport</li>
+        <li><b>주소</b>: 上海市浦东新区施新路802弄1号 (프런트 4층)</li>
+        <li><b>예약번호 (트립닷컴)</b>: 1400828876626108 (HYUNWOO LEE), 1400828876608699 (JINJU CHOI, HYUNWOO LEE)</li>
+        <li><b>전화</b>: +86-21-58202918 / +86-13301700919</li>
+        <li><b>무료 공항 셔틀</b>: 공항→호텔 픽업 16:00~03:00 / 호텔→공항 04:00~15:00 <b>고정 시각</b>. <b>최소 12시간 전 예약 필수</b> — 한 대 놓치면 다음 차까지 최대 1시간.</li>
+        <li><b>익일 아침</b>: <b>04:40 기상 → 05:00 셔틀 → 05:25~05:30 T1</b> → MU5053(08:05) 탑승</li>
+        <li><b>체크인/아웃</b>: 14:00 이후 / 13:00 이전 · 프런트 24시간 · 조식 07:00~10:00(약 20위안, 새벽 출발엔 도시락 요청)</li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🚌 우전 데이투어 (네이버쇼핑 확정)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>미팅 시간</b>: 10월 30일(금) <b>오후 12:10</b> (출발 12:30 지체없이 출발)</li>
+        <li><b>미팅 장소</b>: <b>신세계성 남2문 맞은편 (新世界城南2门)</b> - 붉은 깃발 한국어 가이드</li>
+        <li><b>이동 방법</b>: 택시/디디 호출 시 목적지 <span class="cn">新世界城南2门</span> / 지하철 인민광장역 7번 출구 좌측계단 위</li>
+        <li><b>인원 & 비상연락</b>: 7명 / 현지전화: <b>+86-156-1869-6222</b> / 위챗: <b>story_tour</b></li>
+        <li><b>주의사항</b>: <b>여권 원본 필수 지참</b></li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🔗 예약처 · 비상 링크</span><span class="booking-badge" style="background:var(--blue)">바로가기</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>하나투어 예약 조회</b>: <a href="https://www.hanatour.com/com/mpg/CHPC0MPG0303M200" target="_blank" rel="noopener">hanatour.com 예약 상세 열기</a></li>
+        <li><b>트립닷컴</b>: 예약번호로 앱에서 조회 (숙소 ①·② 위 번호)</li>
+        <li><b>주상하이 대한민국 총영사관</b>: +86-21-6295-5000 · <b>영사콜센터</b> +82-2-3210-0404</li>
+        <li><b>중국 긴급</b>: 경찰 110 / 구급 120 / 화재 119</li>
+      </ul>
+    </div>
+
     <div class="grid2">
       <div class="box"><b>꼭 챙길 것</b>
         <ul class="prac" style="margin-top:8px">
@@ -576,55 +716,19 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
       </div>
 
       <div class="qr-display-card" id="qrCard">
-        <img id="qrImage" src="img/entry-qr-1.png" alt="입국 전자신고 QR">
+        <img id="qrImage" src="img/entry-qr-1.png" alt="입국 전자신고 QR" onclick="openQrZoom()" title="터치하면 크게 보여요">
         <div id="qrName" style="font-family:var(--f-display);font-size:18px;margin-bottom:4px">LE* HY** WO* (이현우 代表)</div>
         <div class="qr-info-row">
           <span>여권: <b id="qrPass">M8*****63</b></span>
           <span>입국: <b>Shanghai Pudong</b></span>
           <span>신고: <b>2026-10-26</b></span>
         </div>
+        <div class="qr-zoom-hint" onclick="openQrZoom()">🔍 QR을 터치하면 화면 가득 크게 열려요</div>
       </div>
     </div>
 
-    <!-- 예약 상세 정보 카드 모음 -->
-    <div class="sh" style="margin-top:28px"><span class="no">📑</span><span class="bar"></span><h2>확정된 예약 정보 총정리</h2></div>
-    
-    <div class="booking-card">
-      <h4><span>🚌 우전 데이투어 (네이버쇼핑 확정)</span><span class="booking-badge">예약확정</span></h4>
-      <ul class="prac" style="margin:8px 0">
-        <li><b>미팅 시간</b>: 10월 30일(금) <b>오후 12:10</b> (출발 12:30 지체없이 출발)</li>
-        <li><b>미팅 장소</b>: <b>신세계성 남2문 맞은편 (新世界城南2门)</b> - 붉은 깃발 한국어 가이드</li>
-        <li><b>이동 방법</b>: 택시/디디 호출 시 목적지 <span class="cn">新世界城南2门</span> / 지하철 인민광장역 7번 출구 좌측계단 위</li>
-        <li><b>인원 & 비상연락</b>: 7명 / 현지전화: <b>+86-156-1869-6222</b> / 위챗: <b>story_tour</b></li>
-        <li><b>주의사항</b>: <b>여권 원본 필수 지참</b></li>
-      </ul>
-    </div>
-
-    <div class="booking-card">
-      <h4><span>🏨 호텔 1 (3박) : 골든 튤립 번드 뉴 아시아</span><span class="booking-badge">예약확정</span></h4>
-      <ul class="prac" style="margin:8px 0">
-        <li><b>일정</b>: 10월 29일(목) 체크인 ~ 11월 1일(일) 체크아웃 (3박)</li>
-        <li><b>주소</b>: 上海市虹口区天潼路422号 (텐퉁루역 3번 출구)</li>
-        <li><b>예약번호 (트립닷컴)</b>: 1400828705028182 (JINJU CHOI), 1400828704985802 (HYUNWOO LEE)</li>
-      </ul>
-    </div>
-
-    <div class="booking-card">
-      <h4><span>🏨 호텔 2 (1박) : 이롱 안위에 호텔 푸동공항점</span><span class="booking-badge">예약확정</span></h4>
-      <ul class="prac" style="margin:8px 0">
-        <li><b>일정</b>: 11월 1일(일) 체크인 ~ 11월 2일(월) 체크아웃 (1박, 공항 바로 앞!)</li>
-        <li><b>호텔명</b>: 艺龙安悦酒店(上海浦东机场店) / Elong Anyue Hotel Pudong Airport</li>
-        <li><b>예약번호 (트립닷컴)</b>: 1400828876626108 (HYUNWOO LEE), 1400828876608699 (JINJU CHOI)</li>
-        <li><b>익일 아침</b>: 호텔 무료 셔틀(5~10분) 타고 05:30에 T1 도착하여 MU5053(08:05) 탑승!</li>
-      </ul>
-    </div>
-
-    <div class="booking-card">
-      <h4><span>🚐 공항 픽업 (KKday 확정)</span><span class="booking-badge">예약확정</span></h4>
-      <ul class="prac" style="margin:8px 0">
-        <li><b>항공편</b>: 10/29(목) 대구공항 MU5054 ➡️ 상하이 푸동 도착 시 전용 차량 픽업</li>
-        <li><b>바우처 번호</b>: 26KK252694528 (입국장 피켓 미팅)</li>
-      </ul>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+      <a href="#ready" class="act" style="text-decoration:none;justify-content:center;flex:1;background:var(--blue);color:#fff;border-color:var(--ink);font-weight:700">📑 예약 정보 탭 열기</a>
     </div>
   </div>
 
@@ -636,9 +740,9 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
 <!-- Mobile bottom navigation -->
 <nav class="bottom-nav" aria-label="모바일 하단 메뉴">
   <a class="bnav-item active" href="#home" data-tab="home" aria-label="전체 개요"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>홈</span></a>
-  <a class="bnav-item" href="#day1" data-tab="day1" aria-label="1일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">1</text></svg><span>1일차</span></a>
-  <a class="bnav-item" href="#day2" data-tab="day2" aria-label="2일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">2</text></svg><span>2일차</span></a>
-  <a class="bnav-item" href="#day3" data-tab="day3" aria-label="3일차"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" stroke="none">3</text></svg><span>3일차</span></a>
+  <a class="bnav-item" href="#day1" data-tab="day1" aria-label="일정 (1~5일차)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>일정</span></a>
+  <a class="bnav-item" href="#qr" data-tab="qr" aria-label="입국 QR"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h3v3h-3zM20 14v6h-6"/></svg><span>QR</span></a>
+  <a class="bnav-item" href="#ready" data-tab="ready" aria-label="예약 정보"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><span>예약</span></a>
   <a class="bnav-item" href="#talk" data-tab="talk" aria-label="필수 회화"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg><span>회화</span></a>
   <a class="bnav-item" href="#stamp" data-tab="stamp" aria-label="탐험 스탬프"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-3 4 3-1-8"/></svg><span>스탬프</span></a>
 </nav>
@@ -1125,6 +1229,275 @@ binjiang: {
   practical:['정대광장 뒤편 강가로 바로 연결','밤 10시 무렵 조명 소등'],
   tip:'가족 단체 사진은 여기서! 뒤로 와이탄 전경이 다 들어와요.'
 }
+,
+
+/* ============ Day 4 · Day 5 추가 장소 (2026-10-27) ============ */
+/* ───────────────────────── Day 4 · 11.01 (일) ───────────────────────── */
+
+madi: {
+  kr:'대한민국 임시정부 청사', sub:'상하이 시대 1926~1932', cn:'大韩民国临时政府旧址', addr:'上海市黄浦区马当路306弄4号',
+  art:'street', kind:'sight',
+  lead:'1926년부터 1932년까지 대한민국 임시정부가 쓰던 석고문 건물. 마당로 306농 골목 끝 2층이에요.',
+  facts:[['건물 준공','1925년'],['임정 사용','1926~1932'],['기념관 개관','1993년'],['관람 시간','약 40분']],
+  origin:[
+    '1919년 3·1운동 직후 상하이에 세워진 대한민국 임시정부는 1926년 이 건물 2층으로 사무실을 옮겼어요. 1932년 윤봉길 의사의 훙커우 공원 의거로 일본군의 추적이 시작되자 저장성 자싱(嘉兴) 등으로 옮겨 갈 때까지, 6년 남짓 이곳이 임시정부의 중심이었어요.',
+    '이 골목은 프랑스 조계와 중국인 거주 구역이 맞닿은 경계였어요. 조계 당국이 마음대로 들어오기 어렵고, 반대로 중국인 구역과 가까워 사람을 구하기도 쉬운 자리였죠. 김구 선생도 이 건물에서 임시정부를 이끌었어요.',
+    '건물은 1860년대 상하이에 퍼진 석고문(石库门) 양식이에요. 돌로 문틀을 짜고 안쪽은 목조 마당집 구조죠. 1993년 기념관으로 문을 열었고, 2026년 여름 두 달 남짓 보수 공사를 마치고 그해 9월 16일 다시 문을 열었어요.'],
+  timeline:[['1919','상하이에 임시정부 수립'],['1925','이 석고문 건물 준공'],['1926','임시정부, 이곳 2층으로 이전'],['1932','윤봉길 의거 후 자싱 등으로 이전'],['1993','기념관 개관'],['2026.9.16','보수 마치고 재개관']],
+  course:{title:'2층 집무실까지 (약 40분)', intro:'마당로 큰길에서 골목으로 들어가면 끝에 청사가 있어요. 표는 입구 매표소에서 먼저!', points:[
+    {name:'306농 골목 입구', cn:'马当路306弄', look:'큰길에 ‘306’ 표지판이 있어요. 골목을 따라 30m쯤 들어가면 오른쪽에 청사 정문. 아이들이 숫자 306을 찾는 놀이로 딱이에요.'},
+    {name:'1층 전시실', look:'임시정부의 조직과 활동을 사진·문서로 보여 줘요. 태극기와 임시헌장 관련 자료를 찾아보세요.', story:'이 건물은 1993년부터 일반에 공개됐어요. 상하이 시내에서 한국인 여행자가 가장 많이 찾는 곳 중 하나예요.'},
+    {name:'2층 집무실 복원', look:'김구 선생의 집무 공간과 회의실이 당시 모습으로 복원돼 있어요. 문틀과 마루가 낮고 어두워서, 옛 건물의 체온이 느껴져요.'},
+    {name:'계단', look:'폭이 좁고 가파른 목조 계단이에요. 어르신과 아이는 손잡이를 꼭 잡고 한 명씩. 다리가 불편하면 1층 전시만 보고 나와도 충분해요.'}]},
+  details:[{t:'왜 하필 상하이였을까?',d:'상하이는 조계지라 중국 정부의 수사권이 미치지 않았어요. 여러 나라 배가 드나드는 항구였고, 이미 한국인 교민 사회가 있었죠. 1919년 서울·블라디보스토크·상하이에서 각각 세워진 임시정부가 하나로 합쳐지는 과정도 함께 살펴보세요.'},{t:'내부 촬영 금지',d:'전시실 안은 사진을 찍을 수 없어요. 마당과 정문 앞에서만. 대신 눈으로 오래 보세요.'}],
+  kid:{missions:['골목 입구에서 숫자 306 찾기','전시실에서 태극기 찾기','김구 선생님 이름이 나오는 곳 세어 보기'],fun:['우리나라 임시정부가 이 좁은 골목 2층에서 6년 동안 일했대요. 선생님들은 이 계단을 하루에도 몇 번씩 오르내렸겠죠?']},
+  teen:['1919년에 왜 여러 도시에 임시정부가 동시에 생겼을까요? 서울은 일제 치하였고, 상하이는 조계, 블라디보스토크는 러시아령이었어요. 각 도시의 조건이 독립운동 방식에 어떻게 영향을 줬는지 비교해 보세요.','프랑스 조계와 중국인 구역의 경계라는 지리적 조건이 임정의 은신에 어떻게 쓰였는지, 지도에서 이 골목 위치를 확인해 보세요.'],
+  quiz:[{q:'임시정부가 이 건물을 쓴 기간은?',a:'1926년~1932년, 약 6년'},{q:'이곳을 떠나게 만든 1932년 사건은?',a:'윤봉길 의사의 훙커우 공원 의거'}],
+  practical:['평일 09:00~11:30 / 13:30~17:00 (매표 11:00·16:30 마감)','일요일은 점심시간 없이 09:00~17:00 연속 운영(현장 안내 기준, 출발 전 021-53829057 확인 권장)','입장료 성인 20위안, 60세 이상·어린이 10위안 (현금·알리페이)','내부 촬영 금지','10인 이상 단체만 사전 예약 — 7명은 현장 구매 가능','계단이 좁고 가파름, 어르신 주의'],
+  dp:'大韩民国临时政府旧址',
+  tip:'일요일은 09:30 도착이 가장 한산해요. 관람 40분 + 골목 사진 10분이면 충분!'
+},
+
+xintiandi: {
+  kr:'신천지', sub:'석고문 골목의 부활', cn:'新天地', addr:'上海市黄浦区太仓路181弄(북리) / 兴业路123弄(남리)',
+  art:'street', kind:'sight',
+  lead:'1920년대 석고문 주택가를 그대로 살려 2001년 문을 연 상하이의 ‘도시 응접실’. 청사에서 걸어서 3분이에요.',
+  facts:[['북리 개장','2001년'],['규모','약 3만㎡'],['이주 가구','3,888세대'],['청사에서','도보 3분']],
+  origin:[
+    '석고문(石库门)은 1860년대 태평천국 전란을 피해 장쑤·저장 사람들이 조계로 몰려들면서 생긴 상하이식 주택이에요. 돌로 짠 문틀(石库门)에 안쪽은 중국식 마당집, 겉은 서양식 벽돌 — 한때 상하이에 9,000여 곳이 있었고 옛 시내 주택의 절반이 넘었어요.',
+    '1996년 루완구가 홍콩 루이안(瑞安)그룹과 손잡고 이 일대를 고쳤어요. 원칙은 ‘옛 모습 그대로(整旧如旧)’ — 벽돌과 기와, 문은 살리고 내부만 현대식으로. 1997년 착공, 2001년 북리가 문을 열었고 그해 APEC 회의의 유일한 비공식 방문지가 됐어요. 대신 3,888세대가 이곳을 떠났어요.',
+    '이름은 ‘一 + 大 = 天’, 하늘(天)에 짝이 땅(地). 20세기와 21세기가 만나는 자리라 ‘새로운 천지(新天地)’라고 지었어요. 남리와 북리 사이兴业路76号에는 1921년 7월 중국공산당 창당 대회가 열린 석고문이 있어요.'],
+  timeline:[['1860년대','석고문 주택 등장'],['1921','중공 1차 대회(신천지 자리)'],['1997','재개발 착공'],['2001','북리 개장'],['2002','남리 개장']],
+  course:{title:'청사 → 북리 → 남리 (약 40분)', intro:'임시정부 청사에서 나와 큰길을 건너면 바로 신천지예요.', points:[
+    {name:'북리 석고문 골목', cn:'新天地北里', look:'벽돌 벽과 나무 창틀이 그대로 남아 있어요. 가게 간판이 작고 낮은 게 이 동네의 규칙이에요. 길을 걷다 보면 옛 문패가 붙은 집도 보여요.'},
+    {name:'屋里厢 석고문 박물관', img:1, cn:'屋里厢博物馆', look:'1920년대 상하이 중산층 집을 통째로 복원한 3층 박물관. 부엌, 응접실, 침실, 옛 다리미와 축음기까지. 할머니·할아버지께서 가장 재밌어하실 곳이에요.', story:'‘屋里厢(우리시상)’은 상하이 말로 ‘집 안’이라는 뜻이에요. 입장 25위안, 10:30~22:30.'},
+    {name:'中共一大会址', cn:'中共一大会址(兴业路76号)', look:'붉은 벽돌 석고문. 1921년 창당 대회가 열린 곳이에요. 내부 관람은 예약이 필요하니 바깥 모습만 봐도 좋아요.'},
+    {name:'남리 분수광장', cn:'新天地南里', look:'점심집이 있는 쪽이에요. 넓은 광장과 쇼핑몰이 이어져요.'}]},
+  details:[{t:'보존일까, 상업화일까',d:'옛 주민이 떠나고 가게가 들어온 이 방식은 ‘개발형 보존’의 대표 사례로 칭찬과 비판을 함께 받아요. 성공한 도시 재생인지, 관광지가 된 동네인지 가족끼리 이야기해 보세요.'}],
+  kid:{missions:['석고문(돌 문틀) 다섯 개 세기','屋里厢 박물관에서 옛날 다리미 찾기','남리 분수광장에서 물줄기 사진 찍기'],fun:['이 골목집들은 100년도 더 됐어요. 벽돌 하나하나가 우리 할머니 할아버지보다 나이가 많아요.']},
+  teen:['도시 재개발에서 ‘보존’과 ‘상업화’는 어떻게 다른가요? 신천지는 옛 집을 지킨 게 아니라, 옛 집의 껍데기를 남기고 속을 바꿨어요. 여러분이 사는 동네에 같은 방식을 적용한다면 어떤 점이 좋고 나쁠까요?'],
+  quiz:[{q:'석고문이라는 이름은 어디서 나왔을까요?',a:'돌로 짠 문틀(石库门)에서'},{q:'신천지라는 이름의 뜻은?',a:'一+大=天, 하늘과 짝인 땅. 세기가 바뀌는 자리의 새로운 천지'}],
+  practical:['북리·남리는 도보 3분','屋里厢 박물관 25위안 · 10:30~22:30','일요일 낮에는 사람이 매우 많아요','화장실은 쇼핑몰(남리) 안이 깨끗해요'],
+  dp:'新天地 北里',
+  tip:'청사 관람 → 북리 → 점심(남리) 순서가 가장 자연스러워요.'
+},
+
+dintaifung: {
+  kr:'딘타이펑', sub:'신천지 남리 · 샤오롱바오', cn:'鼎泰丰(新天地时尚Ⅰ店)', addr:'上海市黄浦区兴业路123弄1-7号 新天地南里 F2',
+  art:'basket', kind:'food',
+  lead:'1972년 타이베이에서 시작한 샤오롱바오 집. 신천지 남리 2층이라 청사 관람 후 바로 이어져요.',
+  facts:[['시작','1972년 타이베이'],['샤오롱바오','18주름 · 21g'],['주말 영업','11:00~21:00'],['1인','약 120~150위안']],
+  origin:[
+    '1958년 타이베이 신이루(信义路) 골목의 작은 식용유 가게로 시작했어요. 1972년 요리사가 합류하면서 반찬집 겸 딤섬집이 됐고, 손님들이 샤오롱바오를 찾기 시작했어요.',
+    '이 집의 무기는 ‘똑같음’이에요. 샤오롱바오 하나에 피 5g, 소 16g, 주름 18개, 합쳐서 21g. 피 지름 6.5cm에 오차는 몇 밀리그램. 반죽부터 4분 찌기까지 시간을 재서 만든다고 해요. 원래 1년은 배워야 하는 손기술을 1~2개월 교육으로 맞춰 내는 방식으로 유명해졌어요.',
+    '홍콩 지점이 미쉐린 1스타를 받았고, 상하이 지점들은 ‘빕구르망’에 올랐어요. 상하이에는 여러 지점이 있는데, 2024~25년 중국 본토 매장이 일부 정리되는 동안에도 신천지 매장은 계속 영업했어요.'],
+  timeline:[['1958','타이베이 식용유 가게로 시작'],['1972','샤오롱바오 판매 시작'],['1993','일본 요코하마 첫 해외점'],['2010','홍콩점 미쉐린 1스타']],
+  course:{title:'샤오롱바오 먹는 순서', intro:'아이들과 같은 순서로! 국물이 아주 뜨거워요.', points:[
+    {name:'1. 주름을 집어 숟가락에', look:'젓가락으로 꼭대기 주름을 살짝 잡아 숟가락 위로. 아래를 집으면 터져요.'},
+    {name:'2. 옆구리에 작은 구멍', look:'김을 빼고, 숟가락에 고인 국물을 먼저 호로록.'},
+    {name:'3. 생강 채·흑초에 찍어 한입', look:'남은 만두는 한 번에. 주름이 18개인지 세어 보세요.'}]},
+  order:['<b>小笼包</b> 샤오롱바오(돼지고기)','<b>蟹粉小笼</b> 게살 샤오롱바오 — 10월 말은 털게 철','<b>排骨蛋炒饭</b> 갈비 볶음밥, 아이 최애','<b>虾仁烧卖</b> 새우 슈마이','<b>红油抄手</b> 매운 만두 — 아이 몫은 <span class="cn">不辣</span>로'],
+  details:[{t:'18주름의 비밀',d:'주름이 많으면 피가 두꺼워지고, 적으면 국물이 새요. 그래서 18개가 ‘황금 주름’이래요. 아이들이 세어 보면 재밌어요.'},{t:'층과 자리',d:'남리 쇼핑몰 2층. 창가 자리는 오전 11시 무렵이 가장 잘 잡혀요.'}],
+  kid:{missions:['샤오롱바오 주름이 정말 18개인지 세기','국물 안 흘리고 하나 먹기'],fun:['만두 하나 무게를 저울로 재서 21g이 아니면 다시 만든대요!']},
+  teen:['같은 맛을 수천 개 만들어 내려면 어떤 규칙이 필요할까요? ‘장인 정신’과 ‘표준화’는 반대말일까요, 같은 말일까요?'],
+  quiz:[{q:'샤오롱바오의 표준 주름 수는?',a:'18개'},{q:'피와 소의 무게는?',a:'피 5g, 소 16g (합 21g)'}],
+  practical:['주말 11:00~21:00 연속 영업 (평일은 15:00~16:30 브레이크 있음)','11:30 넘으면 대기 — 11:15 입장 권장','알리페이·위챗페이 가능','유아 의자 있음'],
+  dp:'鼎泰丰 新天地',
+  tip:'11:15에 들어가면 줄 없이 앉아요. 게살 샤오롱바오는 가을에만!'
+},
+
+tianzifang: {
+  kr:'티엔즈팡', sub:'골목 공장이 예술 마을로', cn:'田子坊', addr:'上海市黄浦区泰康路210弄 (248弄·274弄 포함)',
+  art:'street', kind:'sight',
+  lead:'1930년대 작은 공장 골목에 예술가들이 들어와 만든 마을. 기념품 사기에 가장 좋은 곳이에요.',
+  facts:[['예술가 입주','1998년'],['골목','210·248·274농'],['상점 영업','10:00~22:00'],['입장','무료']],
+  origin:[
+    '1930년대부터 이 골목에는 식품기계·방직 같은 작은 공장이 모여 있었어요. 1998년 미국에서 돌아온 화가 천이페이(陈逸飞)가 210농의 빈 공장에 작업실을 열면서 예술가들이 하나둘 들어왔고, 골목 시장이 예술 거리로 바뀌었어요.',
+    '이름은 화가 황융위(黄永玉)가 붙였어요. 옛 그림에 나오는 인물 ‘전자방(田子方)’에서 소리를 따오고, 흙(土)을 더해 ‘예술가들이 모이는 땅’이라는 뜻을 담았어요. 원래 골목 이름은 즈청팡(志成坊)이었어요.',
+    '2004년부터 ‘위층은 주민, 아래층은 가게(上住下租)’ 방식으로 재생했어요. 2010년 국가 3A급 관광지가 됐고, 2016년 유엔 해비타트 회의에서 ‘아래에서 위로’ 이뤄진 도시 재생 사례로 소개됐어요. 지금도 골목 안에 주민이 살아요.'],
+  timeline:[['1930년대','작은 공장 골목'],['1998','천이페이 작업실, 예술가 입주'],['2004','주민·예술가·정부 공동 재생'],['2010','국가 3A급 관광지'],['2016','유엔 해비타트 사례로 소개']],
+  course:{title:'3번 출입구부터 (약 1시간 30분)', intro:'사람이 적은 274농(3번 출입구)에서 들어가 210농으로 나오면 덜 붐벼요.', points:[
+    {name:'274농(平原坊) 입구', cn:'泰康路274弄', look:'조용한 쪽 입구예요. 벽에 걸린 빨랫줄과 화분이 진짜 동네 분위기를 보여 줘요.'},
+    {name:'판화 공방', cn:'210弄5号', look:'수인 목판(水印木刻) 체험을 하는 공방이 있어요. 아이들이 직접 찍어 볼 수 있어요(유료·10~20분).'},
+    {name:'천이페이 작업실 옛터', cn:'210弄2号', look:'이 마을을 시작한 화가의 작업실 자리. 지금은 다른 가게가 들어와 있어요.'},
+    {name:'기념품 골목', look:'엽서, 손수건, 자석, 도장, 손으로 만든 액세서리. 같은 물건도 골목 안쪽이 조금 싸요.'}]},
+  details:[{t:'주민이 사는 관광지',d:'골목 안내판에 ‘조용히’ 안내가 붙어 있어요. 창문 너머가 누군가의 집이에요. 아이들에게 미리 이야기해 주세요.'}],
+  kid:{missions:['골목에서 가장 좁은 통로 찾기','기념품 예산 안에서 가족 선물 세 개 고르기'],fun:['여기는 공장 골목이었대요. 지금은 그림 그리고 기념품 파는 골목!']},
+  teen:['주민이 사는 골목을 관광지로 만들면 소음·쓰레기·사생활 문제가 생겨요. 관광객으로서 지킬 예절을 세 가지 정해 보세요.'],
+  quiz:[{q:'티엔즈팡이라는 이름을 붙인 사람은?',a:'화가 황융위'},{q:'1998년 이곳에 작업실을 연 화가는?',a:'천이페이'}],
+  practical:['입장 무료, 골목은 24시간 · 상점은 10:00~22:00','지하철 9호선 다푸차오(打浦桥)역 1번 출구 도보 3분','일요일 14~16시가 가장 붐벼요 → 13시 도착 권장','골목이 좁아 유모차·큰 캐리어는 불편'],
+  dp:'田子坊',
+  tip:'274농으로 들어가 210농으로 나오세요. 사진도 사람도 훨씬 편해요.'
+},
+
+wukang: {
+  kr:'우캉루 · 우캉빌딩', sub:'프랑스 조계의 플라타너스 길', cn:'武康路 武康大楼(诺曼底公寓)', addr:'上海市徐汇区武康路 / 淮海中路1850号(우캉빌딩)',
+  art:'street', kind:'sight',
+  lead:'1.1km 남짓, 양옆 플라타너스가 터널을 만드는 길. 끝자락에 배 모양의 우캉빌딩이 있어요.',
+  facts:[['길이','약 1.1km'],['길 이름','1907 퍼거슨로 → 1943 우캉루'],['우캉빌딩','1924년'],['설계','러슬로 후대츠']],
+  origin:[
+    '1907년 난양공학(지금의 상하이교통대학) 통학로로 낸 길이에요. 당시 교장이던 미국인 페르거슨(福开森)의 이름을 따 ‘푸카이선로(福开森路)’라 불렀어요. 1914년 프랑스 조계가 서쪽으로 넓어지면서 계획적으로 개발됐고, 1943년 조계가 회수되며 저장성 우캉산의 이름을 따 ‘우캉루’가 됐어요.',
+    '길 양옆으로 30여 곳의 옛 인물 저택이 남아 있어요. 황싱, 바진 같은 인물들이 살았고, 지금은 카페와 작은 가게가 이어져요. 상하이 사람들이 ‘가장 걷기 좋은 길’로 꼽는 곳이에요.',
+    '우캉빌딩은 1924년 프랑스계 저축은행(I.S.S)이 지은 8층 아파트예요. 설계는 헝가리 건축가 러슬로 후대츠(邬达克)의 초기 작품. 다섯 갈래 길이 만나는 삼각형 땅에 배 모양으로 앉아 있어서 ‘상하이의 배’라고 불러요. 원래 이름은 노르망디 아파트먼트 — 1944년 노르망디 상륙작전과는 무관하고, 은행이 프랑스 지명을 붙인 것이에요. 1953년 시정부가 접수하며 ‘우캉빌딩’이 됐고, 지금도 주민이 사는 집이라 안에는 들어갈 수 없어요.'],
+  timeline:[['1907','퍼거슨로 개통'],['1914','프랑스 조계 확장, 본격 개발'],['1924','우캉빌딩(노르망디 아파트) 완공'],['1943','우캉루로 개명'],['1953','우캉빌딩으로 개명']],
+  course:{title:'빌딩에서 카페까지 (약 1시간)', intro:'차에서 내려 빌딩부터 보고, 길을 따라 북쪽으로 걸어요.', points:[
+    {name:'우캉빌딩 정면', img:1, cn:'武康大楼', look:'다섯 갈래 길 건너편에서 봐야 배 모양이 제대로 보여요. 1층 아케이드는 걸어서 지나갈 수 있고, 안에 우체국과 작은 가게가 있어요.', story:'뱃머리가 동쪽, 淮海中路 쪽을 향해요. 발코니 난간이 ‘로미오와 줄리엣’식으로 둥글게 튀어나온 게 특징이에요.'},
+    {name:'우캉루 393호 안내센터', cn:'武康路旅游咨询中心', look:'지도와 화장실이 있고, 무료 전시도 있어요. 여기서부터 북쪽으로 걷기 시작하세요.'},
+    {name:'플라타너스 터널', look:'5월엔 잎이, 11월엔 노란 잎이 터널을 만들어요. 길 가운데 차도는 차가 다니니 인도로만.'},
+    {name:'카페 쉼표', look:'길 중간중간 작은 카페가 있어요. 어르신은 여기서 20~30분 쉬고, 아이들은 골목을 한 바퀴 더.'},
+    {name:'쑹칭링 옛집', cn:'宋庆龄故居(淮海中路1843号)', look:'빌딩 바로 맞은편 붉은 벽돌 저택. 20위안, 화~일 09:00~17:00(16:30 막입장), 월요일 휴관. 내부는 실내화를 신고 관람하고 촬영 금지.'}]},
+  details:[{t:'배인 이유',d:'다섯 갈래 길이 만나는 뾰족한 땅이라 삼각형으로 설계했어요. 1924년 당시로는 아주 드문 고층 아파트였어요.'},{t:'지금도 사는 집',d:'주민이 사는 아파트예요. 우편함과 현관까지가 한계, 집 안 출입은 금지.'}],
+  kid:{missions:['빌딩이 배처럼 보이는 방향 찾기','플라타너스 껍질 무늬가 왜 알록달록한지 보기','가장 예쁜 나뭇잎 하나 줍기'],fun:['이 건물은 100년 넘게 사람이 살아요. 우리 집처럼!','발코니가 배의 갑판처럼 생겼죠?']},
+  teen:['같은 길이 1907년엔 ‘퍼거슨로’, 1943년엔 ‘우캉루’가 됐어요. 길 이름이 바뀌는 일에는 어떤 역사가 담겨 있을까요? 한국에서 일제강점기 후 바뀐 지명을 찾아 비교해 보세요.','우캉빌딩의 설계자 후대츠는 상하이에 100여 채의 건물을 남겼어요. 다른 나라에서 온 건축가가 도시의 얼굴을 만드는 일을 어떻게 볼 수 있을까요?'],
+  quiz:[{q:'우캉빌딩이 지어진 해는?',a:'1924년'},{q:'설계한 건축가는?',a:'러슬로 후대츠(邬达克)'},{q:'원래 이름은?',a:'노르망디 아파트먼트'}],
+  practical:['거리 산책 무료·24시간','우캉빌딩 내부는 주거 공간 — 출입 금지','쑹칭링 옛집 20위안, 월요일 휴관, 위챗 예약 권장','카페 대부분 11:00 이후 오픈','11월 초 해 지는 때는 17시 무렵, 그때 빌딩이 가장 예뻐요'],
+  dp:'武康大楼',
+  tip:'사진은 오후 4~5시! 빌딩 정면은 꼭 길 건너편 횡단보도에서 찍으세요.'
+},
+
+shnhm: {
+  kr:'상하이 자연사박물관', sub:'비 오는 날 플랜B', cn:'上海自然博物馆', addr:'上海市静安区北京西路510号',
+  art:'garden', kind:'sight',
+  lead:'공룡 골격과 1만여 점 표본. 아이들이 가장 좋아할 곳이지만 최소 3~4시간이 필요해요.',
+  facts:[['신관 개관','2015년'],['표본','약 1만 점'],['관람','3~4시간'],['지하철','13호선 자연박물관역 1번']],
+  origin:[
+    '1956년에 문을 연 상하이 자연사박물관이 2015년 징안 조각공원 자리로 새 건물을 지어 옮겨 왔어요. 미국 건축사무소 퍼킨스앤윌이 설계했고, 외관 곡선은 앵무조개(나틸러스) 껍데기에서 따왔다고 해요.',
+    '지하 2층부터 지상 2층까지 이어지는 나선형 동선을 따라 ‘기원·진화·다양성’을 차례로 봐요. 중앙 홀에 매달린 거대한 공룡 골격들이 이 박물관의 얼굴이에요.'],
+  timeline:[['1956','자연사박물관 개관'],['2015','신관 개관'],['2024','개관 10주년']],
+  course:{title:'3시간 핵심 동선', intro:'입장 후 바로 지하 2층으로 내려가 ‘진화의 길’부터.', points:[
+    {name:'지하 2층 진화의 길', look:'생명의 탄생부터 포유류까지. 어두운 전시실이라 아이 손을 잡으세요.'},
+    {name:'1층 중앙홀 공룡', look:'천장에 매달린 골격과 거대 마멘키사우루스. 이 박물관 최고의 사진 명당.'},
+    {name:'2층 상하이 이야기', look:'상하이 지역의 자연과 습지 생태. 짧고 알찬 전시실이에요.'}]},
+  details:[{t:'월요일 휴관',d:'11.02(월)은 휴관이라 마지막 날에는 갈 수 없어요. 11.01(일)만 가능해요.'},{t:'예약이 관건',d:'성인 30위안, 6세·1.3m 이하 무료(예약은 필요). 위챗 ‘上海自然博物馆’에서 7일 전 19:00에 풀려요. 11.01분은 이미 열렸으니 결정하면 바로 예약하세요. 일요일 오후는 매진이 잦아요.'}],
+  kid:{missions:['가장 큰 공룡 골격 찾기','상하이 습지에 사는 새 세 종류 찾기'],fun:['이 건물은 앵무조개 껍데기 모양을 닮았대요. 건물을 밖에서 한 번 올려다보세요!']},
+  teen:['박물관 동선은 ‘시간’을 공간으로 바꾼 설계예요. 지하로 내려갔다 올라오는 이유를 생각해 보세요.','공룡이 멸종한 이유와 지금의 기후 변화를 연결해 보세요.'],
+  quiz:[{q:'이 박물관이 문을 닫는 요일은?',a:'월요일 (공휴일 제외)'},{q:'외관 곡선의 모티프는?',a:'앵무조개(나틸러스) 껍데기'}],
+  practical:['화~일 09:00~17:00, 16:00 입장 마감','월요일 휴관','성인 30위안 · 학생 12위안 · 60~69세 25위안 · 6세/1.3m 이하 무료','위챗 예약 필수, 7일 전 19:00 오픈','13호선 자연박물관역 1번 출구 직결'],
+  dp:'上海自然博物馆',
+  tip:'비가 오거나 아이가 공룡을 좋아하면 이쪽으로! 대신 하루 일정에서 武康路를 빼세요.'
+},
+
+laojishi: {
+  kr:'라오지스 주가', sub:'본방채 · 1995년부터', cn:'老吉士酒家(天平路店)', addr:'上海市徐汇区天平路41号',
+  art:'basket', kind:'food',
+  lead:'작은 옛집 식당에서 나오는 홍소육과 게살 요리. 우캉빌딩에서 걸어서 5분이에요.',
+  facts:[['개업','1995년'],['자리','작은 홀 12테이블'],['1인','150~250위안'],['예약','전화만']],
+  origin:[
+    '1995년 톈핑루 작은 평집에 문을 연 ‘지스주가(吉士酒家)’가 시작이에요. 이름은 좋은 뜻을 담으려고 지은 것이고요. 나중에 ‘신지스(新吉士)’라는 가게들이 생기자 원조인 이 집을 사람들이 ‘라오지스(老吉士, 옛 지스)’라고 부르게 됐어요.',
+    '상하이 향토 요리 ‘본방채(本帮菜)’는 진하고 기름지고 붉은 간장맛(浓油赤酱)이 특징이에요. 설탕을 써서 단맛을 내는 것도 상하이 스타일. 홍소육, 게살 두부, 파기름 비빔면이 대표예요.',
+    '작은 홀에 테이블이 열두 개 남짓이라 예약이 필수예요. 영화감독 리안, 배우 임청하 등이 찾은 것으로 알려졌고, 드라마 「번화(繁花)」에 나와 다시 유명해졌어요. 2016·2021년 상하이 미쉐린 가이드 ‘빕구르망’에 올랐어요.'],
+  timeline:[['1995','톈핑루에 문을 염'],['2000년대','‘신지스’ 분점 등장, 원조는 ‘라오지스’로'],['2016','미쉐린 빕구르망'],['2021','빕구르망 재선정']],
+  course:{title:'본방채 첫 경험', intro:'7명이면 대표 메뉴를 골고루 나눠 먹어요.', points:[
+    {name:'홍소육', cn:'吉士红烧肉', look:'돼지고기를 간장·설탕으로 조린 상하이식 삼겹살. 달짝지근하고 부드러워 아이들도 좋아해요.'},
+    {name:'게살 두부', cn:'蟹粉豆腐', look:'10월 말은 털게 철. 게살을 두부에 얹어 부드럽게 끓인 요리.'},
+    {name:'파기름 비빔면', cn:'葱油拌面', look:'파를 기름에 천천히 튀겨 간장과 비빈 면. 아이 몫으로 딱.'},
+    {name:'心太软', cn:'心太软', look:'대추 안에 찹쌀을 넣은 디저트. 이름이 ‘마음이 너무 여려서’래요.'}]},
+  order:['<b>吉士红烧肉</b> 홍소육','<b>蟹粉豆腐</b> 게살 두부','<b>葱油拌面</b> 파기름 비빔면','<b>心太软</b> 찹쌀 대추'],
+  details:[{t:'예약은 전화로만',d:'021-62829260. 5~7일 전에 전화하는 게 좋고, 7명이면 큰 테이블 가능 여부를 함께 물어보세요. 저녁은 두 타임(18시·20시)으로 나뉘는 경우가 많아요.'},{t:'자리가 좁아요',d:'작은 홀이라 유모차는 접어서. 대신 분위기가 옛 상하이 그대로예요.'}],
+  kid:{missions:['가장 달콤한 요리 찾기','心太软 반으로 갈라 찹쌀 확인'],fun:['상하이 사람들은 음식에 설탕을 넣어요. 우리나라 간장불고기와 비교해 보세요!']},
+  teen:['‘浓油赤酱(진한 기름, 붉은 간장)’은 상하이 상인의 역사와 연결돼요. 바쁜 장사꾼에게 짠맛·단맛 강한 음식이 필요했던 이유를 생각해 보세요.'],
+  quiz:[{q:'본방채의 특징을 네 글자로?',a:'浓油赤酱'},{q:'원조를 ‘라오지스’라 부르게 된 이유는?',a:'‘신지스’ 분점들이 생기면서 원조를 옛 지스라고 부르게 됨'}],
+  practical:['전화 예약 필수 021-62829260','영업 11:30~14:00 / 17:00~21:30 무렵(매장 확인)','1인 150~250위안','알리페이·위챗페이'],
+  dp:'老吉士 天平路',
+  tip:'오늘 전화해서 18시 타임으로 예약하세요. 안 하면 못 들어가요!'
+},
+
+beiwaitan: {
+  kr:'북외탄 · 쑤저우허 야경', sub:'호텔에서 걸어서 10분', cn:'北外滩滨江 / 苏州河北岸', addr:'上海市虹口区东大名路 일대(白玉兰广场 방면)',
+  art:'night', kind:'sight',
+  lead:'와이탄보다 한적하고 강 건너 루자쭈이 스카이라인이 정면으로 보이는 자리. 골든튤립에서 걸어서 갈 수 있어요.',
+  facts:[['산책로','약 2~2.5km'],['조명','18:00~22:00 무렵'],['입장','무료'],['골든튤립에서','도보 10~15분']],
+  origin:[
+    '쑤저우허 북쪽 강변이에요. 1843년 상하이 개항 뒤 이 일대에는 영국 영사관(강 건너)과 일본 조계가 들어섰고, 20세기에는 방직·조선 공장 지대였어요.',
+    '2010년대 이후 재개발로 빈 창고와 부두가 산책로·공연장·전시관으로 바뀌었어요. 와이탄이 붐빈다는 이야기가 퍼지면서, 강 건너 루자쭈이를 정면으로 보려는 사람들이 이쪽으로 오기 시작했어요.'],
+  timeline:[['1843','개항, 조계 형성'],['20세기','공장·부두 지대'],['2010년대','재개발, 산책로 조성'],['2021','세계회의장 개관']],
+  course:{title:'짐 찾기 전 20분 야경', intro:'짐은 아침에 골든튤립에 맡겨 뒀어요. 찾기 전에 20~25분만, 가볍게.', points:[
+    {name:'상하이 우정총국 빌딩', cn:'上海邮政总局大楼', look:'1924년 지은 시계탑 건물. 지금도 우체국이고 우정박물관이 함께 있어요. 호텔 맞은편 쑤저우허 쪽이에요.', story:'첫날 호텔 창에서 봤던 그 시계탑!'},
+    {name:'사천로교 · 자포로교', cn:'四川路桥 · 乍浦路桥', look:'다리 위에 서면 쑤저우허가 꺾이며 루자쭈이 빌딩이 겹쳐 보여요. 사진 명당이에요.'},
+    {name:'외백도교', cn:'外白渡桥', look:'첫날 건넌 그 강철 다리. 밤에는 다리 조명과 강 건너 빌딩이 함께 빛나요.'},
+    {name:'백옥란광장 테라스', cn:'白玉兰广场', look:'3층 테라스에서 강이 크게 휘어지는 S자와 루자쭈이 세 빌딩이 한눈에. 사람이 적어요.'},
+    {name:'북외탄 빈장 산책로', cn:'北外滩滨江', look:'2km 남짓 이어지는 강변 길. 유람선이 정박하면 일부 구간이 막히니 안내판을 보세요.'}]},
+  details:[{t:'조명 소등',d:'강변 조명은 보통 밤 10시 무렵 꺼져요. 18:30~20:30이 가장 예뻐요.'},{t:'강바람',d:'11월 밤 강바람은 쌀쌀해요. 얇은 겉옷 꼭 챙기세요.'}],
+  kid:{missions:['쑤저우허에 걸린 다리 세 개 세기','강 건너 상하이타워 찾기','배 모양 유람선 지나가면 손 흔들기'],fun:['우리 호텔이 바로 저기 보여요! 떠나기 전에 우리 집을 강 건너에서 마지막으로 봐요.']},
+  teen:['같은 도시를 낮에 본 것과 밤에 본 것은 완전히 다른 도시예요. 조명이 도시 이미지를 어떻게 바꾸는지, 그리고 왜 밤 10시에 소등하는지(에너지·빛공해) 생각해 보세요.','첫날(와이탄에서 푸둥 보기)과 오늘(푸둥 쪽에서 와이탄 보기)을 비교해 보세요. 같은 강, 반대 방향.'],
+  quiz:[{q:'첫날 건넌 다리 이름은?',a:'외백도교(外白渡桥)'},{q:'강변 조명은 보통 몇 시에 꺼질까요?',a:'밤 10시 무렵'}],
+  practical:['무료·24시간, 조명은 22:00 무렵 소등','18:50~19:15만 (숙소 옮기는 날이라 20분 산책)','짐은 골든튤립 프런트에 맡기고 빈손으로','강바람 → 얇은 겉옷','유람선 정박 시 일부 구간 통제'],
+  dp:'北外滩滨江',
+  tip:'숙소를 옮기는 밤이에요. 짐 찾기 전 20분, 여기서 마지막 야경을 보고 공항으로 출발!'
+},
+
+/* ────────────────── Day 4 밤 ~ Day 5 · 11.01~11.02 ────────────────── */
+
+airporthotel: {
+  kr:'이롱 안위에 호텔', sub:'푸동공항점 · 마지막 1박', cn:'艺龙安悦酒店(上海浦东国际机场店)', addr:'上海市浦东新区施新路802弄1号',
+  art:'hotel', kind:'stay',
+  lead:'공항까지 차로 15~25분. 마지막 밤을 여기서 자면 08:05 비행기가 두렵지 않아요.',
+  facts:[['주소','스신루 802농 1호'],['공항까지','차로 15~25분'],['셔틀','무료 · 12시간 전 예약'],['조식','07:00~10:00']],
+  origin:[
+    '2025년에 문을 연 신축 호텔이에요. 푸동공항에서 직선 5km 안쪽, 차로 15~25분 거리라 새벽 비행기를 타는 가족이 많이 묵어요.',
+    '무료 공항 셔틀이 있어요. 공항에서 호텔로 오는 픽업은 16:00~03:00, 호텔에서 공항으로 가는 드롭오프는 04:00~15:00 사이 정해진 시각에 다녀요. **최소 12시간 전에 예약**해야 하고, 시간표가 고정이라 한 대 놓치면 다음 차까지 꽤 기다려야 해요. 체크인할 때 다음 날 새벽 차 시각을 꼭 확인하세요.',
+    '주소는 施新路802弄1号, 프런트는 건물 4층에 있어요. 예약 사이트에는 “4th Floor, No.1, Lane 802, Shixin Road”로 표기돼요. 1층에서 엘리베이터가 4·5층으로 바로 가지 않는 경우가 있다는 후기도 있으니, 도착 전에 전화하면 길 안내를 받기 좋아요.'],
+  timeline:[['2025','개관'],['2026.11.01','우리 가족 마지막 1박'],['2026.11.02 05:00','셔틀로 T1 이동']],
+  course:{title:'체크인할 때 확인할 3가지', intro:'이 3가지만 확인하면 다음 날 아침이 편해져요.', points:[
+    {name:'① 새벽 셔틀 시각', look:'“내일 05:00 공항 가는 차 있어요?” 프런트에 바로 물어보세요. 출발 10분 전 로비 대기.'},
+    {name:'② 조식 도시락', look:'조식은 07:00부터라 08:05 비행기엔 못 먹어요. 전날 밤 도시락(打包) 가능한지 물어보세요.'},
+    {name:'③ 짐 정리', look:'다음 날 새벽엔 다시 풀 시간이 없어요. 여권·탑승권 봉투와 기내 가방을 미리 분리해 두세요.'}]},
+  details:[{t:'왜 여기서 자나?',d:'11.02 비행기가 08:05이라 시내 호텔에서는 새벽 4시에 나서야 해요. 공항 앞에서 자면 5시에 나서면 되고, 교통 체증·정체 위험도 없어요.'},{t:'주변',d:'1층에 편의점(간식), 주변에 식당이 있어요. 15~25분 거리라 공항보다 조용해요.'}],
+  kid:{missions:['다음 날 새벽 셔틀 타는 시간 세기','비행기 소리 들으며 마지막 밤 인사하기'],fun:['공항 바로 옆에서 자고 아침에 비행기 타러 가요!']},
+  teen:['공항과의 거리가 여행 마지막 날의 리스크를 얼마나 줄여 주는지 계산해 보세요. 04:30 출발 vs 05:00 출발, 각각 몇 시간의 여유가 생기나요?'],
+  quiz:[{q:'이 호텔에서 공항까지 차로 몇 분?',a:'15~25분'},{q:'무료 셔틀은 몇 시간 전에 예약?',a:'최소 12시간 전'}],
+  practical:['주소 施新路802弄1号 · ☎ +86-21-58202918 / +86-13301700919','공항 픽업 16:00~03:00 / 공항행 드롭오프 04:00~15:00 (무료, 12시간 전 예약)','체크인 14:00 이후, 체크아웃 13:00 이전, 프런트 24시간','조식 07:00~10:00(약 20위안) — 새벽 출발엔 도시락 요청','엘리베이터가 1층과 4·5층 직결이 아닐 수 있음'],
+  dp:'艺龙安悦酒店 浦东机场',
+  tip:'11.01 아침에 전화해서 밤 픽업(20:00 무렵)과 다음 날 05:00 드롭오프를 한 번에 예약하세요.'
+},
+
+pvgT1: {
+  kr:'푸동공항 T1 출국', sub:'MU5053 · 08:05', cn:'上海浦东国际机场 1号航站楼', addr:'上海市浦东新区启航路900号',
+  art:'bus', kind:'stay',
+  lead:'마지막 밤을 공항 옆 호텔에서 자니까 05:00에 나서도 두 시간 보름이 남아요.',
+  facts:[['호텔 출발','05:00'],['T1 도착','05:25~05:30'],['체크인 마감','07:15 무렵'],['비행시간','약 2시간']],
+  origin:[
+    '푸동공항은 1999년 9월 문을 열었어요. 상하이 동쪽 해안 간척지에 지어, 도심에서 50km 가까이 떨어져 있어요. 그래서 원래는 아침 비행기 날 새벽 4시에 시내 호텔을 나서야 했어요.',
+    '1터미널(T1)은 동방항공(중국동방항공) 국제선이 쓰는 터미널이에요. 이번엔 공항까지 15~25분짜리 호텔에서 출발하니, 05:30~06:00에 도착하면 충분해요.'],
+  timeline:[['1999','푸동공항 개항'],['2008','T2 개항'],['2024','국제선 탑승수속 마감 60분 이내로 단축'],['2026.11.02','MU5053 PVG 08:05 → TAE 11:00']],
+  course:{title:'출국 당일 타임라인', intro:'시간을 거꾸로 계산했어요. 이 순서대로만 움직이면 됩니다.', points:[
+    {name:'04:40 기상 · 05:00 셔틀 출발', look:'호텔 무료 셔틀(전날 프런트에서 예약 확인) 또는 택시 2대. 차로 15~25분이에요. 셔틀 시각이 04:30이나 05:30으로 정해져 있을 수 있으니 체크인 때 정확한 시각을 받아 두세요.'},
+    {name:'05:25~05:30 T1 도착 · 체크인', look:'동방항공 카운터가 열려 있어요. 3층 출국장. 7명 여권을 한 사람이 들고 가면 빨라요.'},
+    {name:'06:00 보안검색 · 출국심사', look:'여권과 탑승권. 액체류는 위탁수하물로. 보조배터리는 반드시 기내 가방에.'},
+    {name:'06:45 면세점 · 아침', look:'이른 시간이라 문 연 매장이 적어요. 공항 식당에서 간단히 먹거나, 전날 호텔에 아침 도시락을 부탁하세요(호텔 조식은 07:00 시작이라 못 먹어요).'},
+    {name:'07:20 탑승 시작 · 07:50 게이트 마감', look:'게이트는 보통 출발 30분 전부터 탑승, 15분 전 마감. 화장실은 게이트 가기 전에.'},
+    {name:'08:05 이륙 → 11:00 대구 도착', look:'한국 시간은 상하이보다 1시간 빨라요. 시계를 미리 맞춰 두세요.'}]},
+  details:[{t:'왜 3시간 전?',d:'푸동공항 국제선은 출발 3시간 전 도착을 권장해요(최소 2시간 30분). 동방항공 국제선 탑승수속 마감은 출발 50분 전이고, 공항 기준으로도 60분을 넘기지 않아요. 05:30 도착이면 2시간 반 여유예요.'},{t:'온라인 체크인',d:'출발 24시간 전부터 가능해요. 7명 좌석을 붙이려면 한 번에 체크인하고, 수하물은 공항 카운터에서 부치면 돼요.'}],
+  kid:{missions:['호텔 셔틀 타고 공항까지 몇 분 걸렸는지 재기','탑승구 번호를 직접 찾아 안내하기','비행기 날개에 달린 작은 날개(윙렛) 세기'],fun:['공항 바로 옆에서 자고, 새벽 셔틀 타고 출국! 이번엔 안 졸려요.']},
+  teen:['환전 → 체크인 → 보안 → 출국심사 → 면세 → 탑승. 순서를 직접 정리해 두면 다음 해외여행 때 여러분이 안내할 수 있어요.','호텔 위치만 바꿨는데 새벽 이동이 50분 → 20분이 됐어요. “어디서 자느냐”가 일정의 어떤 부분을 바꾸는지 정리해 보세요.'],
+  quiz:[{q:'이번 숙소에서 T1까지 차로 몇 분?',a:'15~25분 (셔틀 이용)'},{q:'동방항공 국제선 탑승수속 마감은 출발 몇 분 전?',a:'50분 전 (공항 기준 최대 60분)'}],
+  practical:['전날 저녁까지 호텔 셔틀 예약 확인(호텔→공항 04:00~15:00 운행)','여권·탑승권을 한 봉투에 모으기','보조배터리·리튬배터리는 위탁 금지(기내 반입)','액체류 100ml 제한 — 위탁으로','호텔 조식은 07:00 시작이라 못 먹어요 — 도시락 요청 또는 공항에서','출국심사 후 재입국 불가 — 쇼핑은 심사 후에'],
+  dp:'浦东机场T1',
+  tip:'05:00 셔틀 예약이 오늘의 핵심! 체크인할 때 출발 시각을 정확히 받아 두세요.'
+},
+
+maglev: {
+  kr:'자기부상열차', sub:'룽양루 ↔ 푸동공항', cn:'上海磁浮列车', addr:'龙阳路站 ↔ 浦东机场站',
+  art:'bus', kind:'sight',
+  lead:'30km를 8분에 달리는 시속 300km 열차. 이번엔 Day 4 밤, 공항으로 갈 때 타요.',
+  facts:[['개통','2004년'],['구간','룽양루~푸동공항 30km'],['최고속도','300km/h'],['소요','약 8분']],
+  origin:[
+    '독일 지멘스의 트랜스라피드(Transrapid) 기술로 만든 세계 최초의 상용 자기부상열차예요. 2002년 시운전, 2004년 상업 운행을 시작했어요.',
+    '바퀴가 없어요. 전자석이 차체를 1cm쯤 띄워 선로 위로 달리게 해요. 그래서 마찰이 거의 없어 가속이 빠르죠. 2004년부터 일부 시간대엔 시속 430km로 달렸는데, 지금은 300km/h로 운행해요.'],
+  timeline:[['2002','첫 시운전'],['2004','상업 운행 시작'],['2006','430km/h 운행 도입'],['2021','300km/h로 단일화']],
+  course:{title:'타는 방법', intro:'룽양루역은 지하철 2·7·16호선 환승역이에요.', points:[
+    {name:'룽양루역 출발', look:'첫차 06:45, 막차 21:40. 15~20분 간격이에요.'},
+    {name:'8분의 비행', look:'30km를 8분. 이륙하듯 가속하는 느낌이에요. 아이들은 창가 자리로!'},
+    {name:'푸동공항역 도착', look:'T1·T2 사이에 역이 있어요. T1까지 도보 5~8분.'},
+    {name:'요금', look:'편도 50위안. 당일 항공권을 보여주거나 교통카드로 결제하면 40위안. 1.3m 미만 어린이는 무료.'}]},
+  details:[{t:'언제 타지? — Day 4 저녁',d:'11.01 저녁, 골든튤립에서 짐을 찾아 택시로 룽양루역까지(약 20분) 간 뒤 자기부상으로 푸동공항까지 8분. 공항역에서 이롱 안위에 호텔까지는 호텔 셔틀(공항 픽업 16:00~03:00, 12시간 전 예약)이나 택시 15~25분이에요. 이동이 곧 체험이 되는 코스예요.'},{t:'⚠️ 귀국일 아침엔 타지 마세요',d:'첫차 06:45 → 공항 06:53, 탑승수속 마감 07:15 무렵이라 7명·수하물엔 22분뿐이에요. 게다가 이제 공항 호텔에서 출발하니 아침에 자기부상은 쓸 이유가 없어요.'}],
+  kid:{missions:['창밖 풍경이 지나가는 속도 비교(지하철 vs 자기부상)','바퀴가 없다는 것 확인하기'],fun:['바퀴 없이 공중에 떠서 달려요. 자석으로!']},
+  teen:['왜 상하이에만 자기부상열차가 상용화됐을까요? 독일에서는 시험 노선만 있고 상용화되지 못했어요. 기술과 비용, 정치의 관계를 찾아보세요.'],
+  quiz:[{q:'룽양루에서 공항까지 몇 분?',a:'약 8분 (30km)'},{q:'지금 운행 최고속도는?',a:'300km/h'}],
+  practical:['룽양루역 첫차 06:45 · 막차 21:40','편도 50위안, 당일 항공권·교통카드 40위안','15~20분 간격','1.3m 미만 무료'],
+  dp:'上海磁浮',
+  tip:'Day 4 저녁에 타고, 공항에서 호텔 셔틀을 이어 타세요. 셔틀은 12시간 전 예약 필수!'
+}
 };
 
 const PHOTOS = {"hotel": [{"src": "img/hotel-0.jpg", "cap": "오늘의 골든 튤립(옛 신아반점) 외관", "credit": "Suicasmo · CC0 · Wikimedia Commons"}, {"src": "img/hotel-1.jpg", "cap": "호텔 맞은편 상하이 우정총국 빌딩 야경", "credit": "Siyuwj · CC BY-SA 4.0 · Wikimedia Commons"}], "siji": [{"src": "img/siji-0.jpg", "cap": "테이블 옆에서 베이징덕을 써는 모습", "credit": "City Foodsters · CC BY 2.0 · Wikimedia Commons"}], "yuyuanEve": [{"src": "img/yuyuanEve-0.jpg", "cap": "구곡교 위의 호심정 찻집, 뒤로 상하이타워", "credit": "Fredlyfish4 · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/yuyuanEve-1.jpg", "cap": "성황묘 마당의 청동 향로", "credit": "xiquinhosilva · CC BY 2.0 · Wikimedia Commons"}], "bund": [{"src": "img/bund-0.jpg", "cap": "밤의 와이탄", "credit": "Lloyd Tudor · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/bund-1.jpg", "cap": "12호 옛 HSBC 빌딩", "credit": "钉钉 · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/bund-2.jpg", "cap": "조계 시절 HSBC 사자 앞 사람들(옛 사진)", "credit": "작자 미상 · Public domain · Wikimedia Commons"}, {"src": "img/bund-3.jpg", "cap": "13호 세관 시계탑", "credit": "David Stanley · CC BY 2.0 · Wikimedia Commons"}, {"src": "img/bund-4.jpg", "cap": "20호 화평반점의 초록 피라미드 지붕", "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/bund-5.jpg", "cap": "외백도교와 뒤편 브로드웨이 맨션", "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/bund-6.jpg", "cap": "1988년의 와이탄", "credit": "Jan Kranendonk · CC0 · Wikimedia Commons"}], "nanxiang": [{"src": "img/nanxiang-0.jpg", "cap": "숟가락 위의 샤오롱바오", "credit": "Robigasp · CC BY-SA 4.0 · Wikimedia Commons"}], "yugarden": [{"src": "img/yugarden-0.jpg", "cap": "예원 연못과 누각", "credit": "Ray in Manila · CC BY 2.0 · Wikimedia Commons"}, {"src": "img/yugarden-1.jpg", "cap": "예원의 가산(돌산)", "credit": "Rose Abrams · CC BY 4.0 · Wikimedia Commons"}, {"src": "img/yugarden-2.jpg", "cap": "용 담장의 용 머리", "credit": "Mr. Tickle · CC BY 2.5 · Wikimedia Commons"}, {"src": "img/yugarden-3.jpg", "cap": "옥영롱", "credit": "Gisling · CC BY-SA 3.0 · Wikimedia Commons"}, {"src": "img/yugarden-4.jpg", "cap": "삼수당 현판", "credit": "King of Hearts · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/yugarden-5.jpg", "cap": "공작 무늬 창(漏窗)", "credit": "pfctdayelise · CC BY-SA 2.5 · Wikimedia Commons"}], "newworld": [{"src": "img/newworld-0.jpg", "cap": "포르투갈식 에그타르트(파스텔 드 나타)", "credit": "Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/newworld-1.jpg", "cap": "옛 경마장 자리, 인민광장", "credit": "King of Hearts · CC BY-SA 4.0 · Wikimedia Commons"}], "xizha": [{"src": "img/xizha-0.jpg", "cap": "밤의 우전 물길", "credit": "Nico le terrible · CC0 · Wikimedia Commons"}, {"src": "img/xizha-1.jpg", "cap": "우전 서책의 돌다리와 나룻배", "credit": "Gerbil · CC BY-SA 3.0 · Wikimedia Commons"}, {"src": "img/xizha-2.jpg", "cap": "서책 운하의 가마우지 낚시 배", "credit": "Gerbil · CC BY-SA 3.0 · Wikimedia Commons"}, {"src": "img/xizha-3.jpg", "cap": "수각이 늘어선 우전 운하", "credit": "韩笃一 · CC BY-SA 3.0 · Wikimedia Commons"}], "jingan": [{"src": "img/jingan-0.jpg", "cap": "빌딩 숲 속 정안사 금빛 지붕", "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/jingan-1.jpg", "cap": "정안사 대웅보전과 마당 향로", "credit": "kallerna · CC BY-SA 4.0 · Wikimedia Commons"}], "roastery": [{"src": "img/roastery-0.jpg", "cap": "로스터리의 구리 원두통과 로스터", "credit": "Codas · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/roastery-1.jpg", "cap": "육각형 나무 천장과 긴 커피 바", "credit": "Codas · CC BY-SA 4.0 · Wikimedia Commons"}], "skewer": [{"src": "img/skewer-0.jpg", "cap": "숯불 위의 양꼬치", "credit": "N509FZ · CC BY-SA 4.0 · Wikimedia Commons"}], "nanjing": [{"src": "img/nanjing-0.jpg", "cap": "밤의 난징둥루 보행가", "credit": "Hermann Luyken · CC0 · Wikimedia Commons"}, {"src": "img/nanjing-1.jpg", "cap": "보행가의 관광 꼬마 열차", "credit": "HeroicLife · CC BY 2.0 · Wikimedia Commons"}], "lujiazui": [{"src": "img/lujiazui-0.jpg", "cap": "와이탄에서 본 루자쭈이", "credit": "Zhang Zhang · CC BY-SA 3.0 · Wikimedia Commons"}, {"src": "img/lujiazui-1.jpg", "cap": "동방명주", "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/lujiazui-2.jpg", "cap": "진마오 빌딩", "credit": "Ermell · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/lujiazui-3.jpg", "cap": "2007년 공사 중인 환추금융센터(오른쪽)와 진마오", "credit": "Reinhold Möller · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/lujiazui-4.jpg", "cap": "루자쭈이 야경", "credit": "Larry Qian · CC0 · Wikimedia Commons"}], "shtower": [{"src": "img/shtower-0.jpg", "cap": "상하이타워와 진마오", "credit": "Stefan Fussan · CC BY-SA 3.0 · Wikimedia Commons"}, {"src": "img/shtower-1.jpg", "cap": "118층에서 내려다본 황푸강과 와이탄", "credit": "Cotopaxi5897 · CC BY-SA 4.0 · Wikimedia Commons"}, {"src": "img/shtower-2.jpg", "cap": "125층 댐퍼 ‘상하이의 눈’", "credit": "MasaneMiyaPA · CC BY-SA 4.0 · Wikimedia Commons"}], "hotpot": [{"src": "img/hotpot-0.jpg", "cap": "부위별로 썬 차오산식 소고기", "credit": "Clarayyt · CC BY-SA 4.0 · Wikimedia Commons"}], "binjiang": [{"src": "img/binjiang-0.jpg", "cap": "푸둥에서 바라본 밤의 와이탄", "credit": "Ctny · CC BY-SA 3.0 · Wikimedia Commons"}]};
@@ -1148,7 +1521,9 @@ const PHRASES = [
 const DAYS = [
  {id:'day1', n:1, cls:'d1', date:'10.29 목', title:'도착, 오리구이, 성황묘의 저녁, 와이탄 야경', note:'상하이 일몰은 오후 5시 10분 무렵. 예원 바깥 산책 후 와이탄에 가면 조명이 모두 켜져 있어요.'},
  {id:'day2', n:2, cls:'d2', date:'10.30 금', title:'샤오롱바오 아침, 예원 정원, 물의 마을 우전', note:'예원 정원은 오전 9시 무렵 개장. 정원 → 에그타르트 → 우전(차로 약 2시간). 멀미약 챙기기.'},
- {id:'day3', n:3, cls:'d3', date:'10.31 토', title:'정안사에서 난징루, 그리고 632m 하늘 위', note:'걷는 양이 가장 많은 날. 지하철 2호선 한 줄로 정안사 → 난징루 → 루자쭈이가 이어져요.'}
+ {id:'day3', n:3, cls:'d3', date:'10.31 토', title:'정안사에서 난징루, 그리고 632m 하늘 위', note:'걷는 양이 가장 많은 날. 지하철 2호선 한 줄로 정안사 → 난징루 → 루자쭈이가 이어져요.'},
+ {id:'day4', n:4, cls:'d4', date:'11.01 일', title:'임시정부 청사, 신천지, 골목, 배 모양 아파트 — 그리고 공항 호텔로', note:'오전에 골든 튤립을 체크아웃하고 짐은 프런트에 맡겨요. 저녁에 짐을 찾아 푸동공항 옆 호텔로 이동합니다.'},
+ {id:'day5', n:5, cls:'d5', date:'11.02 월', title:'공항 옆 호텔에서 여유 있게, 대구로', note:'MU5053 08:05 출발. 05:00 무료 셔틀 → 05:30 T1 도착이면 두 시간 반 여유예요. 셔틀은 12시간 전 예약 필수!'}
 ];
 const STOPS = [
  {day:'day1', t:'3:30', ap:'오후', p:'hotel', tags:['숙소','체크인']},
@@ -1172,13 +1547,39 @@ const STOPS = [
  {day:'day3', t:'4:30', ap:'오후', p:'shtower', tags:['전망대','632m']},
  {day:'day3', t:'6:30', ap:'저녁', p:'hotpot', tags:['저녁','소고기 훠궈']},
  {day:'day3', t:'8:00', ap:'밤', p:'binjiang', tags:['야경','마지막 사진']},
- {day:'day3', t:'9:00', ap:'밤', move:'호텔 도착', note:'오늘 모은 스탬프를 세고, 가장 재밌었던 장소를 한 사람씩 말해 봐요.', taxi:'hotel'}
+ {day:'day3', t:'9:00', ap:'밤', move:'호텔 도착', note:'오늘 모은 스탬프를 세고, 가장 재밌었던 장소를 한 사람씩 말해 봐요.', taxi:'hotel'},
+
+ /* ---------- Day 4 (11.01 일) ---------- */
+ {day:'day4', t:'8:30', ap:'오전', move:'조식 · 짐 정리', note:'오늘 밤은 공항 옆 호텔이에요. 캐리어를 3~4개로 정리하고 09:00까지 프런트로.'},
+ {day:'day4', t:'9:00', ap:'오전', move:'골든튤립 체크아웃 · 짐 보관', note:'수하물 보관증(寄存)을 받으세요. 19:30쯤 찾아요. 택시로 마당로306농까지 약 15분.', taxi:'madi'},
+ {day:'day4', t:'9:25', ap:'오전', p:'madi', tags:['역사','임시정부']},
+ {day:'day4', t:'10:15', ap:'오전', p:'xintiandi', tags:['석고문','산책']},
+ {day:'day4', t:'11:15', ap:'점심', p:'dintaifung', tags:['점심','샤오롱바오']},
+ {day:'day4', t:'12:50', ap:'오후', move:'티엔즈팡으로', note:'택시 약 10분(1.5km). 9호선 다푸차오역 1번 출구로 가도 돼요.', taxi:'tianzifang'},
+ {day:'day4', t:'1:00', ap:'오후', p:'tianzifang', tags:['골목','기념품']},
+ {day:'day4', t:'2:50', ap:'오후', move:'우캉루로', note:'택시 약 20분(4km). 우캉빌딩 정면에서 내려 달라고 하세요.', taxi:'wukang'},
+ {day:'day4', t:'3:10', ap:'오후', p:'wukang', tags:['산책','카페','사진']},
+ {day:'day4', t:'5:00', ap:'저녁', p:'laojishi', tags:['저녁','본방채']},
+ {day:'day4', t:'6:50', ap:'밤', move:'골든튤립 도착 · 야경 산책', note:'짐은 아직 프런트에 있어요. 빈손으로 외백도교·북외탄 20분.', taxi:'hotel'},
+ {day:'day4', t:'7:05', ap:'밤', p:'beiwaitan', tags:['야경','마지막 산책']},
+ {day:'day4', t:'7:30', ap:'밤', move:'짐 수령 · 공항으로 출발', note:'A) 택시 2대 곧장 → 약 50분. B) 택시로 룽양루역(20분) → 자기부상 8분 → 공항 20:15 → 호텔 셔틀/택시. 셔틀 예약을 먼저 확인!', taxi:'airporthotel'},
+ {day:'day4', t:'8:00', ap:'밤', p:'maglev', tags:['B코스만','시속 300km']},
+ {day:'day4', t:'8:30', ap:'밤', p:'airporthotel', tags:['체크인','마지막 1박']},
+ {day:'day4', t:'8:50', ap:'밤', move:'프런트에서 내일 확인', note:'① 새벽 공항 셔틀 시각(04:00~15:00 운행, 12시간 전 예약) ② 조식 도시락 가능 여부. 여권 봉투 준비.'},
+
+ /* ---------- Day 5 (11.02 월) ---------- */
+ {day:'day5', t:'4:40', ap:'새벽', move:'기상 · 체크아웃', note:'여권·탑승권 한 봉투, 보조배터리는 기내 가방에. 조식은 도시락이나 공항에서.'},
+ {day:'day5', t:'5:00', ap:'새벽', move:'호텔 출발 (무료 셔틀)', note:'차로 15~25분. 셔틀 시각이 04:30/05:30일 수 있으니 어제 확인한 시각대로. 놓치면 택시 15~25분.', taxi:'pvgT1'},
+ {day:'day5', t:'5:30', ap:'새벽', p:'pvgT1', tags:['체크인','출국']},
+ {day:'day5', t:'8:05', ap:'오전', move:'MU5053 이륙', note:'11:00 대구 도착(한국 시간). 시계를 1시간 앞으로!'}
 ];
 const ORDER = STOPS.filter(s=>s.p).map(s=>s.p);
 const ROUTE = [ // 표지 지도: 방문 순서대로
  ['yuyuanEve',78,92,'d1'],['bund',262,72,'d1'],['yugarden',178,188,'d2'],['xizha',292,282,'d2'],
- ['jingan',150,300,'d3'],['nanjing',58,398,'d3'],['lujiazui',176,430,'d3'],['shtower',298,452,'d3'],['binjiang',214,528,'d3']];
-const SHORT = {yuyuanEve:'성황묘',bund:'와이탄',yugarden:'예원',xizha:'우전',jingan:'정안사',nanjing:'난징루',lujiazui:'루자쭈이',shtower:'상하이타워',binjiang:'빈장다다오'};
+ ['jingan',150,300,'d3'],['nanjing',58,398,'d3'],['lujiazui',176,430,'d3'],['shtower',298,452,'d3'],['binjiang',214,528,'d3'],
+ ['madi',70,592,'d4'],['tianzifang',184,580,'d4'],['wukang',292,596,'d4'],['beiwaitan',96,656,'d4'],['airporthotel',292,652,'d5'],['pvgT1',196,672,'d5']];
+const SHORT = {yuyuanEve:'성황묘',bund:'와이탄',yugarden:'예원',xizha:'우전',jingan:'정안사',nanjing:'난징루',lujiazui:'루자쭈이',shtower:'상하이타워',binjiang:'빈장다다오',
+ madi:'임정청사',xintiandi:'신천지',dintaifung:'딘타이펑',tianzifang:'티엔즈팡',wukang:'우캉루',laojishi:'라오지스',beiwaitan:'북외탄',airporthotel:'공항호텔',pvgT1:'푸동T1',shnhm:'자연사',maglev:'자기부상'};
 
 /* ---------- helpers ---------- */
 const enc = encodeURIComponent;
@@ -1218,7 +1619,7 @@ function updateStamp(){
 
 /* ---------- cover route map ---------- */
 function renderRoute(){
-  const col={d1:'#2c69b0',d2:'#df4f7c',d3:'#2a9a68'};
+  const col={d1:'#2c69b0',d2:'#df4f7c',d3:'#2a9a68',d4:'#d1741f',d5:'#5b52b8'};
   const pts = ROUTE.map(r=>`${r[1]},${r[2]}`).join(' ');
   let s = `<defs>${ROUTE.map(([k])=>`<clipPath id="c-${k}"><circle r="31"/></clipPath>`).join('')}</defs>
     <polyline points="${pts}" fill="none" stroke="#1d1d1b" stroke-width="2"/>
@@ -1226,15 +1627,16 @@ function renderRoute(){
     <g fill="#fff" stroke="#1d1d1b" stroke-width="1.6"><path d="M300 196c0-7 10-7 10-2 2-6 12-4 11 2 5 0 5 6 0 6h-20c-4 0-4-6-1-6z"/><path d="M28 180c0-6 9-6 9-1 2-5 11-3 10 2 4 0 4 5 0 5H29c-3 0-3-6-1-6z"/></g>`;
   ROUTE.forEach(([k,x,y,d])=>{
     const ph=photosOf(k)[0];
+    const art=(ART[PLACES[k].art]||'').replace('<svg class="art"', `<svg class="art" x="-35" y="-21" width="70" height="42"`);
     s += `<a href="#p-${k}" aria-label="${PLACES[k].kr} 해설 보기"><g transform="translate(${x} ${y})">
       <circle r="36" cx="4" cy="4" fill="#e2bf12"/>
       <circle r="35" fill="#fff"/>
-      ${ph?`<image href="${ph.src}" x="-56" y="-35" width="112" height="70" preserveAspectRatio="xMidYMid slice" clip-path="url(#c-${k})"/>`:''}
+      ${ph?`<image href="${ph.src}" x="-56" y="-35" width="112" height="70" preserveAspectRatio="xMidYMid slice" clip-path="url(#c-${k})"/>`:`<g clip-path="url(#c-${k})">${art}</g>`}
       <circle class="ring" r="33" fill="none" stroke="#1d1d1b" stroke-width="3"/>
       <rect x="-34" y="-58" width="68" height="20" rx="10" fill="${col[d]}" stroke="#1d1d1b" stroke-width="1.6"/>
       <text y="-43.5" text-anchor="middle" font-size="13" fill="#fff">${SHORT[k]}</text></g></a>`;
   });
-  s += `<g font-family="Do Hyeon, sans-serif" font-size="12"><rect x="8" y="540" width="12" height="12" fill="#2c69b0"/><text x="24" y="550">1일차</text><rect x="70" y="540" width="12" height="12" fill="#df4f7c"/><text x="86" y="550">2일차</text><rect x="132" y="540" width="12" height="12" fill="#2a9a68"/><text x="148" y="550">3일차</text></g>`;
+  s += `<g font-family="Do Hyeon, sans-serif" font-size="12"><rect x="14" y="700" width="12" height="12" fill="#2c69b0"/><text x="30" y="711">1일차</text><rect x="82" y="700" width="12" height="12" fill="#df4f7c"/><text x="98" y="711">2일차</text><rect x="150" y="700" width="12" height="12" fill="#2a9a68"/><text x="166" y="711">3일차</text><rect x="218" y="700" width="12" height="12" fill="#d1741f"/><text x="234" y="711">4일차</text><rect x="286" y="700" width="12" height="12" fill="#5b52b8"/><text x="302" y="711">5일차</text></g>`;
   document.getElementById('routemap').innerHTML = s;
 }
 
@@ -1327,7 +1729,7 @@ function renderStampTab(){
 function placeHTML(k, book){
   const P=PLACES[k], ph=photosOf(k);
   const i=ORDER.indexOf(k), prev=ORDER[i-1], next=ORDER[i+1];
-  const stop=STOPS.find(s=>s.p===k), day=DAYS.find(d=>d.id===stop.day);
+  const stop=STOPS.find(s=>s.p===k)||{}, day=DAYS.find(d=>d.id===stop.day)||DAYS[0];
   const sid=s=>`${book?'b-':''}${k}-${s}`;
   const fig=(j)=> ph[j]?`<figure>${imgTag(ph[j],k)}<figcaption>${ph[j].cap} · ${ph[j].credit}</figcaption></figure>`:'';
   const secs=[['story','이야기'],['timeline','연표'],['course','해설 코스'],...(P.order?[['menu','메뉴']]:[]),['family','아이들'],['quiz','퀴즈'],['go','가는 법']];
@@ -1378,7 +1780,7 @@ let currentTab = 'home';
 let lastTab = 'home';
 
 function switchTab(tabId, updateHash = true){
-  const validTabs = ['home', 'day1', 'day2', 'day3', 'qr', 'talk', 'ready', 'stamp'];
+  const validTabs = ['home', 'day1', 'day2', 'day3', 'day4', 'day5', 'qr', 'talk', 'ready', 'stamp'];
   if(!validTabs.includes(tabId)) tabId = 'home';
 
   currentTab = tabId;
@@ -1441,9 +1843,13 @@ function route(){
     const tab = raw || 'home';
     switchTab(tab, false);
 
-    // If anchor is an internal element, scroll to it
+    // 표지 아래로만 이동: 탭 해시면 그 탭 시작, 그 밖의 앵커면 그 요소, 홈이면 맨 위
     const el = document.getElementById(raw);
-    if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
+    const view = document.getElementById('view-' + tab);
+    const navH = (document.querySelector('.top-nav-bar')?.offsetHeight || 60) + 8;
+    if(tab !== 'home' && view) requestAnimationFrame(()=>window.scrollTo({top: view.getBoundingClientRect().top + window.scrollY - navH, behavior:'smooth'}));
+    else if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth', block:'start'}));
+    else window.scrollTo(0, 0);
   }
 }
 window.addEventListener('hashchange', route);
@@ -1480,7 +1886,11 @@ document.addEventListener('click', e => {
 });
 document.getElementById('mClose').onclick = () => modal.hidden = true;
 modal.addEventListener('click', e => { if(e.target === modal) modal.hidden = true; });
-document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.hidden = true; });
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Escape') return;
+  modal.hidden = true;
+  closeQrZoom();
+});
 document.getElementById('mCopy').onclick = () => { if(cur) copy(`${cur.cn} ${cur.addr}`, '주소를 복사했어요. 디디에 붙여넣으세요'); };
 document.addEventListener('change', e => {
   const m = e.target.closest('[data-m]'); if(!m) return;
@@ -1534,15 +1944,17 @@ const QR_DATA = [
   { id: 1, name: '이현우 (LEE HYUNWOO)', pass: 'M8*****63', img: 'img/entry-qr-1.png' },
   { id: 2, name: '최은주 (CHOI EUNJU)', pass: 'M2*****88', img: 'img/entry-qr-2.png' },
   { id: 3, name: '이유건 (LEE YOOGEON)', pass: 'M9*****28', img: 'img/entry-qr-3.png' },
-  { id: 4, name: '최재열 (CHOI JAEYEUL)', pass: 'M823J3438', img: 'img/entry-qr-5.png' },
-  { id: 5, name: '한미희 (HAN MIHEE)', pass: 'M805M6488', img: 'img/entry-qr-4.png' },
-  { id: 6, name: '최진주 (CHOI JINJU)', pass: 'M063M0580', img: 'img/entry-qr-7.png' },
-  { id: 7, name: '은규민 (EUN GYUMIN)', pass: 'M600M6130', img: 'img/entry-qr-6.png' }
+  { id: 4, name: '최재열 (CHOI JAEYEUL)', pass: 'M8*****38', img: 'img/entry-qr-5.png' },
+  { id: 5, name: '한미희 (HAN MIHEE)', pass: 'M8*****88', img: 'img/entry-qr-4.png' },
+  { id: 6, name: '최진주 (CHOI JINJU)', pass: 'M0*****80', img: 'img/entry-qr-7.png' },
+  { id: 7, name: '은규민 (EUN GYUMIN)', pass: 'M6*****30', img: 'img/entry-qr-6.png' }
 ];
 
+let qrZoomId = 1;
 function showQr(id){
   const item = QR_DATA.find(x => x.id === id);
   if(!item) return;
+  qrZoomId = id;
   document.getElementById('qrImage').src = item.img;
   document.getElementById('qrName').textContent = item.name;
   document.getElementById('qrPass').textContent = item.pass;
@@ -1550,6 +1962,56 @@ function showQr(id){
     b.classList.toggle('active', idx + 1 === id);
   });
 }
+
+/* 화면 가득 QR 크게 보기 — 게이트에서 갤러리 검색 없이 바로 */
+function openQrZoom(){
+  const item = QR_DATA.find(x => x.id === qrZoomId) || QR_DATA[0];
+  renderQrZoom(item);
+}
+function renderQrZoom(item){
+  qrZoomId = item.id;
+  let lb = document.getElementById('qrLightbox');
+  if(!lb){
+    lb = document.createElement('div');
+    lb.id = 'qrLightbox';
+    lb.className = 'qr-lightbox';
+    lb.innerHTML = `<button class="lb-close" type="button" aria-label="닫기">×</button>
+      <div class="lb-stage"><img alt="입국 전자신고 QR 크게 보기"></div>
+      <div class="lb-hint">이미지를 한 번 더 탭하면 더 크게 · 손가락으로 확대해도 돼요</div>
+      <div class="lb-name"></div>
+      <div class="lb-sub"></div>
+      <div class="lb-nav"><button type="button" data-lb="prev">← 이전 사람</button><button type="button" data-lb="next">다음 사람 →</button></div>`;
+    document.body.appendChild(lb);
+    lb.addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(img) return toggleQrPixelZoom(img);
+      if(e.target === lb || e.target.closest('.lb-close')) return closeQrZoom();
+      const b = e.target.closest('[data-lb]'); if(!b) return;
+      const i = QR_DATA.findIndex(x => x.id === qrZoomId);
+      const n = (b.dataset.lb === 'prev' ? i - 1 + QR_DATA.length : i + 1) % QR_DATA.length;
+      showQr(QR_DATA[n].id);
+      renderQrZoom(QR_DATA[n]);
+    });
+  }
+  const img = lb.querySelector('img');
+  img.dataset.zoom = '1';                       // 사람을 바꾸면 원래 크기로
+  lb.querySelector('.lb-stage').scrollTop = 0;
+  img.src = item.img;
+  lb.querySelector('.lb-name').textContent = item.name;
+  lb.querySelector('.lb-sub').textContent = '입국 Shanghai Pudong · 여권 ' + item.pass;
+  lb.hidden = false;
+}
+/* 2배 확대: QR이 작게 찍힌 영수증형 이미지(entry-qr-4~7)도 게이트에서 바로 읽히게 */
+function toggleQrPixelZoom(img){
+  const on = img.dataset.zoom === '2';
+  img.dataset.zoom = on ? '1' : '2';
+  const stage = img.closest('.lb-stage');
+  if(!on && stage) requestAnimationFrame(() => {
+    stage.scrollLeft = Math.max(0, (img.offsetWidth - stage.clientWidth) / 2);
+    stage.scrollTop = Math.max(0, img.offsetHeight * 0.18);
+  });
+}
+function closeQrZoom(){ const lb = document.getElementById('qrLightbox'); if(lb) lb.hidden = true; }
 
 
 /* ---------- PWA SERVICE WORKER & INSTALL PROMPT ---------- */

@@ -146,10 +146,15 @@ if (DAYS && STOPS) {
     for (const k of Object.keys(SHORT)) if (!PLACES[k]) fail('SHORT', `'${k}' 가 PLACES 에 없습니다`);
   }
   if (ROUTE) {
+    // 표지 지도 viewBox 는 파일마다 다를 수 있으므로 실제 선언값을 읽는다 (기본 360x560)
+    const vb = /<svg[^>]*id="routemap"[^>]*viewBox="([\d.\s]+)"/.exec(src)
+            || /<svg[^>]*viewBox="([\d.\s]+)"[^>]*id="routemap"/.exec(src);
+    const [, , vbW, vbH] = vb ? vb[1].trim().split(/\s+/).map(Number) : [0, 0, 360, 560];
+    const W = vbW || 360, H = vbH || 560;
     ROUTE.forEach(([k, x, y], i) => {
       if (!PLACES[k]) fail('ROUTE', `[${i}] '${k}' 가 PLACES 에 없습니다`);
       if (typeof x !== 'number' || typeof y !== 'number') fail('ROUTE', `[${i}] 좌표가 숫자가 아닙니다`);
-      if (x < 0 || x > 360 || y < 0 || y > 560) warn('ROUTE', `[${i}] (${x},${y}) 가 지도 viewBox(360x560) 밖입니다`);
+      if (x < 0 || x > W || y < 0 || y > H) warn('ROUTE', `[${i}] (${x},${y}) 가 지도 viewBox(${W}x${H}) 밖입니다`);
     });
   }
 }
