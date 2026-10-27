@@ -1,43 +1,18 @@
 ﻿PASS  render: page loads with title  — 상하이 가족 여행 가이드북
-PASS  render: 7 tab views exist  — views=7
+PASS  render: 10 tab views exist  — views=10
 PASS  render: home visible / place hidden
-PASS  render: route panels + stop cards  — panels=3 stops=22
+FAIL  render: route panels + stop cards  — panels=0 stops=0
 PASS  render: no broken images at load
-PASS  render: body content height  — h=3638
-PASS  tab: home click switches view  — hash=#home active=true hit=true
-PASS  tab: day1 click switches view  — hash=#day1 active=true hit=true
-PASS  tab: day2 click switches view  — hash=#day2 active=true hit=true
-PASS  tab: day3 click switches view  — hash=#day3 active=true hit=true
-PASS  tab: talk click switches view  — hash=#talk active=true hit=true
-PASS  tab: ready click switches view  — hash=#ready active=true hit=true
-PASS  tab: stamp click switches view  — hash=#stamp active=true hit=true
-PASS  place: opens detail view with back bar  — 숙소체크인골든 튤립 더 번드 상하이金郁金香外滩新亚酒店1 hash=#p-hotel len=38804
-PASS  place: document title updated  — 골든 튤립 더 번드 상하이 · 상하이 가족 여행 가이드북
-PASS  place: 목록으로 돌아가기 works  — hash=#day1 active=view-day1
-PASS  place: 브라우저 뒤로가기 works  — hash=#day1
-PASS  modal: opens with place data  — 金郁金香外滩新亚酒店 / 上海市黄浦区天潼路422号
-PASS  modal: amap link populated  — https://uri.amap.com/search?keyword=%E9%87%91%E9%83%81%E9%87%91%E9%A6%99%E5%A4%96%E6%BB%A9%E6%96%B0%E4%BA%9A%E9%85%92%E5%BA%97&city=%E4%B8%8A%E6%B5%B7&src=familyguide&callnative=1
-PASS  modal: copy button sets clipboard or shows toast  — clip=金郁金香外滩新亚酒店 上海市黄浦区天潼路422号 toast=주소를 복사했어요. 디디에 붙여넣으세요
-PASS  modal: 닫기 closes
-PASS  modal: Escape closes
-PASS  stamp: checkbox toggles and persists  — stored=hotel-0
-PASS  stamp: gauge updates on both views  — 0/33(0%) -> 1/33(3.0303%)
-PASS  stamp: uncheck restores count  — 0/33
-PASS  booklet: builds all places + hides nav  — places=17
-PASS  booklet: has a visible way out
-PASS  booklet: exit returns to tab view  — off=true exitHidden=true
-PASS  links: amap keyword/city mapping for all places  — 17 places, bad=none
-PASS  links: dp mapping where used  — 7 dp links
-PASS  links: DOM amap anchors well-formed  — anchors=52
-PASS  images: every img/ reference loads  — 42 unique, bad=none
-PASS  mobile: bottom nav visible at 390px  — flex 390x65 items=6
-PASS  mobile: bottom nav home  — hash=#home
-PASS  mobile: bottom nav day1  — hash=#day1
-PASS  mobile: bottom nav day2  — hash=#day2
-PASS  mobile: bottom nav day3  — hash=#day3
-PASS  mobile: bottom nav talk  — hash=#talk
-PASS  mobile: bottom nav stamp  — hash=#stamp
-PASS  mobile: place detail + back bar  — barTop=8
-PASS  mobile: back returns to list
-
-41 passed, 0 failed; pageErrors=0, netFailures=0, external=0
+PASS  render: body content height  — h=4884
+FAIL  render: every day view has stops  — day1=0 day2=0 day3=0 day4=0 day5=0
+FAIL  tab: home click switches view  — hash= active=true actives=view-home placeOpen=false hit=true@353,442 over=SPAN.
+FAIL  tab: day1 click switches view  — hash=#p-yuyuanEve active=false actives=view-home placeOpen=true hit=true@461,442 over=SPAN.
+node : HARNESS ERROR Error: element not visible: #mainTabs .tab-btn[data-tab="day2"]
+At line:1 char:856
++ ... onds 3; "srv=$($srv.Id) edge=$($ep.Id)"; node qa/e2e.mjs 2>&1 | Tee-O ...
++                                              ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (HARNESS ERROR E...ata-tab="day2"]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at click [90m(file:///D:/ai-factory/projects/shanghai-guide/[39mqa/e2e.mjs:65:25[90m)[39m
+    at async main [90m(file:///D:/ai-factory/projects/shanghai-guide/[39mqa/e2e.mjs:175:15[90m)[39m
