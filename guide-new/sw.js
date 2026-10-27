@@ -1,6 +1,6 @@
 /* 상하이 가이드북 오프라인 캐시 서비스워커 — guide-new 전용
    입국 QR 7장·장소 사진·바우처 PDF까지 미리 받아 두어 비행기 모드에서도 바로 뜹니다. */
-const CACHE = 'shanghai-guide-v1793106339';
+const CACHE = 'shanghai-guide-v1793106900';
 const ASSETS = [
   './',
   './index.html',
@@ -85,7 +85,25 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
-  if (url.origin !== location.origin) return; // 폰트 등 외부 리소스는 그대로
+  if (url.origin !== location.origin) return;
+
+  // HTML 문서 탐색(navigation)은 네트워크 우선(Network-First): 온라인이면 항상 최신판, 오프라인이면 캐시
+  if (e.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/')) {
+    e.respondWith(
+      fetch(e.request)
+        .then((res) => {
+          if (res && res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request).then((hit) => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // 그 외 정적 자원(이미지, PDF 등)은 캐시 우선(Cache-First)
   e.respondWith(
     caches.match(e.request).then((hit) => {
       if (hit) return hit;
@@ -95,7 +113,7 @@ self.addEventListener('fetch', (e) => {
           caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
         }
         return res;
-      }).catch(() => caches.match('./index.html'));
+      });
     })
   );
 });
