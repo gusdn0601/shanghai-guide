@@ -1638,7 +1638,7 @@ const SHORT = {yuyuanEve:'성황묘',bund:'와이탄',yugarden:'예원',xizha:'�
 /* ---------- helpers ---------- */
 const enc = encodeURIComponent;
 const amap = P => `https://uri.amap.com/search?keyword=${enc(P.cn)}&city=${enc(P.city||'上海')}&src=familyguide&callnative=1`;
-const dpUrl = kw => `https://www.dianping.com/search/keyword/1/0_${enc(kw)}`;
+const dpUrl = kw => `dp.html?keyword=${enc(kw)}`;
 const photoUrl = P => `https://image.baidu.com/search/index?tn=baiduimage&word=${enc(P.cn)}`;
 const store = { get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
 const ico = {
