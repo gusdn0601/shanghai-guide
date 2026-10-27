@@ -161,6 +161,13 @@ async function main() {
   ok('render: no broken images at load', render.brokenImgs.length === 0, render.brokenImgs.join(', '));
   ok('render: body content height', render.bodyH > 2000, `h=${render.bodyH}`);
 
+  // 외부 스크립트에 기대면 비행기 모드·오프라인 번들에서 기능이 조용히 죽는다(실제로 QR 이 그랬다).
+  const extScripts = await evaluate(`[...document.scripts]
+    .filter(s => s.src)
+    .map(s => s.src)
+    .filter(u => { try { return new URL(u, location.href).origin !== location.origin; } catch { return true; } })`);
+  ok('render: 외부 스크립트 의존 없음', extScripts.length === 0, extScripts.join(', ') || 'inline·same-origin 만');
+
   // 5일 각각 일정 카드가 실제로 렌더됐는지 (Day 4·5 데이터 통합 확인)
   const dayFill = await evaluate(`(() => {
     const out = {};
@@ -221,6 +228,16 @@ async function main() {
   ok('place: opens detail view with back bar', detail.placeShown && detail.homeHidden && detail.hasBackBar && detail.backBarVisible,
     `${firstPlace?.txt} hash=${detail.hash} len=${detail.len}`);
   ok('place: document title updated', detail.title.includes('가이드북') && detail.title !== '상하이 가족 여행 가이드북', detail.title);
+
+  // 장소 페이지의 고덕지도 QR — 라이브러리가 없으면 오류도 없이 빈 자리만 남는다.
+  const placeQr = await evaluate(`(() => {
+    const blocks = [...document.querySelectorAll('#placeView .qr[data-qr]')];
+    const filled = blocks.filter(b => b.querySelector('svg'));
+    return { lib: typeof window.qrcode, blocks: blocks.length, filled: filled.length,
+             caption: (filled[0]?.textContent || '').replace(/\\s+/g, ' ').trim().slice(0, 24) };
+  })()`);
+  ok('place: 고덕지도 QR 이 생성된다', placeQr.blocks > 0 && placeQr.filled === placeQr.blocks && placeQr.lib === 'function',
+    `lib=${placeQr.lib} blocks=${placeQr.blocks} filled=${placeQr.filled} "${placeQr.caption}"`);
 
   await click('#placeView [data-back]');
   const afterBack = await evaluate(`(() => ({ hash: location.hash, placeHidden: document.getElementById('placeView').hidden, homeVisible: !document.getElementById('homeView').hidden,

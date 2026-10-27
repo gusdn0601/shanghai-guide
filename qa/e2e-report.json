@@ -1,7 +1,7 @@
 {
-  "when": "2026-10-27T16:29:20.045Z",
+  "when": "2026-10-27T16:38:35.474Z",
   "base": "http://127.0.0.1:8123/index.html",
-  "passed": 49,
+  "passed": 51,
   "failed": 0,
   "results": [
     {
@@ -33,6 +33,11 @@
       "name": "render: body content height",
       "pass": true,
       "detail": "h=4884"
+    },
+    {
+      "name": "render: 외부 스크립트 의존 없음",
+      "pass": true,
+      "detail": "inline·same-origin 만"
     },
     {
       "name": "render: every day view has stops",
@@ -103,6 +108,11 @@
       "name": "place: document title updated",
       "pass": true,
       "detail": "골든 튤립 더 번드 상하이 · 상하이 가족 여행 가이드북"
+    },
+    {
+      "name": "place: 고덕지도 QR 이 생성된다",
+      "pass": true,
+      "detail": "lib=function blocks=1 filled=1 \"휴대폰 카메라로 찍으면고덕지도 길찾기가 열려\""
     },
     {
       "name": "place: 목록으로 돌아가기 works",

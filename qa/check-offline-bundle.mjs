@@ -1,6 +1,6 @@
 // shanghai-offline.html 이 사진 59장을 정말 전부 품고 있는지 검사한다.
 // data:image/...base64 본문을 디코드해서 원본 img/*.jpg|png 의 해시와 대조.
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
@@ -13,6 +13,13 @@ const fileHashes = new Map();
 for (const f of files) {
   const h = createHash('sha256').update(readFileSync(join(imgDir, f))).digest('hex');
   fileHashes.set(h, f);
+}
+// 루트의 파비콘/터치아이콘도 인라인될 수 있으므로 해시에 포함
+for (const f of ['icon-192.png', 'icon-180.png']) {
+  const p = join(root, f);
+  if (existsSync(p)) {
+    fileHashes.set(createHash('sha256').update(readFileSync(p)).digest('hex'), f);
+  }
 }
 
 const uris = [...html.matchAll(/data:image\/(?:jpeg|jpg|png|webp);base64,([A-Za-z0-9+/=]+)/g)].map(m => m[1]);

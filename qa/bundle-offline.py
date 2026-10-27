@@ -7,7 +7,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 repo = 'D:/ai-factory/projects/shanghai-guide'
 
-# 1. Download vendor/qrcode.min.js
+# 1. Vendor qrcode.min.js
 vendor_dir = os.path.join(repo, 'vendor')
 os.makedirs(vendor_dir, exist_ok=True)
 vendor_file = os.path.join(vendor_dir, 'qrcode.min.js')
@@ -16,18 +16,23 @@ guide_new_vendor = os.path.join(repo, 'guide-new', 'vendor')
 os.makedirs(guide_new_vendor, exist_ok=True)
 guide_new_vendor_file = os.path.join(guide_new_vendor, 'qrcode.min.js')
 
-url = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'
-print('Downloading qrcode.min.js...')
-req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-with urllib.request.urlopen(req, timeout=10) as resp:
-    qr_js_bytes = resp.read()
+if os.path.exists(vendor_file):
+    with open(vendor_file, 'rb') as f:
+        qr_js_bytes = f.read()
+    print(f'1. Using existing vendor/qrcode.min.js ({len(qr_js_bytes)} B)')
+else:
+    url = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'
+    print('Downloading qrcode.min.js...')
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        qr_js_bytes = resp.read()
+    with open(vendor_file, 'wb') as f:
+        f.write(qr_js_bytes)
+    print(f'1. Saved vendor/qrcode.min.js ({len(qr_js_bytes)} B)')
 
-with open(vendor_file, 'wb') as f:
-    f.write(qr_js_bytes)
-with open(guide_new_vendor_file, 'wb') as f:
-    f.write(qr_js_bytes)
-
-print(f'1. Saved vendor/qrcode.min.js ({len(qr_js_bytes)} B)')
+if not os.path.exists(guide_new_vendor_file):
+    with open(guide_new_vendor_file, 'wb') as f:
+        f.write(qr_js_bytes)
 
 # 2. Update index.html and guide-new/index.html to use vendor/qrcode.min.js
 cdn_script = '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>'
@@ -97,6 +102,14 @@ offline_html = offline_html.replace("'dp.html?", f"'{LIVE_URL}dp.html?")
 
 # Remove relative manifest link
 offline_html = re.sub(r'<link\s+rel="manifest"[^>]*>\s*', '', offline_html)
+
+# Inline icons (icon-192.png, icon-180.png)
+for icon_name in ['icon-192.png', 'icon-180.png']:
+    icon_path = os.path.join(repo, icon_name)
+    if os.path.exists(icon_path):
+        with open(icon_path, 'rb') as f_ico:
+            ico_b64 = base64.b64encode(f_ico.read()).decode('ascii')
+        offline_html = offline_html.replace(f'href="{icon_name}"', f'href="data:image/png;base64,{ico_b64}"')
 
 # Save offline html to root and guide-new
 for out_p in [os.path.join(repo, 'shanghai-offline.html'), os.path.join(repo, 'guide-new', 'shanghai-offline.html')]:
