@@ -6,6 +6,7 @@ const ASSETS = [
   './index.html',
   './map.html',
   './dp.html',
+  './vendor/qrcode.min.js',
   './manifest.webmanifest',
   './icon-120.png',
   './icon-152.png',

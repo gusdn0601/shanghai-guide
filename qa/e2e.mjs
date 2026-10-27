@@ -60,10 +60,12 @@ async function rectOf(selector) {
 }
 
 async function click(selector, { move = true } = {}) {
-  const r = await rectOf(selector);
+  let r = await rectOf(selector);
   if (!r) throw new Error('no element: ' + selector);
   if (!r.visible) throw new Error('element not visible: ' + selector);
   await sleep(120);
+  // 레이아웃이 이동 중이면(스티키 헤더·부드러운 스크롤) 좌표를 다시 재서 한 번 재시도한다.
+  if (!r.hitOk) { await sleep(200); r = (await rectOf(selector)) || r; }
   const p = { x: r.x, y: r.y, button: 'left', clickCount: 1 };
   if (move) await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: r.x, y: r.y });
   await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...p });
@@ -126,6 +128,11 @@ async function main() {
   await send('Page.enable');
   await send('Runtime.enable');
   await send('Network.enable');
+  // 데이터 작성자가 index.html 을 계속 고치는 중이라, 브라우저 HTTP 캐시가 남은 사본을
+  // 물고 오면 검사 결과가 통째로 엉뚱해진다(실제로 한 번 그랬다). 항상 새로 받는다.
+  await send('Network.setCacheDisabled', { cacheDisabled: true }).catch(() => {});
+  // 서비스워커(sw.js)가 붙어 있어도 항상 서버 최신본을 받는다 — 오프라인 캐시가 검사 결과를 가리면 안 된다.
+  await send('Network.setBypassServiceWorker', { bypass: true }).catch(() => {});
   await send('Log.enable');
   await send('Browser.grantPermissions', {
     origin: new URL(BASE).origin,
@@ -139,7 +146,7 @@ async function main() {
     views: document.querySelectorAll('.tab-view').length,
     homeVisible: !document.getElementById('homeView').hidden,
     placeHidden: document.getElementById('placeView').hidden,
-    panels: document.querySelectorAll('#panels .panel').length,
+    days: document.querySelectorAll('.tab-view section.day').length,
     stops: document.querySelectorAll('.stop').length,
     imgs: document.images.length,
     brokenImgs: [...document.images].filter(i => i.complete && i.naturalWidth === 0).map(i => i.getAttribute('src')),
@@ -148,28 +155,56 @@ async function main() {
     fontDisplay: getComputedStyle(document.querySelector('.cover .hangul')).fontFamily
   }))()`);
   ok('render: page loads with title', render.title.includes('상하이'), render.title);
-  ok('render: 7 tab views exist', render.views === 7, `views=${render.views}`);
+  ok('render: 10 tab views exist', render.views === 10, `views=${render.views}`);
   ok('render: home visible / place hidden', render.homeVisible && render.placeHidden);
-  ok('render: route panels + stop cards', render.panels >= 3 && render.stops > 10, `panels=${render.panels} stops=${render.stops}`);
+  ok('render: day sections + stop cards', render.days >= 5 && render.stops > 10, `days=${render.days} stops=${render.stops}`);
   ok('render: no broken images at load', render.brokenImgs.length === 0, render.brokenImgs.join(', '));
   ok('render: body content height', render.bodyH > 2000, `h=${render.bodyH}`);
 
+  // 5일 각각 일정 카드가 실제로 렌더됐는지 (Day 4·5 데이터 통합 확인)
+  const dayFill = await evaluate(`(() => {
+    const out = {};
+    for (const d of [1,2,3,4,5]) {
+      const v = document.getElementById('view-day' + d);
+      out['day' + d] = v ? v.querySelectorAll('.stop').length : -1;
+    }
+    return out;
+  })()`);
+  ok('render: every day view has stops',
+    Object.values(dayFill).every(n => n > 0),
+    Object.entries(dayFill).map(([k, v]) => `${k}=${v}`).join(' '));
+
   // ---------- 2. Top tabs ----------
-  const tabs = ['home', 'day1', 'day2', 'day3', 'talk', 'ready', 'stamp'];
-  for (const tab of tabs) {
-    const r = await click(`#mainTabs .tab-btn[data-tab="${tab}"]`);
-    const state = await evaluate(`(() => ({
+  // 해시 변경은 hashchange 라는 별도 태스크로 처리된다. 고정 대기(sleep)로 읽으면
+  // 한 칸 뒤 상태를 읽어 오탐이 난다(실제로 두 번 났다). 조건이 만족할 때까지 짧게 폴링한다.
+  const tabState = tab => evaluate(`(() => ({
       hash: location.hash,
       active: document.querySelector('#view-${tab}')?.classList.contains('active'),
       btn: document.querySelector('#mainTabs .tab-btn[data-tab="${tab}"]')?.classList.contains('active'),
-      visible: getComputedStyle(document.querySelector('#view-${tab}')).display !== 'none'
+      visible: getComputedStyle(document.querySelector('#view-${tab}')).display !== 'none',
+      actives: [...document.querySelectorAll('.tab-view.active')].map(v => v.id).join(',') || 'none',
+      placeOpen: !document.getElementById('placeView').hidden
     }))()`);
+  const waitTab = async (tab, ms = 1200) => {
+    const until = Date.now() + ms;
+    let st = await tabState(tab);
+    while (Date.now() < until && !(st.hash === '#' + tab && st.active && st.btn)) { await sleep(80); st = await tabState(tab); }
+    return st;
+  };
+  const tabs = ['home', 'day1', 'day2', 'day3', 'day4', 'day5', 'qr', 'talk', 'ready', 'stamp'];
+  for (const tab of tabs) {
+    const r = await click(`#mainTabs .tab-btn[data-tab="${tab}"]`);
+    const state = await waitTab(tab);
     ok(`tab: ${tab} click switches view`, state.active && state.btn && state.visible && state.hash === '#' + tab,
-      `hash=${state.hash} active=${state.active} hit=${r.hitOk}`);
+      `hash=${state.hash} active=${state.active} actives=${state.actives} placeOpen=${state.placeOpen} hit=${r.hitOk}@${r.x.toFixed(0)},${r.y.toFixed(0)} over=${r.hitTag}`);
   }
+
+  const qrFill = await evaluate(`(() => { const v = document.getElementById('view-qr'); return v ? v.textContent.trim().length : -1; })()`);
+  ok('qr: 입국 QR view has content', qrFill > 50, `chars=${qrFill}`);
 
   // ---------- 3. Place detail + back ----------
   await click('#mainTabs .tab-btn[data-tab="day1"]');
+  await waitTab('day1');
   const placeSelector = '#view-day1 .stop a.sopen';
   const firstPlace = await evaluate(`(() => { const a = document.querySelector(${JSON.stringify(placeSelector)}); return a ? { href: a.getAttribute('href'), txt: a.textContent.trim().slice(0,30) } : null; })()`);
   await click(placeSelector);
@@ -304,8 +339,9 @@ async function main() {
       out.amap.push({ k, ok: kwOk && cityOk, kw: u.searchParams.get('keyword'), city: u.searchParams.get('city') });
       if (!kwOk || !cityOk) out.bad.push('amap:' + k);
       if (P.dp) {
-        const d = new URL(dpUrl(P.dp));
-        const ok = d.hostname === 'www.dianping.com' && d.pathname.includes(encodeURIComponent(P.dp).slice(0, 3));
+        // dpUrl() 은 이제 https://www.dianping.com 이 아니라 로컬 브리지 페이지(dp.html?keyword=…)를 만든다.
+        const d = new URL(dpUrl(P.dp), location.href);
+        const ok = d.pathname.endsWith('/dp.html') && d.searchParams.get('keyword') === P.dp;
         out.dp.push({ k, ok, url: d.href });
         if (!ok) out.bad.push('dp:' + k);
       }
@@ -334,6 +370,42 @@ async function main() {
   })()`, true);
   ok('images: every img/ reference loads', imgCheck.bad.length === 0, `${imgCheck.total} unique, bad=${imgCheck.bad.join(',') || 'none'}`);
 
+  // ---------- 8b. dp 브리지 페이지 (dp.html) ----------
+  // 1.8초 뒤 m.dianping.com 으로 자동 이동하므로, 넘어가기 전에 값만 빠르게 읽는다.
+  const dpKw = '鼎泰丰 新天地';
+  await navigateAndWait(new URL('dp.html?keyword=' + encodeURIComponent(dpKw), BASE).href);
+  let dpState = null;
+  for (let i = 0; i < 12; i++) {
+    dpState = await evaluate(`(() => {
+      const app = document.getElementById('btnDpApp'), web = document.getElementById('btnWeb'), t = document.getElementById('placeTitle');
+      if (!app || !web || !t) return null;
+      return { title: t.textContent, pageTitle: document.title, app: app.getAttribute('href'), web: web.getAttribute('href') };
+    })()`);
+    if (dpState) break;
+    await sleep(100);
+  }
+  ok('dp bridge: 키워드·딥링크·웹폴백이 채워진다',
+    !!dpState && dpState.title === dpKw
+      && dpState.app.startsWith('dianping://searchshoplist?keyword=')
+      && dpState.web.startsWith('https://m.dianping.com/search/keyword/1/0_')
+      && dpState.pageTitle.includes(dpKw),
+    dpState ? `title=${dpState.title} app=${dpState.app.slice(0, 40)}… web=${dpState.web.slice(0, 46)}…` : 'dp.html 렌더 실패');
+
+  // ---------- 8c. 지도 브리지 페이지 (map.html) ----------
+  // 가이드의 지도 버튼은 uri.amap.com 대신 map.html 로 넘어간다(앱 스킴·폴백 안내 페이지).
+  for (const [kw, label] of [['鼎泰丰(新天地时尚Ⅰ店)', 'PLACES 매칭'], ['없는가게이름', 'PLACES 미매칭 폴백']]) {
+    await navigateAndWait(new URL('map.html?keyword=' + encodeURIComponent(kw) + '&city=' + encodeURIComponent('上海'), BASE).href);
+    const m = await evaluate(`(() => {
+      const cn = document.getElementById('placeCn'), kr = document.getElementById('placeKr');
+      const a = document.getElementById('btnAmap'), f = document.getElementById('btnFallback');
+      if (!cn || !a || !f) return null;
+      return { cn: cn.textContent, kr: kr.textContent, amap: a.getAttribute('href'), fallback: f.getAttribute('href') };
+    })()`);
+    const amapOk = !!m && new URL(m.amap).searchParams.get('keyword') === m.cn;
+    ok(`map bridge: ${label}`, !!m && m.cn.length > 0 && amapOk && (m.fallback || '').startsWith('http'),
+      m ? `cn=${m.cn} amap=${(m.amap || '').slice(0, 52)}…` : 'map.html 렌더 실패');
+  }
+
   // ---------- 9. Mobile bottom nav ----------
   await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
   await navigateAndWait(BASE);
@@ -349,13 +421,17 @@ async function main() {
   const bnavTabs = await evaluate(`[...document.querySelectorAll('.bottom-nav .bnav-item')].map(b => b.dataset.tab)`);
   for (const tab of bnavTabs.filter(Boolean)) {
     await click(`.bottom-nav .bnav-item[data-tab="${tab}"]`);
-    const st = await evaluate(`(() => ({ hash: location.hash, active: document.querySelector('#view-${tab}')?.classList.contains('active'),
+    const read = () => evaluate(`(() => ({ hash: location.hash, active: document.querySelector('#view-${tab}')?.classList.contains('active'),
       itemActive: document.querySelector('.bottom-nav .bnav-item[data-tab="${tab}"]')?.classList.contains('active') }))()`);
+    const until = Date.now() + 1200;
+    let st = await read();
+    while (Date.now() < until && !(st.hash === '#' + tab && st.active && st.itemActive)) { await sleep(80); st = await read(); }
     ok(`mobile: bottom nav ${tab}`, st.active && st.itemActive && st.hash === '#' + tab, `hash=${st.hash}`);
   }
 
   // mobile place detail back bar
   await click('.bottom-nav .bnav-item[data-tab="day1"]');
+  await waitTab('day1');
   await click('#view-day1 .stop a.sopen');
   const mDetail = await evaluate(`(() => { const b = document.querySelector('#placeView [data-back]'); const r = b?.getBoundingClientRect(); return { shown: !document.getElementById('placeView').hidden, bar: !!b, barY: r ? Math.round(r.top) : null }; })()`);
   ok('mobile: place detail + back bar', mDetail.shown && mDetail.bar, `barTop=${mDetail.barY}`);
