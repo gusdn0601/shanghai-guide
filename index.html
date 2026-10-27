@@ -330,6 +330,23 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
 .taxi-item h4 { font-family: var(--f-display); font-size: 16px; margin: 0; }
 .taxi-item .cn { font-size: 13.5px; color: var(--ink-2); }
 
+
+/* ---------- ENTRY QR WALLET ---------- */
+.qr-wallet { background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; padding: 18px; margin-bottom: 22px; box-shadow: 4px 4px 0 var(--ink); }
+.qr-wallet-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.qr-wallet-head h3 { font-family: var(--f-display); font-size: 19px; margin: 0; display: flex; align-items: center; gap: 8px; }
+.qr-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 14px; }
+.qr-tab-btn { flex: none; background: var(--tint); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 14px; font-family: var(--f-display); font-size: 14px; cursor: pointer; transition: all .15s; }
+.qr-tab-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.qr-display-card { background: var(--tint); border: 2px solid var(--ink); border-radius: 12px; padding: 16px; text-align: center; }
+.qr-display-card img { max-width: 240px; margin: 0 auto 10px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; padding: 6px; box-shadow: 2px 2px 0 var(--ink); }
+.qr-info-row { display: flex; justify-content: space-around; font-size: 13.5px; font-weight: 700; color: var(--ink-2); margin-top: 6px; }
+
+/* Booking Info Cards */
+.booking-card { background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; box-shadow: 3px 3px 0 var(--ink); }
+.booking-card h4 { font-family: var(--f-display); font-size: 17px; margin: 0 0 6px; display: flex; align-items: center; justify-content: space-between; }
+.booking-badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--jade); color: #fff; font-family: var(--f-body); }
+
 </style>
 
 <div id="homeView">
@@ -355,6 +372,7 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
   <a href="#day1" class="tab-btn" data-tab="day1"><span class="badge-dot" style="background:var(--d1)"></span><span>1일차 (10.29)</span></a>
   <a href="#day2" class="tab-btn" data-tab="day2"><span class="badge-dot" style="background:var(--d2)"></span><span>2일차 (10.30)</span></a>
   <a href="#day3" class="tab-btn" data-tab="day3"><span class="badge-dot" style="background:var(--d3)"></span><span>3일차 (10.31)</span></a>
+  <a href="#qr" class="tab-btn" data-tab="qr" style="border-color:var(--red)"><span class="badge-dot" style="background:var(--red)"></span><span>🛂 입국 QR</span></a>
   <a href="#talk" class="tab-btn" data-tab="talk"><span>🗣️ 필수 회화</span></a>
   <a href="#ready" class="tab-btn" data-tab="ready"><span>🎒 준비 · 팁</span></a>
   <a href="#stamp" class="tab-btn" data-tab="stamp"><span>🎖️ 탐험 스탬프</span></a>
@@ -497,6 +515,80 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
     </div>
     <div id="stampMissionsList" style="display:grid;gap:12px"></div>
   </div>
+
+  <!-- VIEW: ENTRY QR WALLET (온 가족 입국 전자신고 QR 지갑) -->
+  <div id="view-qr" class="tab-view sheet">
+    <div class="sh"><span class="no">🛂</span><span class="bar"></span><h2>중국 입국 전자신고 QR 지갑</h2></div>
+    <p style="margin-bottom:14px;color:var(--ink-2)">푸동공항 입국 심사대 및 세관 게이트에서 가족별 바코드를 터치하여 바로 보여주세요!</p>
+    
+    <div class="qr-wallet">
+      <div class="qr-wallet-head">
+        <h3><span>📱</span> 7인 가족 전자신고 QR</h3>
+        <span class="chip" style="background:var(--red);color:#fff">2026.10.29 푸동 입국</span>
+      </div>
+      <div class="qr-tabs" id="qrTabs">
+        <button type="button" class="qr-tab-btn active" onclick="showQr(1)">1. 이현우 代表</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(2)">2. 최은주 님</button>
+        <button type="button" class="qr-tab-btn" onclick="showQr(3)">3. 가족 3</button>
+        <button type="button" class="qr-tab-btn" style="opacity:0.6">4. 추가 예정</button>
+        <button type="button" class="qr-tab-btn" style="opacity:0.6">5. 추가 예정</button>
+        <button type="button" class="qr-tab-btn" style="opacity:0.6">6. 추가 예정</button>
+        <button type="button" class="qr-tab-btn" style="opacity:0.6">7. 추가 예정</button>
+      </div>
+
+      <div class="qr-display-card" id="qrCard">
+        <img id="qrImage" src="img/entry-qr-1.png" alt="입국 전자신고 QR">
+        <div id="qrName" style="font-family:var(--f-display);font-size:18px;margin-bottom:4px">LE* HY** WO* (이현우 代表)</div>
+        <div class="qr-info-row">
+          <span>여권: <b id="qrPass">M8*****63</b></span>
+          <span>입국: <b>Shanghai Pudong</b></span>
+          <span>신고: <b>2026-10-26</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 예약 상세 정보 카드 모음 -->
+    <div class="sh" style="margin-top:28px"><span class="no">📑</span><span class="bar"></span><h2>확정된 예약 정보 총정리</h2></div>
+    
+    <div class="booking-card">
+      <h4><span>🚌 우전 데이투어 (네이버쇼핑 확정)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>미팅 시간</b>: 10월 30일(금) <b>오후 12:10</b> (출발 12:30 지체없이 출발)</li>
+        <li><b>미팅 장소</b>: <b>신세계성 남2문 맞은편 (新世界城南2门)</b> - 붉은 깃발 한국어 가이드</li>
+        <li><b>이동 방법</b>: 택시/디디 호출 시 목적지 <span class="cn">新世界城南2门</span> / 지하철 인민광장역 7번 출구 좌측계단 위</li>
+        <li><b>인원 & 비상연락</b>: 7명 / 현지전화: <b>+86-156-1869-6222</b> / 위챗: <b>story_tour</b></li>
+        <li><b>주의사항</b>: <b>여권 원본 필수 지참</b></li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🏨 호텔 1 (3박) : 골든 튤립 번드 뉴 아시아</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>일정</b>: 10월 29일(목) 체크인 ~ 11월 1일(일) 체크아웃 (3박)</li>
+        <li><b>주소</b>: 上海市虹口区天潼路422号 (텐퉁루역 3번 출구)</li>
+        <li><b>예약번호 (트립닷컴)</b>: 1400828705028182 (JINJU CHOI), 1400828704985802 (HYUNWOO LEE)</li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🏨 호텔 2 (1박) : 이롱 안위에 호텔 푸동공항점</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>일정</b>: 11월 1일(일) 체크인 ~ 11월 2일(월) 체크아웃 (1박, 공항 바로 앞!)</li>
+        <li><b>호텔명</b>: 艺龙安悦酒店(上海浦东机场店) / Elong Anyue Hotel Pudong Airport</li>
+        <li><b>예약번호 (트립닷컴)</b>: 1400828876626108 (HYUNWOO LEE), 1400828876608699 (JINJU CHOI)</li>
+        <li><b>익일 아침</b>: 호텔 무료 셔틀(5~10분) 타고 05:30에 T1 도착하여 MU5053(08:05) 탑승!</li>
+      </ul>
+    </div>
+
+    <div class="booking-card">
+      <h4><span>🚐 공항 픽업 (KKday 확정)</span><span class="booking-badge">예약확정</span></h4>
+      <ul class="prac" style="margin:8px 0">
+        <li><b>항공편</b>: 10/29(목) 대구공항 MU5054 ➡️ 상하이 푸동 도착 시 전용 차량 픽업</li>
+        <li><b>바우처 번호</b>: 26KK252694528 (입국장 피켓 미팅)</li>
+      </ul>
+    </div>
+  </div>
+
 </main>
     <section id="bookPlaces" aria-label="장소별 해설 모음"></section>
     <button type="button" id="bookExit" aria-label="책자 모드 닫기">휴대폰 탭보기로</button>
@@ -1247,7 +1339,7 @@ let currentTab = 'home';
 let lastTab = 'home';
 
 function switchTab(tabId, updateHash = true){
-  const validTabs = ['home', 'day1', 'day2', 'day3', 'talk', 'ready', 'stamp'];
+  const validTabs = ['home', 'day1', 'day2', 'day3', 'qr', 'talk', 'ready', 'stamp'];
   if(!validTabs.includes(tabId)) tabId = 'home';
 
   currentTab = tabId;
@@ -1397,6 +1489,24 @@ try {
 } catch(e) {}
 window.addEventListener('beforeprint', () => buildBook());
 document.getElementById('phr').innerHTML = PHRASES.map(([ko, zh, rd]) => `<button type="button" class="ph" data-zh="${zh}"><span class="ko">${ko}</span><span class="zh">${zh}</span><span class="rd">${rd}</span></button>`).join('');
+
+
+const QR_DATA = [
+  { id: 1, name: 'LE* HY** WO* (이현우 代表)', pass: 'M8*****63', img: 'img/entry-qr-1.png' },
+  { id: 2, name: 'CH** EU* JU (최은주 님)', pass: 'M2*****88', img: 'img/entry-qr-2.png' },
+  { id: 3, name: 'LE* YO***** (가족 3)', pass: 'M9*****28', img: 'img/entry-qr-3.png' }
+];
+
+function showQr(id){
+  const item = QR_DATA.find(x => x.id === id);
+  if(!item) return;
+  document.getElementById('qrImage').src = item.img;
+  document.getElementById('qrName').textContent = item.name;
+  document.getElementById('qrPass').textContent = item.pass;
+  document.querySelectorAll('#qrTabs .qr-tab-btn').forEach((b, idx) => {
+    b.classList.toggle('active', idx + 1 === id);
+  });
+}
 
 renderRoute();
 renderPanels();
