@@ -406,7 +406,7 @@ body.booklet .top-nav-bar, body.booklet .bottom-nav, body.booklet .day-switcher 
         <div class="sticker">역사는 재밌게<br>길 찾기는 쉽게</div>
       </div>
       <p class="cover-sub">2026.10.29 — 11.02 · 상하이 · 우전 · 푸동공항. 동그라미를 누르면 그 장소의 해설 페이지로 가요.</p>
-      <svg class="routemap" id="routemap" viewBox="0 0 360 1280" role="img" aria-label="5일 여행 루트 지도"></svg>
+      <svg class="routemap" id="routemap" viewBox="0 0 360 940" role="img" aria-label="5일 여행 루트 지도"></svg>
       <div class="cover-foot"><span class="chip">이현우 패밀리</span><span class="chip">어른 · 초등 · 중등</span><span class="chip">고덕지도 · 택시 카드</span></div>
     </header>
   </div>
@@ -1619,12 +1619,8 @@ const STOPS = [
  {day:'day5', t:'8:00', ap:'오전', p:'pvgT1', tags:['1터미널','출국','MU5053 08:05']}
 ];
 const ORDER = STOPS.filter(s=>s.p).map(s=>s.p);
-const ROUTE = [ // 표지 지도: 유려한 곡선 리듬 (1~5일차 전 일정 완벽 배치)
- ['yuyuanEve',82,95,'d1'],['bund',270,80,'d1'],
- ['yugarden',175,195,'d2'],['xizha',285,295,'d2'],
- ['jingan',155,395,'d3'],['nanjing',75,495,'d3'],['lujiazui',175,555,'d3'],['shtower',285,625,'d3'],['binjiang',185,715,'d3'],
- ['wukang',85,805,'d4'],['tianzifang',235,875,'d4'],['sinan',110,965,'d4'],['madi',255,1045,'d4'],
- ['airporthotel',270,1145,'d5'],['pvgT1',140,1225,'d5']
+const ROUTE = [ // 표지 지도: 촘촘한 지그재그 (1~5일차 전 일정)
+ ['yuyuanEve',115,70,'d1'],['bund',245,126,'d1'],['yugarden',115,182,'d2'],['xizha',245,238,'d2'],['jingan',115,294,'d3'],['nanjing',245,350,'d3'],['lujiazui',115,406,'d3'],['shtower',245,462,'d3'],['binjiang',115,518,'d3'],['wukang',245,574,'d4'],['tianzifang',115,630,'d4'],['sinan',245,686,'d4'],['madi',115,742,'d4'],['airporthotel',245,798,'d5'],['pvgT1',115,854,'d5']
 ];
 const SHORT = {yuyuanEve:'성황묘',bund:'와이탄',yugarden:'예원',xizha:'우전',jingan:'정안사',nanjing:'난징루',lujiazui:'루자쭈이',shtower:'상하이타워',binjiang:'빈장다다오',
  madi:'임정청사',sinan:'쓰난루',xintiandi:'신천지',dintaifung:'딘타이펑',tianzifang:'티엔즈팡',wukang:'우캉루',laojishi:'라오지스',beiwaitan:'북외탄',airporthotel:'공항호텔',pvgT1:'푸동T1',maglev:'자기부상'};
@@ -1672,14 +1668,14 @@ function renderRoute(){
   let s = `<defs>${ROUTE.map(([k])=>`<clipPath id="c-${k}"><circle r="31"/></clipPath>`).join('')}</defs>
     <polyline points="${pts}" fill="none" stroke="#1d1d1b" stroke-width="2"/>
     <g fill="none" stroke="#1d1d1b" stroke-width="1.4" opacity=".55">
-      <path d="M20 250q6-6 12 0t12 0"/><path d="M320 170q6-6 12 0t12 0"/><path d="M60 500q6-6 12 0t12 0"/>
-      <path d="M30 830q6-6 12 0t12 0"/><path d="M260 920q6-6 12 0t12 0"/><path d="M40 1110q6-6 12 0t12 0"/>
+      <path d="M20 190q6-6 12 0t12 0"/><path d="M320 130q6-6 12 0t12 0"/><path d="M20 380q6-6 12 0t12 0"/>
+      <path d="M320 630q6-6 12 0t12 0"/><path d="M330 700q6-6 12 0t12 0"/><path d="M20 840q6-6 12 0t12 0"/>
     </g>
     <g fill="#fff" stroke="#1d1d1b" stroke-width="1.6">
-      <path d="M300 196c0-7 10-7 10-2 2-6 12-4 11 2 5 0 5 6 0 6h-20c-4 0-4-6-1-6z"/>
-      <path d="M28 180c0-6 9-6 9-1 2-5 11-3 10 2 4 0 4 5 0 5H29c-3 0-3-6-1-6z"/>
-      <path d="M40 760c0-6 9-6 9-1 2-5 11-3 10 2 4 0 4 5 0 5H41c-3 0-3-6-1-6z"/>
-      <path d="M290 1000c0-7 10-7 10-2 2-6 12-4 11 2 5 0 5 6 0 6h-20c-4 0-4-6-1-6z"/>
+      <path d="M300 150c0-7 10-7 10-2 2-6 12-4 11 2 5 0 5 6 0 6h-20c-4 0-4-6-1-6z"/>
+      <path d="M28 140c0-6 9-6 9-1 2-5 11-3 10 2 4 0 4 5 0 5H29c-3 0-3-6-1-6z"/>
+      <path d="M24 570c0-6 9-6 9-1 2-5 11-3 10 2 4 0 4 5 0 5H41c-3 0-3-6-1-6z"/>
+      <path d="M296 760c0-7 10-7 10-2 2-6 12-4 11 2 5 0 5 6 0 6h-20c-4 0-4-6-1-6z"/>
     </g>`;
   ROUTE.forEach(([k,x,y,d])=>{
     const ph=photosOf(k)[0];
@@ -1693,11 +1689,11 @@ function renderRoute(){
       <text y="-43.5" text-anchor="middle" font-size="13" fill="#fff">${SHORT[k]}</text></g></a>`;
   });
   s += `<g font-family="Do Hyeon, sans-serif" font-size="12">
-    <rect x="12" y="1255" width="12" height="12" fill="#2c69b0"/><text x="28" y="1265">1일차</text>
-    <rect x="80" y="1255" width="12" height="12" fill="#df4f7c"/><text x="96" y="1265">2일차</text>
-    <rect x="148" y="1255" width="12" height="12" fill="#2a9a68"/><text x="164" y="1265">3일차</text>
-    <rect x="216" y="1255" width="12" height="12" fill="#d1741f"/><text x="232" y="1265">4일차</text>
-    <rect x="284" y="1255" width="12" height="12" fill="#5b52b8"/><text x="300" y="1265">5일차</text>
+    <rect x="12" y="915" width="12" height="12" fill="#2c69b0"/><text x="28" y="925">1일차</text>
+    <rect x="80" y="915" width="12" height="12" fill="#df4f7c"/><text x="96" y="925">2일차</text>
+    <rect x="148" y="915" width="12" height="12" fill="#2a9a68"/><text x="164" y="925">3일차</text>
+    <rect x="216" y="915" width="12" height="12" fill="#d1741f"/><text x="232" y="925">4일차</text>
+    <rect x="284" y="915" width="12" height="12" fill="#5b52b8"/><text x="300" y="925">5일차</text>
   </g>`;
   document.getElementById('routemap').innerHTML = s;
 }
