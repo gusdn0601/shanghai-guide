@@ -1,2 +1,9 @@
 
 qa/edge-profile/
+
+# OS 캐시 (커밋 금지)
+Thumbs.db
+desktop.ini
+
+# 작업용 원본 기사 (배포물 아님)
+_src/sinan-road-article.html
