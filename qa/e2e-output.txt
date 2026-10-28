@@ -1,18 +1,57 @@
-﻿PASS  render: page loads with title  — 상하이 가족 여행 가이드북
+PASS  render: page loads with title  — 상하이 가족 여행 가이드북
 PASS  render: 10 tab views exist  — views=10
 PASS  render: home visible / place hidden
-FAIL  render: route panels + stop cards  — panels=0 stops=0
+PASS  render: day sections + stop cards  — days=5 stops=34
 PASS  render: no broken images at load
-PASS  render: body content height  — h=4884
-FAIL  render: every day view has stops  — day1=0 day2=0 day3=0 day4=0 day5=0
-FAIL  tab: home click switches view  — hash= active=true actives=view-home placeOpen=false hit=true@353,442 over=SPAN.
-FAIL  tab: day1 click switches view  — hash=#p-yuyuanEve active=false actives=view-home placeOpen=true hit=true@461,442 over=SPAN.
-node : HARNESS ERROR Error: element not visible: #mainTabs .tab-btn[data-tab="day2"]
-At line:1 char:856
-+ ... onds 3; "srv=$($srv.Id) edge=$($ep.Id)"; node qa/e2e.mjs 2>&1 | Tee-O ...
-+                                              ~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (HARNESS ERROR E...ata-tab="day2"]:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-    at click [90m(file:///D:/ai-factory/projects/shanghai-guide/[39mqa/e2e.mjs:65:25[90m)[39m
-    at async main [90m(file:///D:/ai-factory/projects/shanghai-guide/[39mqa/e2e.mjs:175:15[90m)[39m
+PASS  render: body content height  — h=4669
+PASS  render: 외부 스크립트 의존 없음  — inline·same-origin 만
+PASS  render: every day view has stops  — day1=5 day2=6 day3=11 day4=10 day5=2
+PASS  tab: home click switches view  — hash=#home active=true actives=view-home placeOpen=false hit=true@73,244 over=SPAN.
+PASS  tab: day1 click switches view  — hash=#day1 active=true actives=view-day1 placeOpen=false hit=true@189,244 over=SPAN.
+PASS  tab: day2 click switches view  — hash=#day2 active=true actives=view-day2 placeOpen=false hit=true@311,237 over=SPAN.
+PASS  tab: day3 click switches view  — hash=#day3 active=true actives=view-day3 placeOpen=false hit=true@371,237 over=SPAN.
+PASS  tab: day4 click switches view  — hash=#day4 active=true actives=view-day4 placeOpen=false hit=true@371,237 over=SPAN.
+PASS  tab: day5 click switches view  — hash=#day5 active=true actives=view-day5 placeOpen=false hit=true@370,237 over=SPAN.
+PASS  tab: qr click switches view  — hash=#qr active=true actives=view-qr placeOpen=false hit=true@371,237 over=SPAN.
+PASS  tab: talk click switches view  — hash=#talk active=true actives=view-talk placeOpen=false hit=true@546,237 over=SPAN.
+PASS  tab: ready click switches view  — hash=#ready active=true actives=view-ready placeOpen=false hit=true@424,237 over=SPAN.
+PASS  tab: stamp click switches view  — hash=#stamp active=true actives=view-stamp placeOpen=false hit=true@663,237 over=SPAN.
+PASS  qr: 입국 QR view has content  — chars=477
+PASS  place: opens detail view with back bar  — 숙소체크인골든 튤립 더 번드 상하이金郁金香外滩新亚酒店1 hash=#p-hotel len=38804
+PASS  place: document title updated  — 골든 튤립 더 번드 상하이 · 상하이 가족 여행 가이드북
+PASS  place: 고덕지도 QR 이 생성된다  — lib=function blocks=1 filled=1 "휴대폰 카메라로 찍으면고덕지도 길찾기가 열려"
+PASS  place: 목록으로 돌아가기 works  — hash=#day1 active=view-day1
+PASS  place: 브라우저 뒤로가기 works  — hash=#day1
+PASS  modal: opens with place data  — 金郁金香外滩新亚酒店 / 上海市黄浦区天潼路422号
+PASS  modal: amap link populated  — https://uri.amap.com/search?keyword=%E9%87%91%E9%83%81%E9%87%91%E9%A6%99%E5%A4%96%E6%BB%A9%E6%96%B0%E4%BA%9A%E9%85%92%E5%BA%97&city=%E4%B8%8A%E6%B5%B7&src=familyguide&callnative=1
+PASS  modal: copy button sets clipboard or shows toast  — clip=金郁金香外滩新亚酒店 上海市黄浦区天潼路422号 toast=주소를 복사했어요. 디디에 붙여넣으세요
+PASS  modal: 닫기 closes
+PASS  modal: Escape closes
+PASS  stamp: checkbox toggles and persists  — stored=hotel-0
+PASS  stamp: gauge updates on both views  — 0/56(0%) -> 1/56(1.78571%)
+PASS  stamp: uncheck restores count  — 0/56
+PASS  booklet: builds all places + hides nav  — places=26
+PASS  booklet: has a visible way out
+PASS  booklet: exit returns to tab view  — off=true exitHidden=true
+PASS  links: amap keyword/city mapping for all places  — 29 places, bad=none
+PASS  links: dp mapping where used  — 18 dp links
+PASS  links: DOM amap anchors well-formed  — anchors=82
+PASS  images: every img/ reference loads  — 51 unique, bad=none
+PASS  dp bridge: 키워드·딥링크·웹폴백이 채워진다  — title=鼎泰丰 新天地 app=dianping://searchshoplist?keyword=%E9%BC… web=https://m.dianping.com/search/keyword/1/0_%E9%…
+PASS  map bridge: PLACES 매칭  — cn=鼎泰丰(新天地时尚Ⅰ店) amap=https://uri.amap.com/search?keyword=%E9%BC%8E%E6%B3%…
+PASS  map bridge: PLACES 미매칭 폴백  — cn=없는가게이름 amap=https://uri.amap.com/search?keyword=%EC%97%86%EB%8A%…
+PASS  mobile: bottom nav visible at 390px  — flex 390x65 items=6
+PASS  mobile: bottom nav home  — hash=#home
+PASS  mobile: bottom nav day1  — hash=#day1
+PASS  mobile: bottom nav qr  — hash=#qr
+PASS  mobile: bottom nav ready  — hash=#ready
+PASS  mobile: bottom nav talk  — hash=#talk
+PASS  mobile: bottom nav stamp  — hash=#stamp
+PASS  mobile: place detail + back bar  — barTop=8
+PASS  mobile: back returns to list
+
+51 passed, 0 failed; pageErrors=3, netFailures=0, external=0
+page errors:
+  log: Failed to launch 'dianping://searchshoplist?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0' because the scheme does not have a registered handler. http://127.0.0.1:8123/dp.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0
+  log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)&city=%E4%B8%8A%E6%B5%B7
+  log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84&city=%E4%B8%8A%E6%B5%B7

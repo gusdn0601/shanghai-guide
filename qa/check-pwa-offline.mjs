@@ -85,12 +85,13 @@ const boot = await ev(`(() => ({
   title: document.title,
   views: document.querySelectorAll('.tab-view').length,
   stops: document.querySelectorAll('.stop').length,
+  expectedStops: typeof STOPS !== 'undefined' ? STOPS.length : -1,
   qrLib: typeof window.qrcode,
   controlled: !!navigator.serviceWorker.controller,
   imgs: [...document.images].length,
   imgsLoaded: [...document.images].filter(i => i.naturalWidth > 0 || (i.getAttribute('src') || '').startsWith('data:')).length
 }))()`);
-check('오프라인 새로고침 후 부팅', boot.views >= 10 && boot.stops > 40, `views=${boot.views} stops=${boot.stops}`);
+check('오프라인 새로고침 후 부팅', boot.views >= 10 && boot.stops > 0 && boot.stops === boot.expectedStops, `views=${boot.views} stops=${boot.stops}/${boot.expectedStops}`);
 check('오프라인에서도 SW 가 제어', boot.controlled === true, `controller=${boot.controlled}`);
 check('QR 라이브러리 사용 가능', boot.qrLib === 'function', `typeof qrcode=${boot.qrLib}`);
 check('사진 캐시 로드', boot.imgsLoaded === boot.imgs, `${boot.imgsLoaded}/${boot.imgs}`);

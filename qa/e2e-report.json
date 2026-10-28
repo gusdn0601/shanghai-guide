@@ -1,6 +1,6 @@
 {
-  "when": "2026-10-27T17:13:41.223Z",
-  "base": "http://127.0.0.1:8124/index.html",
+  "when": "2026-10-28T01:37:43.640Z",
+  "base": "http://127.0.0.1:8123/index.html",
   "passed": 51,
   "failed": 0,
   "results": [
@@ -22,7 +22,7 @@
     {
       "name": "render: day sections + stop cards",
       "pass": true,
-      "detail": "days=5 stops=43"
+      "detail": "days=5 stops=34"
     },
     {
       "name": "render: no broken images at load",
@@ -32,7 +32,7 @@
     {
       "name": "render: body content height",
       "pass": true,
-      "detail": "h=4884"
+      "detail": "h=4669"
     },
     {
       "name": "render: 외부 스크립트 의존 없음",
@@ -42,57 +42,57 @@
     {
       "name": "render: every day view has stops",
       "pass": true,
-      "detail": "day1=5 day2=6 day3=11 day4=17 day5=4"
+      "detail": "day1=5 day2=6 day3=11 day4=10 day5=2"
     },
     {
       "name": "tab: home click switches view",
       "pass": true,
-      "detail": "hash=#home active=true actives=view-home placeOpen=false hit=true@345,442 over=SPAN."
+      "detail": "hash=#home active=true actives=view-home placeOpen=false hit=true@73,244 over=SPAN."
     },
     {
       "name": "tab: day1 click switches view",
       "pass": true,
-      "detail": "hash=#day1 active=true actives=view-day1 placeOpen=false hit=true@461,442 over=SPAN."
+      "detail": "hash=#day1 active=true actives=view-day1 placeOpen=false hit=true@189,244 over=SPAN."
     },
     {
       "name": "tab: day2 click switches view",
       "pass": true,
-      "detail": "hash=#day2 active=true actives=view-day2 placeOpen=false hit=true@584,434 over=SPAN."
+      "detail": "hash=#day2 active=true actives=view-day2 placeOpen=false hit=true@311,237 over=SPAN."
     },
     {
       "name": "tab: day3 click switches view",
       "pass": true,
-      "detail": "hash=#day3 active=true actives=view-day3 placeOpen=false hit=true@698,434 over=SPAN."
+      "detail": "hash=#day3 active=true actives=view-day3 placeOpen=false hit=true@371,237 over=SPAN."
     },
     {
       "name": "tab: day4 click switches view",
       "pass": true,
-      "detail": "hash=#day4 active=true actives=view-day4 placeOpen=false hit=true@698,434 over=SPAN."
+      "detail": "hash=#day4 active=true actives=view-day4 placeOpen=false hit=true@371,237 over=SPAN."
     },
     {
       "name": "tab: day5 click switches view",
       "pass": true,
-      "detail": "hash=#day5 active=true actives=view-day5 placeOpen=false hit=true@699,434 over=SPAN."
+      "detail": "hash=#day5 active=true actives=view-day5 placeOpen=false hit=true@370,237 over=SPAN."
     },
     {
       "name": "tab: qr click switches view",
       "pass": true,
-      "detail": "hash=#qr active=true actives=view-qr placeOpen=false hit=true@698,442 over=SPAN."
+      "detail": "hash=#qr active=true actives=view-qr placeOpen=false hit=true@371,237 over=SPAN."
     },
     {
       "name": "tab: talk click switches view",
       "pass": true,
-      "detail": "hash=#talk active=true actives=view-talk placeOpen=false hit=true@929,434 over=SPAN."
+      "detail": "hash=#talk active=true actives=view-talk placeOpen=false hit=true@546,237 over=SPAN."
     },
     {
       "name": "tab: ready click switches view",
       "pass": true,
-      "detail": "hash=#ready active=true actives=view-ready placeOpen=false hit=true@807,434 over=SPAN."
+      "detail": "hash=#ready active=true actives=view-ready placeOpen=false hit=true@424,237 over=SPAN."
     },
     {
       "name": "tab: stamp click switches view",
       "pass": true,
-      "detail": "hash=#stamp active=true actives=view-stamp placeOpen=false hit=true@1046,434 over=SPAN."
+      "detail": "hash=#stamp active=true actives=view-stamp placeOpen=false hit=true@663,237 over=SPAN."
     },
     {
       "name": "qr: 입국 QR view has content",
@@ -157,17 +157,17 @@
     {
       "name": "stamp: gauge updates on both views",
       "pass": true,
-      "detail": "0/60(0%) -> 1/60(1.66667%)"
+      "detail": "0/56(0%) -> 1/56(1.78571%)"
     },
     {
       "name": "stamp: uncheck restores count",
       "pass": true,
-      "detail": "0/60"
+      "detail": "0/56"
     },
     {
       "name": "booklet: builds all places + hides nav",
       "pass": true,
-      "detail": "places=28"
+      "detail": "places=26"
     },
     {
       "name": "booklet: has a visible way out",
@@ -182,7 +182,7 @@
     {
       "name": "links: amap keyword/city mapping for all places",
       "pass": true,
-      "detail": "28 places, bad=none"
+      "detail": "29 places, bad=none"
     },
     {
       "name": "links: dp mapping where used",
@@ -192,12 +192,12 @@
     {
       "name": "links: DOM amap anchors well-formed",
       "pass": true,
-      "detail": "anchors=85"
+      "detail": "anchors=82"
     },
     {
       "name": "images: every img/ reference loads",
       "pass": true,
-      "detail": "53 unique, bad=none"
+      "detail": "51 unique, bad=none"
     },
     {
       "name": "dp bridge: 키워드·딥링크·웹폴백이 채워진다",
@@ -261,9 +261,9 @@
     }
   ],
   "pageErrors": [
-    "log: Failed to launch 'dianping://searchshoplist?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0' because the scheme does not have a registered handler. http://127.0.0.1:8124/dp.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0",
-    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)' because the scheme does not have a registered handler. http://127.0.0.1:8124/map.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)&city=%E4%B8%8A%E6%B5%B7",
-    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84' because the scheme does not have a registered handler. http://127.0.0.1:8124/map.html?keyword=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84&city=%E4%B8%8A%E6%B5%B7"
+    "log: Failed to launch 'dianping://searchshoplist?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0' because the scheme does not have a registered handler. http://127.0.0.1:8123/dp.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0%20%E6%96%B0%E5%A4%A9%E5%9C%B0",
+    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E2%85%A0%E5%BA%97)&city=%E4%B8%8A%E6%B5%B7",
+    "log: Failed to launch 'androidamap://poi?sourceApplication=familyguide&keywords=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84' because the scheme does not have a registered handler. http://127.0.0.1:8123/map.html?keyword=%EC%97%86%EB%8A%94%EA%B0%80%EA%B2%8C%EC%9D%B4%EB%A6%84&city=%E4%B8%8A%E6%B5%B7"
   ],
   "networkFailures": [],
   "externalFailures": [],
