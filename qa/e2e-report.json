@@ -1,5 +1,5 @@
 {
-  "when": "2026-10-28T02:01:04.089Z",
+  "when": "2026-10-28T02:10:07.140Z",
   "base": "http://127.0.0.1:8123/index.html",
   "passed": 51,
   "failed": 0,
@@ -32,7 +32,7 @@
     {
       "name": "render: body content height",
       "pass": true,
-      "detail": "h=3267"
+      "detail": "h=3290"
     },
     {
       "name": "render: 외부 스크립트 의존 없음",
@@ -57,22 +57,22 @@
     {
       "name": "tab: day2 click switches view",
       "pass": true,
-      "detail": "hash=#day2 active=true actives=view-day2 placeOpen=false hit=true@584,433 over=SPAN."
+      "detail": "hash=#day2 active=true actives=view-day2 placeOpen=false hit=true@584,434 over=SPAN."
     },
     {
       "name": "tab: day3 click switches view",
       "pass": true,
-      "detail": "hash=#day3 active=true actives=view-day3 placeOpen=false hit=true@698,433 over=SPAN."
+      "detail": "hash=#day3 active=true actives=view-day3 placeOpen=false hit=true@698,434 over=SPAN."
     },
     {
       "name": "tab: day4 click switches view",
       "pass": true,
-      "detail": "hash=#day4 active=true actives=view-day4 placeOpen=false hit=true@698,433 over=SPAN."
+      "detail": "hash=#day4 active=true actives=view-day4 placeOpen=false hit=true@698,434 over=SPAN."
     },
     {
       "name": "tab: day5 click switches view",
       "pass": true,
-      "detail": "hash=#day5 active=true actives=view-day5 placeOpen=false hit=true@699,433 over=SPAN."
+      "detail": "hash=#day5 active=true actives=view-day5 placeOpen=false hit=true@699,434 over=SPAN."
     },
     {
       "name": "tab: qr click switches view",
@@ -82,17 +82,17 @@
     {
       "name": "tab: talk click switches view",
       "pass": true,
-      "detail": "hash=#talk active=true actives=view-talk placeOpen=false hit=true@929,433 over=SPAN."
+      "detail": "hash=#talk active=true actives=view-talk placeOpen=false hit=true@929,434 over=SPAN."
     },
     {
       "name": "tab: ready click switches view",
       "pass": true,
-      "detail": "hash=#ready active=true actives=view-ready placeOpen=false hit=true@807,433 over=SPAN."
+      "detail": "hash=#ready active=true actives=view-ready placeOpen=false hit=true@807,434 over=SPAN."
     },
     {
       "name": "tab: stamp click switches view",
       "pass": true,
-      "detail": "hash=#stamp active=true actives=view-stamp placeOpen=false hit=true@1046,433 over=SPAN."
+      "detail": "hash=#stamp active=true actives=view-stamp placeOpen=false hit=true@1046,434 over=SPAN."
     },
     {
       "name": "qr: 입국 QR view has content",
