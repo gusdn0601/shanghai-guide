@@ -1,0 +1,3 @@
+      const kw = u.searchParams.get('keyword') || '';
+      const city = u.searchParams.get('city') || '上海';
+      window.open(`https://gusdn0601.github.io/shanghai-guide/map.html?keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');

@@ -236,6 +236,15 @@ p{margin:0} img{display:block;max-width:100%}
 .quiz details:not([open]) summary::after{content:"정답";margin-left:auto;font-size:12px;background:var(--yellow);border-radius:999px;padding:0 8px;flex:none}
 .quiz details p{padding:0 14px 12px 38px;color:var(--c);font-weight:700}
 .prac{margin:10px 0 0;padding-left:20px}
+.branches{margin:10px 0 0;padding:9px 11px;border:1px solid #e7e2d4;border-radius:10px;background:var(--tint)}
+.branches .brh{font-size:12px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+.branches ul{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+.branches li+li{margin-top:7px}
+.branches .brn{font-weight:600}
+.branches .brt{font-size:11px;color:var(--red);border:1px solid currentColor;border-radius:99px;padding:0 5px;margin-left:2px}
+.branches .bra{color:var(--ink-2)}
+.branches a{color:var(--red);text-decoration:none;font-size:12px}
+@media print{.branches{border-color:#ccc;background:#fff;break-inside:avoid}}
 .prac li+li{margin-top:3px}
 .pnav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}
 .pnav button{text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:10px 14px;cursor:pointer;display:grid;gap:0}
@@ -900,6 +909,8 @@ hotel: {
 },
 
 siji: {
+  branches:[{"name":"四季民福烤鸭店(外滩外白渡桥店)","addr":"上海市虹口区吴淞路130号城投控股大厦辅楼彩虹北三层","note":"이 일정의 지점"},{"name":"四季民福烤鸭店(香港广场店)","addr":"上海市黄浦区淮海中路282号香港广场北座3层","lat":31.2258108,"lng":121.4701157},{"name":"四季民福烤鸭店(静安大悦城店)","addr":"上海市静安区西藏北路198号静安大悦城北座5层","lat":31.2459874,"lng":121.467506},{"name":"四季民福烤鸭店(中信泰富店)","addr":"上海市静安区南京西路1168号中信泰富广场L402-L403"},{"name":"四季民福烤鸭店(龙之梦店)","addr":"上海市长宁区长宁路1018号龙之梦城市生活中心8~10层","lat":31.2208976,"lng":121.411965}],
+  amap:'四季民福 外白渡桥',
   kr:'사계민복 오리구이', sub:'외백도교점', cn:'四季民福烤鸭店(外滩外白渡桥店)', addr:'上海市虹口区吴淞路130号北楼3楼', art:'duck', kind:'food',
   lead:'베이징에서 온 오리구이 명가. 한 마리를 테이블 옆에서 얇게 썰어 주는 ‘오리 쇼’가 하이라이트예요.',
   facts:[['종류','베이징덕 전문'],['이름 뜻','사계절 백성에게 복을'],['위치','우쑹루 130 북관 3층'],['영업','10:30~21:30 무렵']],
@@ -921,6 +932,7 @@ siji: {
 },
 
 yuyuanEve: {
+  amap:'上海城隍庙',
   kr:'성황묘 · 구곡교 · 호심정', sub:'예원 상권 저녁 산책', cn:'上海城隍庙 九曲桥 湖心亭', addr:'上海市黄浦区方浜中路249号', art:'garden', kind:'sight',
   lead:'600년 넘게 상하이를 지켜 온 도시 수호신의 사당과, 그 앞에서 자라난 장터. 해가 지면 처마마다 등불이 켜져요.',
   facts:[['성황묘 시작','1403년'],['모시는 신','세 분의 성황신'],['호심정','1784년 건립'],['추천 시간','해 질 녘 17~19시']],
@@ -974,6 +986,7 @@ bund: {
 },
 
 nanxiang: {
+  amap:'南翔馒头店 豫园',
   kr:'남상만두점', sub:'예원 본점 · 샤오롱바오 원조', cn:'南翔馒头店(豫园店)', addr:'上海市黄浦区豫园路85号', art:'basket', kind:'food',
   lead:'1871년 상하이 근교 난샹진에서 태어난 샤오롱바오. 1900년 성황묘 옆에 문을 연 이 가게가 그 맛을 120년 넘게 이어 오고 있어요.',
   facts:[['개업','1900년'],['원조','1871년 난샹 일화헌'],['등급','중화노자호(老字号)'],['추천','2층 이상 매장 식사']],
@@ -1025,6 +1038,7 @@ yugarden: {
 },
 
 newworld: {
+  amap:'莉莲蛋挞 新世界',
   kr:'신세계성 · 릴리안 에그타르트', sub:'인민광장 앞 백화점 지하', cn:'新世界城 莉莲蛋挞', addr:'上海市黄浦区南京西路2-68号 新世界城B1', art:'tart', kind:'food',
   lead:'‘상하이에서 아마 가장 맛있는 에그타르트’를 내건 노포 베이커리. 우전 가는 차에서 먹을 간식도 여기서.',
   facts:[['백화점 개장','1995년'],['위치','지하 1층'],['가까운 역','인민광장역 19번 출구'],['대표','포르투갈식 에그타르트']],
@@ -1045,6 +1059,7 @@ newworld: {
 },
 
 xizha: {
+  amap:'乌镇西栅',
   kr:'우전 서책(시자)', sub:'물 위의 마을', cn:'乌镇西栅景区', addr:'浙江省嘉兴市桐乡市乌镇镇石佛南路18号', city:'嘉兴', art:'water', kind:'sight',
   lead:'징항대운하 옆, 수로 위로 집과 돌다리가 이어진 강남 물의 마을. 해가 지면 물길에 비친 불빛이 마을 전체를 그림으로 만들어요.',
   facts:[['위치','저장성 퉁샹시'],['상하이에서','차로 약 2시간'],['서책 입장권','150위안 안팎'],['추천','해 질 녘 + 밤']],
@@ -1135,6 +1150,7 @@ louis: {
 },
 
 skewer: {
+  amap:'很久以前羊肉串 南京西路',
   kr:'헌지우이치엔 양꼬치', sub:'난징시루 818광장점', cn:'很久以前羊肉串(南京西路818广场店)', addr:'上海市静安区南京西路818号 818广场B1', art:'skewer', kind:'food',
   lead:'네이멍구 훌룬베이얼 초원의 어린 양고기로 유명한 체인. 연기 없는 그릴이라 아이들과 먹기 편해요.',
   facts:[['종류','양꼬치·바비큐'],['고기','훌룬베이얼 어린 양'],['위치','818광장 지하 1층'],['가까운 역','난징시루역']],
@@ -1219,6 +1235,7 @@ shtower: {
 },
 
 hotpot: {
+  amap:'左庭右院 正大广场',
   kr:'좌정우원 소고기 훠궈', sub:'정대광장', cn:'左庭右院鲜牛肉火锅 正大广场', addr:'上海市浦东新区陆家嘴西路168号 正大广场', art:'hotpot', kind:'food',
   lead:'매일 잡은 소고기를 부위별로 썰어 맑은 육수에 몇 초만 데쳐 먹는 차오산식 훠궈. 맵지 않아 온 가족이 다 좋아해요.',
   facts:[['브랜드 설립','2015년'],['스타일','차오산식 소고기 훠궈'],['정대광장 개장','2002년'],['매운맛','없음(맑은 육수)']],
@@ -1286,6 +1303,7 @@ circus: {
   tip:'공연장 바로 앞이 지하철역이라 이동이 매우 편해요. 7인 A석 예약 확정!'
 },
   sinan: {
+    amap:'思南公馆',
     kr:'쓰난루 역사 산책', sub:'쓰난맨션에서 임시정부까지', cn:'思南路 思南公馆', addr:'上海市黄浦区思南路', art:'street', kind:'sight',
     lead:'신천지 바로 서쪽, 옛 프랑스 조계의 조용한 플라타너스 길. 근대 중국 인물들의 옛집을 따라 걷다 보면 우리 임시정부 청사로 이어져요.',
     facts:[['길이','남북 약 1.5km'],['옛 이름','마스난루(Route Massenet)'],['동네 조성','1920~30년대 프랑스 조계'],['개방·입장료','각 옛집 현지 확인']],
@@ -1355,6 +1373,7 @@ xintiandi: {
 },
 
 dintaifung: {
+  amap:'鼎泰丰 新天地',
   kr:'딘타이펑', sub:'신천지 남리 · 샤오롱바오', cn:'鼎泰丰(新天地时尚Ⅰ店)', addr:'上海市黄浦区兴业路123弄1-7号 新天地南里 F2',
   art:'basket', kind:'food',
   lead:'1972년 타이베이에서 시작한 샤오롱바오 집. 신천지 남리 2층이라 청사 관람 후 바로 이어져요.',
@@ -1403,6 +1422,7 @@ tianzifang: {
 },
 
 wukang: {
+  amap:'武康大楼',
   kr:'우캉루 · 우캉빌딩', sub:'프랑스 조계의 플라타너스 길', cn:'武康路 武康大楼(诺曼底公寓)', addr:'上海市徐汇区武康路 / 淮海中路1850号(우캉빌딩)',
   art:'street', kind:'sight',
   lead:'1.1km 남짓, 양옆 플라타너스가 터널을 만드는 길. 끝자락에 배 모양의 우캉빌딩이 있어요.',
@@ -1429,6 +1449,7 @@ wukang: {
 
 
 laojishi: {
+  amap:'老吉士 天平路',
   kr:'라오지스 주가', sub:'본방채 · 1995년부터', cn:'老吉士酒家(天平路店)', addr:'上海市徐汇区天平路41号',
   art:'basket', kind:'food',
   lead:'작은 옛집 식당에서 나오는 홍소육과 게살 요리. 우캉빌딩에서 걸어서 5분이에요.',
@@ -1454,6 +1475,7 @@ laojishi: {
 },
 
 beiwaitan: {
+  amap:'北外滩滨江',
   kr:'북외탄 · 쑤저우허 야경', sub:'호텔에서 걸어서 10분', cn:'北外滩滨江 / 苏州河北岸', addr:'上海市虹口区东大名路 일대(白玉兰广场 방면)',
   art:'night', kind:'sight',
   lead:'와이탄보다 한적하고 강 건너 루자쭈이 스카이라인이 정면으로 보이는 자리. 골든튤립에서 걸어서 갈 수 있어요.',
@@ -1528,6 +1550,7 @@ pvgT1: {
 },
 
 maglev: {
+  amap:'上海磁浮示范运营线',
   kr:'자기부상열차', sub:'룽양루 ↔ 푸동공항', cn:'上海磁浮列车', addr:'龙阳路站 ↔ 浦东机场站',
   art:'bus', kind:'sight',
   lead:'30km를 8분에 달리는 시속 300km 열차. 이번엔 Day 4 밤, 공항으로 갈 때 타요.',
@@ -1625,7 +1648,17 @@ const SHORT = {yuyuanEve:'성황묘',bund:'와이탄',yugarden:'예원',xizha:'�
 
 /* ---------- helpers ---------- */
 const enc = encodeURIComponent;
-const amap = P => `https://uri.amap.com/search?keyword=${enc(P.cn)}&city=${enc(P.city||'上海')}&src=familyguide&callnative=1`;
+const AMAP_SRC = 'familyguide';
+/* 검색 링크: uri.amap.com/search 는 coordinate 파라미터가 없으므로 city 로 범위를 좁힌다.
+   keyword 는 현지 정식명(PLACES[k].amap)을 쓰고, 없으면 표시명(cn)을 그대로 쓴다. */
+const amapSearch = (kw, city) => `https://uri.amap.com/search?keyword=${enc(kw)}&city=${enc(city||'上海')}&view=list&src=${AMAP_SRC}&callnative=1`;
+/* 좌표가 확인된 지점은 마커 링크. 좌표는 WGS84 이므로 coordinate=wgs84 를 반드시 붙인다(안 붙이면 GCJ-02 로 해석돼 100~700m 어긋남). */
+const amapMarker = (name, lat, lng) => `https://uri.amap.com/marker?position=${lng},${lat}&name=${enc(name)}&coordinate=wgs84&src=${AMAP_SRC}&callnative=1`;
+const amapCity = P => P.amapCity || P.city || '上海';
+const amap = P => amapSearch(P.amap || P.cn, amapCity(P));
+const amapBranch = (b, P) => (b.lat != null && b.lng != null)
+  ? amapMarker(b.name || P.cn, b.lat, b.lng)
+  : amapSearch(b.name || P.cn, amapCity(P));
 const dpUrl = kw => `dp.html?keyword=${enc(kw)}`;
 const photoUrl = P => `https://image.baidu.com/search/index?tn=baiduimage&word=${enc(P.cn)}`;
 const store = { get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
@@ -1817,7 +1850,7 @@ function placeHTML(k, book){
     ${sh('quiz','가족 퀴즈','Quiz')}<div class="quiz">${P.quiz.map(q=>`<details${book?' open':''}><summary>${q.q}</summary><p>${q.a}</p></details>`).join('')}</div>
 
     ${sh('go','가는 법 · 알아둘 것','Info')}<div class="box"><p class="cn" style="font-size:18px;font-weight:700">${P.cn}</p><p class="cn" style="color:var(--red)">${P.addr}</p>
-      <ul class="prac">${(P.practical||[]).map(x=>`<li>${x}</li>`).join('')}</ul><div class="qr" data-qr="${k}"></div></div>
+      <ul class="prac">${(P.practical||[]).map(x=>`<li>${x}</li>`).join('')}</ul>${(P.branches&&P.branches.length)?`<div class="branches"><div class="brh">지점별 주소 · 고덕지도</div><ul>${P.branches.map(b=>`<li><span class="brn">${b.name}</span>${b.note?` <span class="brt">${b.note}</span>`:''}${b.addr?`<br><span class="bra">${b.addr}</span>`:''}<br><a class="noprint" href="${amapBranch(b,P)}" target="_blank" rel="noopener">고덕지도에서 열기 ↗</a></li>`).join('')}</ul></div>`:''}<div class="qr" data-qr="${k}"></div></div>
 
     ${book?'':`<div class="pnav">${prev?`<button type="button" data-go="${prev}"><small>← 이전 장소</small><span>${PLACES[prev].kr}</span></button>`:'<span></span>'}${next?`<button type="button" class="nx" data-go="${next}"><small>다음 장소 →</small><span>${PLACES[next].kr}</span></button>`:'<span></span>'}</div>`}
     ${ph.length?`<ul class="credits"><b>사진 출처</b> (Wikimedia Commons, 화면 비율에 맞게 잘라 사용)${ph.map(x=>`<li>${x.cap}: ${x.credit.replace(' · Wikimedia Commons','')}</li>`).join('')}</ul>`:''}
@@ -1933,7 +1966,8 @@ document.addEventListener('click', e => {
       const u = new URL(m.href);
       const kw = u.searchParams.get('keyword') || '';
       const city = u.searchParams.get('city') || '上海';
-      window.open(`map.html?keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');
+      const pk = Object.keys(PLACES).find(k => (PLACES[k].amap || PLACES[k].cn) === kw);
+      window.open(`map.html?${pk ? 'p=' + encodeURIComponent(pk) + '&' : ''}keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');
       return;
     } catch(err){ window.open(m.href, '_blank'); return; }
   }

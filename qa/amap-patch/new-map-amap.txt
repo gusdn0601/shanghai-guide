@@ -1,0 +1,8 @@
+const kw = place.kw || place.cn;
+const searchTarget = (kw + ' ' + (place.addr || '')).trim();
+
+// 1. 고덕지도 URL (앱 호출 스킴 및 웹 리다이렉트)
+const amapWeb = 'https://uri.amap.com/search?keyword=' + enc(kw) + '&city=' + enc(place.city||'上海') + '&view=list&src=familyguide&callnative=1';
+const amapApp = isIos
+  ? 'iosamap://poi?sourceApplication=familyguide&name=' + enc(kw) + '&address=' + enc(place.addr||'')
+  : 'androidamap://poi?sourceApplication=familyguide&keywords=' + enc(kw);

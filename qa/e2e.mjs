@@ -351,8 +351,8 @@ async function main() {
       const P = PLACES[k];
       const a = amap(P);
       const u = new URL(a);
-      const kwOk = u.searchParams.get('keyword') === P.cn;
-      const cityOk = u.searchParams.get('city') === (P.city || '上海');
+      const kwOk = u.searchParams.get('keyword') === (P.amap || P.cn);
+      const cityOk = u.searchParams.get('city') === (P.amapCity || P.city || '上海');
       out.amap.push({ k, ok: kwOk && cityOk, kw: u.searchParams.get('keyword'), city: u.searchParams.get('city') });
       if (!kwOk || !cityOk) out.bad.push('amap:' + k);
       if (P.dp) {
@@ -365,13 +365,35 @@ async function main() {
     }
     const domAmap = [...document.querySelectorAll('a[href^="https://uri.amap.com"]')];
     out.domAmap = domAmap.length;
-    out.domBad = domAmap.filter(a => { const u = new URL(a.href); return !u.searchParams.get('keyword') || !u.searchParams.get('city'); }).map(a => a.href);
+    // marker 링크는 position+coordinate=wgs84, search 링크는 keyword+city 가 있어야 한다.
+    out.domBad = domAmap.filter(a => {
+      const u = new URL(a.href);
+      if (u.pathname === '/marker') return !u.searchParams.get('position') || u.searchParams.get('coordinate') !== 'wgs84';
+      return !u.searchParams.get('keyword') || !u.searchParams.get('city');
+    }).map(a => a.href);
     return out;
   })()`);
   ok('links: amap keyword/city mapping for all places', links.bad.filter(b => b.startsWith('amap')).length === 0,
     `${links.amap.length} places, bad=${links.bad.join(',') || 'none'}`);
   ok('links: dp mapping where used', links.dp.every(d => d.ok), `${links.dp.length} dp links`);
   ok('links: DOM amap anchors well-formed', links.domAmap > 0 && links.domBad.length === 0, `anchors=${links.domAmap}`);
+
+  // ---------- 7b. 지점별 주소·고덕지도 링크 (사계민복 5개 지점) ----------
+  await navigateAndWait(new URL('#p-siji', BASE).href);
+  const branchBox = await evaluate(`(() => {
+    const box = document.querySelector('#placeView .branches');
+    if (!box) return { found: false };
+    const links = [...box.querySelectorAll('a[href^="https://uri.amap.com"]')];
+    const marker = links.filter(a => new URL(a.href).pathname === '/marker');
+    const wgs = marker.filter(a => new URL(a.href).searchParams.get('coordinate') === 'wgs84');
+    return { found: true, items: box.querySelectorAll('li').length, links: links.length, marker: marker.length, wgs: wgs.length,
+             title: (box.querySelector('.brh') || {}).textContent || '' };
+  })()`);
+  ok('branches: siji place page lists 5 branches with amap links', branchBox.found && branchBox.items === 5 && branchBox.links === 5,
+    JSON.stringify(branchBox));
+  ok('branches: links with coords use marker + coordinate=wgs84', branchBox.found && branchBox.wgs === branchBox.marker && branchBox.wgs >= 1,
+    `marker=${branchBox.marker} wgs84=${branchBox.wgs}`);
+  await navigateAndWait(BASE);
 
   // ---------- 8. All images actually load (fetch each img/) ----------
   const imgCheck = await evaluate(`(async () => {
@@ -410,17 +432,24 @@ async function main() {
 
   // ---------- 8c. 지도 브리지 페이지 (map.html) ----------
   // 가이드의 지도 버튼은 uri.amap.com 대신 map.html 로 넘어간다(앱 스킴·폴백 안내 페이지).
-  for (const [kw, label] of [['鼎泰丰(新天地时尚Ⅰ店)', 'PLACES 매칭'], ['없는가게이름', 'PLACES 미매칭 폴백']]) {
-    await navigateAndWait(new URL('map.html?keyword=' + encodeURIComponent(kw) + '&city=' + encodeURIComponent('上海'), BASE).href);
+  const mapCases = [
+    ['map.html?keyword=' + encodeURIComponent('鼎泰丰(新天地时尚Ⅰ店)') + '&city=' + encodeURIComponent('上海'), 'PLACES 매칭(cn)'],
+    ['map.html?keyword=' + encodeURIComponent('없는가게이름') + '&city=' + encodeURIComponent('上海'), 'PLACES 미매칭 폴백'],
+    ['map.html?p=sinan', 'p 키(내부 링크)'],
+  ];
+  for (const [href, label] of mapCases) {
+    await navigateAndWait(new URL(href, BASE).href);
     const m = await evaluate(`(() => {
       const cn = document.getElementById('placeCn'), kr = document.getElementById('placeKr');
       const a = document.getElementById('btnAmap'), f = document.getElementById('btnFallback');
       if (!cn || !a || !f) return null;
-      return { cn: cn.textContent, kr: kr.textContent, amap: a.getAttribute('href'), fallback: f.getAttribute('href') };
+      return { cn: cn.textContent, kr: kr.textContent, kw: (typeof kw !== 'undefined' ? kw : null),
+               amap: a.getAttribute('href'), fallback: f.getAttribute('href') };
     })()`);
-    const amapOk = !!m && new URL(m.amap).searchParams.get('keyword') === m.cn;
+    const mu = m ? new URL(m.amap) : null;
+    const amapOk = !!mu && mu.searchParams.get('keyword') === (m.kw || m.cn) && mu.searchParams.get('view') === 'list';
     ok(`map bridge: ${label}`, !!m && m.cn.length > 0 && amapOk && (m.fallback || '').startsWith('http'),
-      m ? `cn=${m.cn} amap=${(m.amap || '').slice(0, 52)}…` : 'map.html 렌더 실패');
+      m ? `cn=${m.cn} kw=${m.kw} amap=${(m.amap || '').slice(0, 52)}…` : 'map.html 렌더 실패');
   }
 
   // ---------- 9. Mobile bottom nav ----------

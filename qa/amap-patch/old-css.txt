@@ -1,0 +1,1 @@
+.prac{margin:10px 0 0;padding-left:20px}

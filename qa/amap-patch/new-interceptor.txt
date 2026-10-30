@@ -1,0 +1,4 @@
+      const kw = u.searchParams.get('keyword') || '';
+      const city = u.searchParams.get('city') || '上海';
+      const pk = Object.keys(PLACES).find(k => (PLACES[k].amap || PLACES[k].cn) === kw);
+      window.open(`map.html?${pk ? 'p=' + encodeURIComponent(pk) + '&' : ''}keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');

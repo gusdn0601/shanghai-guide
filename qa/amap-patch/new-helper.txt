@@ -1,0 +1,11 @@
+const AMAP_SRC = 'familyguide';
+/* 검색 링크: uri.amap.com/search 는 coordinate 파라미터가 없으므로 city 로 범위를 좁힌다.
+   keyword 는 현지 정식명(PLACES[k].amap)을 쓰고, 없으면 표시명(cn)을 그대로 쓴다. */
+const amapSearch = (kw, city) => `https://uri.amap.com/search?keyword=${enc(kw)}&city=${enc(city||'上海')}&view=list&src=${AMAP_SRC}&callnative=1`;
+/* 좌표가 확인된 지점은 마커 링크. 좌표는 WGS84 이므로 coordinate=wgs84 를 반드시 붙인다(안 붙이면 GCJ-02 로 해석돼 100~700m 어긋남). */
+const amapMarker = (name, lat, lng) => `https://uri.amap.com/marker?position=${lng},${lat}&name=${enc(name)}&coordinate=wgs84&src=${AMAP_SRC}&callnative=1`;
+const amapCity = P => P.amapCity || P.city || '上海';
+const amap = P => amapSearch(P.amap || P.cn, amapCity(P));
+const amapBranch = (b, P) => (b.lat != null && b.lng != null)
+  ? amapMarker(b.name || P.cn, b.lat, b.lng)
+  : amapSearch(b.name || P.cn, amapCity(P));

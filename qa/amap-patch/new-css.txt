@@ -1,0 +1,10 @@
+.prac{margin:10px 0 0;padding-left:20px}
+.branches{margin:10px 0 0;padding:9px 11px;border:1px solid #e7e2d4;border-radius:10px;background:var(--tint)}
+.branches .brh{font-size:12px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+.branches ul{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+.branches li+li{margin-top:7px}
+.branches .brn{font-weight:600}
+.branches .brt{font-size:11px;color:var(--red);border:1px solid currentColor;border-radius:99px;padding:0 5px;margin-left:2px}
+.branches .bra{color:var(--ink-2)}
+.branches a{color:var(--red);text-decoration:none;font-size:12px}
+@media print{.branches{border-color:#ccc;background:#fff;break-inside:avoid}}

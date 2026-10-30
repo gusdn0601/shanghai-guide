@@ -68,6 +68,42 @@ for (const k of keys) {
   if (P.dp !== undefined && !isStr(P.dp)) fail(k, 'dp 는 대중점평 검색어 문자열이어야 합니다');
   if (P.tip !== undefined && !isStr(P.tip)) fail(k, 'tip 은 문자열이어야 합니다');
 
+  // 고덕지도 검색어(amap) — 표시명(cn)과 별개로 현지 정식명을 지정할 때 쓴다.
+  if (P.amap !== undefined) {
+    if (!isStr(P.amap)) fail(k, 'amap 은 비어 있지 않은 검색어 문자열이어야 합니다');
+    else {
+      if (P.amap !== P.amap.trim()) fail(k, 'amap 앞뒤에 공백이 있습니다');
+      if (/[\/·,]/.test(P.amap)) warn(k, `amap '${P.amap}' 에 구분자(/ · ,)가 있습니다 — 검색이 어긋날 수 있어요`);
+      if (P.amap === P.cn) warn(k, 'amap 이 cn 과 같습니다 — cn 이 이미 정식명이면 amap 을 지우세요');
+    }
+  }
+  if (P.amapCity !== undefined && !isStr(P.amapCity)) fail(k, 'amapCity 는 도시명 문자열이어야 합니다');
+
+  // 지점 목록(branches) — 다지점 음식점의 지점별 주소·좌표.
+  if (P.branches !== undefined) {
+    if (!Array.isArray(P.branches) || P.branches.length === 0) fail(k, 'branches 는 1개 이상의 배열이어야 합니다');
+    else {
+      const seen = new Set();
+      P.branches.forEach((b, i) => {
+        if (!b || typeof b !== 'object') { fail(k, `branches[${i}] 가 객체가 아닙니다`); return; }
+        if (!isStr(b.name)) fail(k, `branches[${i}].name 이 비었습니다`);
+        else if (seen.has(b.name)) fail(k, `branches[${i}].name '${b.name}' 이 중복됩니다`);
+        else seen.add(b.name);
+        if (b.addr !== undefined && !isStr(b.addr)) fail(k, `branches[${i}].addr 는 문자열`);
+        if (b.note !== undefined && !isStr(b.note)) fail(k, `branches[${i}].note 는 문자열`);
+        const hasLat = b.lat !== undefined && b.lat !== null;
+        const hasLng = b.lng !== undefined && b.lng !== null;
+        if (hasLat !== hasLng) fail(k, `branches[${i}] 는 lat·lng 를 함께 두거나 함께 비워야 합니다`);
+        if (hasLat && hasLng) {
+          if (typeof b.lat !== 'number' || typeof b.lng !== 'number') fail(k, `branches[${i}] lat/lng 는 숫자`);
+          else if (b.lat < 18 || b.lat > 54 || b.lng < 73 || b.lng > 135)
+            fail(k, `branches[${i}] 좌표(${b.lat},${b.lng}) 가 중국 범위를 벗어납니다`);
+        }
+      });
+      if (P.branches.length < 2) warn(k, 'branches 가 1개뿐 — 지점 안내 박스가 거의 의미 없습니다');
+    }
+  }
+
   if (!isPairs(P.facts)) fail(k, 'facts 는 [[라벨, 값], ...] 형태로 1개 이상');
   else if (P.facts.length < 3) warn(k, `facts 가 ${P.facts.length}개 — 보통 3~4개`);
   if (!strList(P.origin)) fail(k, 'origin 은 문단 문자열 배열');

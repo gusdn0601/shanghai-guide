@@ -1,0 +1,3 @@
+      const kw = u.searchParams.get('keyword') || '';
+      const city = u.searchParams.get('city') || '上海';
+      window.open(`map.html?keyword=${encodeURIComponent(kw)}&city=${encodeURIComponent(city)}`, '_blank');
